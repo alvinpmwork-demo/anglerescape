@@ -68,28 +68,17 @@ Or use Vercel Domains UI → domain → Redirect to `https://anglerescape.com/zh
 
 ## Deploy: Cloudflare Pages
 
-Next.js on Cloudflare Pages works best with the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare) (`@opennextjs/cloudflare`) or Cloudflare’s Next.js support.
+This repo uses **static export** (`output: 'export'`). In Cloudflare dashboard:
 
-**Simple static-export path (if you later drop server features):**
-
-```bash
-# only if you switch next.config to output: 'export'
-npx wrangler pages deploy out
-```
-
-**Recommended (SSR / App Router):**
-
-1. Install adapter when you are ready for CF production:
-   ```bash
-   npm install -D @opennextjs/cloudflare wrangler
-   ```
-2. Follow OpenNext Cloudflare docs to add `wrangler.toml` / `open-next.config.ts`.
-3. In Cloudflare dashboard → **Workers & Pages** → Create → Connect git repo.
-4. Build command (typical OpenNext): `npx opennextjs-cloudflare build`
-5. Deploy command / output per current OpenNext Cloudflare docs.
-6. Attach custom domains: `anglerescape.com`, `diaoyulaoescape.com`.
-
-Until the adapter is wired, **Vercel is the fastest path** for this App Router site.
+1. **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → `alvinpmwork-demo/anglerescape`
+2. Build settings:
+   - Framework preset: **None** (or Next.js if offered; still use the settings below)
+   - Build command: `npm run build`
+   - Build output directory: `out`
+   - Root directory: `/` (repo root)
+   - Environment variable (optional): `NODE_VERSION` = `20`
+3. Deploy. Then **Custom domains**: `anglerescape.com`, and attach `diaoyulaoescape.com` for the Chinese vanity redirect.
+4. Manual deploy alternative: `npx wrangler pages deploy out`
 
 ### Cloudflare DNS redirect (Chinese domain → `/zh`)
 
