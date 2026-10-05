@@ -513,3 +513,10 @@ h3 {
   align-items: center;
   gap: 0.35rem;
 }
+.game-legend img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  object-fit: cover;
+}

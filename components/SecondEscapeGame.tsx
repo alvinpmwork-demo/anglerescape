@@ -9,8 +9,8 @@ type Props = { locale: Locale };
 
 const W = 640;
 const H = 400;
-const PLAYER_R = 16;
-const INSPECTOR_R = 17;
+const PLAYER_R = 20;
+const INSPECTOR_R = 22;
 const EXIT_R = 28;
 const SPOT_RANGE = 130;
 const SPOT_HALF_ANGLE = 0.42; // radians ~24deg
@@ -223,8 +223,35 @@ export function SecondEscapeGame({ locale }: Props) {
   const stateRef = useRef<GameState>("ready");
   const [state, setState] = useState<GameState>("ready");
   const [spotPct, setSpotPct] = useState(0);
+  const [spritesReady, setSpritesReady] = useState(false);
   const rafRef = useRef<number>(0);
   const lastTsRef = useRef<number>(0);
+  const anglerImgRef = useRef<HTMLImageElement | null>(null);
+  const inspectorImgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const angler = new Image();
+    const inspector = new Image();
+    let loaded = 0;
+    const done = () => {
+      loaded += 1;
+      if (loaded >= 2 && !cancelled) {
+        anglerImgRef.current = angler;
+        inspectorImgRef.current = inspector;
+        setSpritesReady(true);
+      }
+    };
+    angler.onload = done;
+    inspector.onload = done;
+    angler.onerror = done;
+    inspector.onerror = done;
+    angler.src = "/game/angler.png";
+    inspector.src = "/game/inspector.png";
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const setGameState = useCallback((s: GameState) => {
     stateRef.current = s;
@@ -336,11 +363,18 @@ export function SecondEscapeGame({ locale }: Props) {
       ctx.restore();
 
       // inspector avatar (patrol / 巡查)
-      drawInspectorAvatar(ctx, ins.x, ins.y, INSPECTOR_R, ins.facing);
+      drawInspectorAvatar(
+        ctx,
+        ins.x,
+        ins.y,
+        INSPECTOR_R,
+        ins.facing,
+        inspectorImgRef.current,
+      );
 
       // player angler avatar (钓鱼佬)
       const { player: p } = sim;
-      drawAnglerAvatar(ctx, p.x, p.y, PLAYER_R);
+      drawAnglerAvatar(ctx, p.x, p.y, PLAYER_R, anglerImgRef.current);
 
       // particles
       for (const p of sim.particles) {
@@ -401,7 +435,7 @@ export function SecondEscapeGame({ locale }: Props) {
 
       ctx.restore(); // undo shake
     },
-    [locale, t],
+    [locale, t, spritesReady],
   );
 
   // game loop
@@ -637,9 +671,17 @@ export function SecondEscapeGame({ locale }: Props) {
           />
         </span>
       </div>
-      <div className="game-legend" aria-hidden="true">
-        <span>🐟 {t.legendYou}</span>
-        <span>🚨 {t.legendCop}</span>
+      <div className="game-legend">
+        <span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/game/angler.png" alt="" width={28} height={28} />
+          {t.legendYou}
+        </span>
+        <span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/game/inspector.png" alt="" width={28} height={28} />
+          {t.legendCop}
+        </span>
       </div>
 
       <canvas
@@ -727,63 +769,61 @@ export function SecondEscapeGame({ locale }: Props) {
 }
 
 
+function drawPortrait(
+  ctx: CanvasRenderingContext2D,
+  img: HTMLImageElement | null,
+  x: number,
+  y: number,
+  r: number,
+) {
+  if (img && img.complete && img.naturalWidth > 0) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(img, x - r, y - r, r * 2, r * 2);
+    ctx.restore();
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(255,255,255,0.85)";
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    return true;
+  }
+  return false;
+}
+
 function drawAnglerAvatar(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
   r: number,
+  img: HTMLImageElement | null,
 ) {
-  // body / vest
+  if (drawPortrait(ctx, img, x, y, r)) {
+    // tiny rod tip so motion reads in play
+    ctx.strokeStyle = "#5d4037";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x + r * 0.55, y + r * 0.15);
+    ctx.lineTo(x + r * 1.25, y - r * 0.85);
+    ctx.stroke();
+    return;
+  }
+  // fallback silhouette
   ctx.beginPath();
   ctx.fillStyle = "#1f6aa5";
   ctx.arc(x, y + 2, r, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = "#0e3d5c";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  // face
   ctx.beginPath();
   ctx.fillStyle = "#f0c9a0";
   ctx.arc(x, y - 2, r * 0.62, 0, Math.PI * 2);
   ctx.fill();
-
-  // bucket hat
   ctx.fillStyle = "#c49a3b";
   ctx.beginPath();
   ctx.ellipse(x, y - r * 0.55, r * 0.85, r * 0.28, 0, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = "#a67c2d";
-  ctx.beginPath();
-  ctx.ellipse(x, y - r * 0.75, r * 0.55, r * 0.35, 0, 0, Math.PI * 2);
-  ctx.fill();
-
-  // eyes
-  ctx.fillStyle = "#2c3e50";
-  ctx.beginPath();
-  ctx.arc(x - 3.5, y - 2, 1.4, 0, Math.PI * 2);
-  ctx.arc(x + 3.5, y - 2, 1.4, 0, Math.PI * 2);
-  ctx.fill();
-
-  // fishing rod
-  ctx.strokeStyle = "#5d4037";
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(x + r * 0.2, y + 2);
-  ctx.lineTo(x + r * 1.35, y - r * 1.1);
-  ctx.stroke();
-  ctx.strokeStyle = "rgba(220,220,220,0.7)";
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(x + r * 1.35, y - r * 1.1);
-  ctx.lineTo(x + r * 1.55, y + r * 0.3);
-  ctx.stroke();
-
-  // fish badge
-  ctx.font = `${Math.max(10, Math.floor(r))}px serif`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("🐟", x - r * 0.75, y + r * 0.55);
 }
 
 function drawInspectorAvatar(
@@ -792,59 +832,32 @@ function drawInspectorAvatar(
   y: number,
   r: number,
   facing: number,
+  img: HTMLImageElement | null,
 ) {
-  // body / uniform
-  ctx.beginPath();
-  ctx.fillStyle = "#2c3e50";
-  ctx.arc(x, y + 2, r, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.strokeStyle = "#1a252f";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  // face
-  ctx.beginPath();
-  ctx.fillStyle = "#e8b896";
-  ctx.arc(x, y - 1, r * 0.58, 0, Math.PI * 2);
-  ctx.fill();
-
-  // cap
-  ctx.fillStyle = "#1a5276";
-  ctx.beginPath();
-  ctx.ellipse(x, y - r * 0.5, r * 0.75, r * 0.28, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = "#154360";
-  ctx.beginPath();
-  ctx.ellipse(x, y - r * 0.7, r * 0.48, r * 0.3, 0, 0, Math.PI * 2);
-  ctx.fill();
-  // badge on cap
-  ctx.fillStyle = "#f1c40f";
-  ctx.beginPath();
-  ctx.arc(x, y - r * 0.55, 2.2, 0, Math.PI * 2);
-  ctx.fill();
-
-  // stern eyes
-  ctx.fillStyle = "#1c2833";
-  ctx.beginPath();
-  ctx.arc(x - 3.2, y - 1, 1.3, 0, Math.PI * 2);
-  ctx.arc(x + 3.2, y - 1, 1.3, 0, Math.PI * 2);
-  ctx.fill();
-
-  // flashlight beam direction tick
+  if (!drawPortrait(ctx, img, x, y, r)) {
+    ctx.beginPath();
+    ctx.fillStyle = "#2c3e50";
+    ctx.arc(x, y + 2, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.fillStyle = "#e8b896";
+    ctx.arc(x, y - 1, r * 0.58, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#1a5276";
+    ctx.beginPath();
+    ctx.ellipse(x, y - r * 0.5, r * 0.75, r * 0.28, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  // flashlight direction
   ctx.strokeStyle = "#f7dc6f";
   ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.lineTo(
-    x + Math.cos(facing) * (r + 10),
-    y + Math.sin(facing) * (r + 10),
+    x + Math.cos(facing) * (r + 12),
+    y + Math.sin(facing) * (r + 12),
   );
   ctx.stroke();
-
-  ctx.font = `${Math.max(11, Math.floor(r + 2))}px serif`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("🚨", x + r * 0.7, y + r * 0.55);
 }
 
 function roundRect(
