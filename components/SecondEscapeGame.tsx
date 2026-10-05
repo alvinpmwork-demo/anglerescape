@@ -9,8 +9,8 @@ type Props = { locale: Locale };
 
 const W = 640;
 const H = 400;
-const PLAYER_R = 12;
-const INSPECTOR_R = 14;
+const PLAYER_R = 16;
+const INSPECTOR_R = 17;
 const EXIT_R = 28;
 const SPOT_RANGE = 130;
 const SPOT_HALF_ANGLE = 0.42; // radians ~24deg
@@ -39,6 +39,8 @@ const copy = {
     left: "Left",
     right: "Right",
     ariaGame: "Second Escape mini-game canvas",
+    legendYou: "You — the angler",
+    legendCop: "Inspector — avoid the light",
   },
   zh: {
     title: "二次逃脱",
@@ -60,6 +62,8 @@ const copy = {
     left: "左",
     right: "右",
     ariaGame: "二次逃脱小游戏画布",
+    legendYou: "你 — 钓鱼佬",
+    legendCop: "巡查 — 躲开探照灯",
   },
 } as const;
 
@@ -331,39 +335,12 @@ export function SecondEscapeGame({ locale }: Props) {
       ctx.fill();
       ctx.restore();
 
-      // inspector
-      ctx.beginPath();
-      ctx.fillStyle = "#c0392b";
-      ctx.arc(ins.x, ins.y, INSPECTOR_R, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = "#7b241c";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      // facing indicator
-      ctx.beginPath();
-      ctx.strokeStyle = "#fff";
-      ctx.lineWidth = 2;
-      ctx.moveTo(ins.x, ins.y);
-      ctx.lineTo(
-        ins.x + Math.cos(ins.facing) * (INSPECTOR_R + 8),
-        ins.y + Math.sin(ins.facing) * (INSPECTOR_R + 8),
-      );
-      ctx.stroke();
+      // inspector avatar (patrol / 巡查)
+      drawInspectorAvatar(ctx, ins.x, ins.y, INSPECTOR_R, ins.facing);
 
-      // player (angler)
+      // player angler avatar (钓鱼佬)
       const { player: p } = sim;
-      ctx.beginPath();
-      ctx.fillStyle = "#3498db";
-      ctx.arc(p.x, p.y, PLAYER_R, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = "#1a5276";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      // little hat
-      ctx.fillStyle = "#f39c12";
-      ctx.beginPath();
-      ctx.ellipse(p.x, p.y - 8, 9, 4, 0, 0, Math.PI * 2);
-      ctx.fill();
+      drawAnglerAvatar(ctx, p.x, p.y, PLAYER_R);
 
       // particles
       for (const p of sim.particles) {
@@ -660,6 +637,10 @@ export function SecondEscapeGame({ locale }: Props) {
           />
         </span>
       </div>
+      <div className="game-legend" aria-hidden="true">
+        <span>🐟 {t.legendYou}</span>
+        <span>🚨 {t.legendCop}</span>
+      </div>
 
       <canvas
         ref={canvasRef}
@@ -743,6 +724,127 @@ export function SecondEscapeGame({ locale }: Props) {
       </div>
     </section>
   );
+}
+
+
+function drawAnglerAvatar(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  r: number,
+) {
+  // body / vest
+  ctx.beginPath();
+  ctx.fillStyle = "#1f6aa5";
+  ctx.arc(x, y + 2, r, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#0e3d5c";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // face
+  ctx.beginPath();
+  ctx.fillStyle = "#f0c9a0";
+  ctx.arc(x, y - 2, r * 0.62, 0, Math.PI * 2);
+  ctx.fill();
+
+  // bucket hat
+  ctx.fillStyle = "#c49a3b";
+  ctx.beginPath();
+  ctx.ellipse(x, y - r * 0.55, r * 0.85, r * 0.28, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#a67c2d";
+  ctx.beginPath();
+  ctx.ellipse(x, y - r * 0.75, r * 0.55, r * 0.35, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // eyes
+  ctx.fillStyle = "#2c3e50";
+  ctx.beginPath();
+  ctx.arc(x - 3.5, y - 2, 1.4, 0, Math.PI * 2);
+  ctx.arc(x + 3.5, y - 2, 1.4, 0, Math.PI * 2);
+  ctx.fill();
+
+  // fishing rod
+  ctx.strokeStyle = "#5d4037";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x + r * 0.2, y + 2);
+  ctx.lineTo(x + r * 1.35, y - r * 1.1);
+  ctx.stroke();
+  ctx.strokeStyle = "rgba(220,220,220,0.7)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(x + r * 1.35, y - r * 1.1);
+  ctx.lineTo(x + r * 1.55, y + r * 0.3);
+  ctx.stroke();
+
+  // fish badge
+  ctx.font = `${Math.max(10, Math.floor(r))}px serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("🐟", x - r * 0.75, y + r * 0.55);
+}
+
+function drawInspectorAvatar(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  r: number,
+  facing: number,
+) {
+  // body / uniform
+  ctx.beginPath();
+  ctx.fillStyle = "#2c3e50";
+  ctx.arc(x, y + 2, r, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#1a252f";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // face
+  ctx.beginPath();
+  ctx.fillStyle = "#e8b896";
+  ctx.arc(x, y - 1, r * 0.58, 0, Math.PI * 2);
+  ctx.fill();
+
+  // cap
+  ctx.fillStyle = "#1a5276";
+  ctx.beginPath();
+  ctx.ellipse(x, y - r * 0.5, r * 0.75, r * 0.28, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#154360";
+  ctx.beginPath();
+  ctx.ellipse(x, y - r * 0.7, r * 0.48, r * 0.3, 0, 0, Math.PI * 2);
+  ctx.fill();
+  // badge on cap
+  ctx.fillStyle = "#f1c40f";
+  ctx.beginPath();
+  ctx.arc(x, y - r * 0.55, 2.2, 0, Math.PI * 2);
+  ctx.fill();
+
+  // stern eyes
+  ctx.fillStyle = "#1c2833";
+  ctx.beginPath();
+  ctx.arc(x - 3.2, y - 1, 1.3, 0, Math.PI * 2);
+  ctx.arc(x + 3.2, y - 1, 1.3, 0, Math.PI * 2);
+  ctx.fill();
+
+  // flashlight beam direction tick
+  ctx.strokeStyle = "#f7dc6f";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(
+    x + Math.cos(facing) * (r + 10),
+    y + Math.sin(facing) * (r + 10),
+  );
+  ctx.stroke();
+
+  ctx.font = `${Math.max(11, Math.floor(r + 2))}px serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("🚨", x + r * 0.7, y + r * 0.55);
 }
 
 function roundRect(
