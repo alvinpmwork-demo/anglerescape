@@ -1,11 +1,10 @@
 import Link from "next/link";
+import type { NavLink } from "@/lib/site";
 
 type Props = {
   siteName: string;
   homeHref: string;
-  secondHref: string;
-  navHome: string;
-  navSecond: string;
+  links: NavLink[];
   langSwitchLabel: string;
   langSwitchHref: string;
 };
@@ -13,9 +12,7 @@ type Props = {
 export function Header({
   siteName,
   homeHref,
-  secondHref,
-  navHome,
-  navSecond,
+  links,
   langSwitchLabel,
   langSwitchHref,
 }: Props) {
@@ -26,9 +23,16 @@ export function Header({
           🎣 {siteName}
         </Link>
         <nav className="nav" aria-label="Primary">
-          <Link href={homeHref}>{navHome}</Link>
-          <Link href={secondHref}>{navSecond}</Link>
-          <Link href={langSwitchHref} className="lang-switch" hrefLang={langSwitchLabel === "English" ? "en" : "zh-CN"}>
+          {links.map((link) => (
+            <Link key={link.href + link.label} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href={langSwitchHref}
+            className="lang-switch"
+            hrefLang={langSwitchLabel === "English" ? "en" : "zh-CN"}
+          >
             {langSwitchLabel}
           </Link>
         </nav>

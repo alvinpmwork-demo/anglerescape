@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { SecondEscapeContent } from "@/lib/content";
+import { getChrome, langSwitch } from "@/lib/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CtaRow } from "@/components/CtaRow";
@@ -11,22 +12,20 @@ import { FaqJsonLd } from "@/components/FaqJsonLd";
 type Props = { content: SecondEscapeContent };
 
 export function SecondEscapePage({ content: c }: Props) {
-  const homeHref = c.locale === "zh" ? "/zh/" : "/";
-  const secondHref =
-    c.locale === "zh" ? "/zh/play/second-escape/" : "/play/second-escape/";
+  const chrome = getChrome(c.locale);
+  const homeHref = chrome.homeHref;
   const fourActHref = `${homeHref}#the-four-act-loop`;
+  const switcher = langSwitch(c.locale, "/play/second-escape/");
 
   return (
     <>
       <FaqJsonLd items={c.faq} />
       <Header
-        siteName={c.siteName}
+        siteName={chrome.siteName}
         homeHref={homeHref}
-        secondHref={secondHref}
-        navHome={c.navHome}
-        navSecond={c.navSecond}
-        langSwitchLabel={c.langSwitchLabel}
-        langSwitchHref={c.langSwitchHref}
+        links={chrome.links}
+        langSwitchLabel={switcher.label}
+        langSwitchHref={switcher.href}
       />
       <main>
         <section className="hero">
@@ -133,13 +132,13 @@ export function SecondEscapePage({ content: c }: Props) {
         </div>
       </main>
       <Footer
-        siteName={c.siteName}
+        siteName={chrome.siteName}
         homeHref={homeHref}
-        howHref={`${homeHref}#how-to-play`}
-        disclaimerHref="#disclaimer"
-        footerHow={c.footerHow}
-        footerDisclaimer={c.footerDisclaimer}
-        disclaimer={c.disclaimer}
+        howHref={chrome.howHref}
+        disclaimerHref={chrome.disclaimerHref}
+        footerHow={chrome.footerHow}
+        footerDisclaimer={chrome.footerDisclaimer}
+        disclaimer={chrome.disclaimer}
       />
     </>
   );
