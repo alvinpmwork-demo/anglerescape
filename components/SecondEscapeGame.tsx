@@ -23,9 +23,11 @@ const copy = {
     title: "Second Escape",
     ready: "Tap / press any key to start",
     hint: "Sneak past the inspector spotlight to the bush",
-    win: "You made it!",
+    win: "Clear!",
+    winSub: "Gear secured — you made it out.",
     loseSpot: "Spotted! Stay out of the light.",
     loseHit: "Caught by the inspector!",
+    loseHint: "Tap Restart and try again",
     restart: "Restart",
     statusReady: "Ready",
     statusPlaying: "Sneaking…",
@@ -42,9 +44,11 @@ const copy = {
     title: "二次逃脱",
     ready: "点击 / 按任意键开始",
     hint: "躲开检查员探照灯，潜入灌木丛出口",
-    win: "逃出去了！",
+    win: "恭喜通关",
+    winSub: "装备成功保下",
     loseSpot: "被发现了！别待在光里。",
     loseHit: "被检查员抓住了！",
+    loseHint: "点再来一次，保装备再冲",
     restart: "再来一次",
     statusReady: "准备",
     statusPlaying: "潜行中…",
@@ -61,6 +65,16 @@ const copy = {
 
 type Keys = { up: boolean; down: boolean; left: boolean; right: boolean };
 
+type Particle = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+  color: string;
+  size: number;
+};
+
 type Sim = {
   player: { x: number; y: number };
   inspector: { x: number; y: number; facing: number; patrolDir: 1 | -1 };
@@ -68,6 +82,10 @@ type Sim = {
   covers: { x: number; y: number; w: number; h: number }[];
   spotTimer: number;
   loseReason: "spot" | "hit" | null;
+  particles: Particle[];
+  shake: number;
+  endFlash: number;
+  juiceSpawned: boolean;
 };
 
 function initialSim(): Sim {
@@ -82,7 +100,47 @@ function initialSim(): Sim {
     ],
     spotTimer: 0,
     loseReason: null,
+    particles: [],
+    shake: 0,
+    endFlash: 0,
+    juiceSpawned: false,
   };
+}
+
+function spawnWinBurst(sim: Sim) {
+  const colors = ["#f9e79f", "#82e0aa", "#85c1e9", "#f5b041", "#ffffff"];
+  for (let i = 0; i < 48; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const sp = 60 + Math.random() * 180;
+    sim.particles.push({
+      x: sim.player.x,
+      y: sim.player.y,
+      vx: Math.cos(a) * sp,
+      vy: Math.sin(a) * sp - 40,
+      life: 0.7 + Math.random() * 0.6,
+      color: colors[i % colors.length],
+      size: 3 + Math.random() * 4,
+    });
+  }
+  sim.endFlash = 0.45;
+}
+
+function spawnLoseFlash(sim: Sim) {
+  sim.shake = 10;
+  sim.endFlash = 0.35;
+  for (let i = 0; i < 18; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const sp = 40 + Math.random() * 90;
+    sim.particles.push({
+      x: sim.player.x,
+      y: sim.player.y,
+      vx: Math.cos(a) * sp,
+      vy: Math.sin(a) * sp,
+      life: 0.35 + Math.random() * 0.35,
+      color: i % 2 ? "#f5b7b1" : "#922b21",
+      size: 2 + Math.random() * 3,
+    });
+  }
 }
 
 function pointInCover(
@@ -187,6 +245,12 @@ export function SecondEscapeGame({ locale }: Props) {
 
   const draw = useCallback(
     (ctx: CanvasRenderingContext2D, sim: Sim, gs: GameState) => {
+      ctx.save();
+      if (sim.shake > 0) {
+        const mag = sim.shake;
+        ctx.translate((Math.random() - 0.5) * mag, (Math.random() - 0.5) * mag);
+      }
+
       // grass field
       const grd = ctx.createLinearGradient(0, 0, 0, H);
       grd.addColorStop(0, "#1a5c3a");
@@ -301,14 +365,33 @@ export function SecondEscapeGame({ locale }: Props) {
       ctx.ellipse(p.x, p.y - 8, 9, 4, 0, 0, Math.PI * 2);
       ctx.fill();
 
+      // particles
+      for (const p of sim.particles) {
+        ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 1.4));
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
+      // end flash
+      if (sim.endFlash > 0) {
+        ctx.fillStyle =
+          gs === "win"
+            ? `rgba(130, 224, 170, ${sim.endFlash * 0.55})`
+            : `rgba(192, 57, 43, ${sim.endFlash * 0.5})`;
+        ctx.fillRect(0, 0, W, H);
+      }
+
       // overlay messages
       if (gs !== "playing") {
-        ctx.fillStyle = "rgba(8, 20, 28, 0.55)";
+        ctx.fillStyle = "rgba(8, 20, 28, 0.62)";
         ctx.fillRect(0, 0, W, H);
         ctx.textAlign = "center";
         ctx.fillStyle = "#fff";
-        ctx.font = "bold 22px system-ui,sans-serif";
         if (gs === "ready") {
+          ctx.font = "bold 22px system-ui,sans-serif";
           ctx.fillText(t.title, W / 2, H / 2 - 28);
           ctx.font = "15px system-ui,sans-serif";
           ctx.fillStyle = "#d6eaf8";
@@ -316,21 +399,30 @@ export function SecondEscapeGame({ locale }: Props) {
           ctx.fillStyle = "#f9e79f";
           ctx.fillText(t.ready, W / 2, H / 2 + 32);
         } else if (gs === "win") {
+          ctx.font = "bold 34px system-ui,sans-serif";
           ctx.fillStyle = "#82e0aa";
-          ctx.fillText(t.win, W / 2, H / 2 - 8);
+          ctx.fillText(t.win, W / 2, H / 2 - 18);
+          ctx.font = "bold 18px system-ui,sans-serif";
+          ctx.fillStyle = "#f9e79f";
+          ctx.fillText(t.winSub, W / 2, H / 2 + 14);
           ctx.font = "14px system-ui,sans-serif";
           ctx.fillStyle = "#d5f5e3";
-          ctx.fillText(t.restart, W / 2, H / 2 + 28);
+          ctx.fillText(t.restart, W / 2, H / 2 + 48);
         } else if (gs === "lose") {
+          ctx.font = "bold 26px system-ui,sans-serif";
           ctx.fillStyle = "#f5b7b1";
           const msg =
             sim.loseReason === "hit" ? t.loseHit : t.loseSpot;
-          ctx.fillText(msg, W / 2, H / 2 - 8);
-          ctx.font = "14px system-ui,sans-serif";
+          ctx.fillText(msg, W / 2, H / 2 - 12);
+          ctx.font = "15px system-ui,sans-serif";
           ctx.fillStyle = "#fadbd8";
-          ctx.fillText(t.restart, W / 2, H / 2 + 28);
+          ctx.fillText(t.loseHint, W / 2, H / 2 + 18);
+          ctx.font = "14px system-ui,sans-serif";
+          ctx.fillText(t.restart, W / 2, H / 2 + 46);
         }
       }
+
+      ctx.restore(); // undo shake
     },
     [locale, t],
   );
@@ -418,6 +510,10 @@ export function SecondEscapeGame({ locale }: Props) {
 
         if (sim.spotTimer >= SPOT_DETECT_MS) {
           sim.loseReason = "spot";
+          if (!sim.juiceSpawned) {
+            spawnLoseFlash(sim);
+            sim.juiceSpawned = true;
+          }
           setGameState("lose");
         } else if (
           circlesOverlap(
@@ -430,6 +526,10 @@ export function SecondEscapeGame({ locale }: Props) {
           )
         ) {
           sim.loseReason = "hit";
+          if (!sim.juiceSpawned) {
+            spawnLoseFlash(sim);
+            sim.juiceSpawned = true;
+          }
           setGameState("lose");
         } else if (
           circlesOverlap(
@@ -441,8 +541,25 @@ export function SecondEscapeGame({ locale }: Props) {
             EXIT_R - 6,
           )
         ) {
+          if (!sim.juiceSpawned) {
+            spawnWinBurst(sim);
+            sim.juiceSpawned = true;
+          }
           setGameState("win");
         }
+      }
+
+      // juice decay always
+      if (sim.shake > 0) sim.shake = Math.max(0, sim.shake - dt * 28);
+      if (sim.endFlash > 0) sim.endFlash = Math.max(0, sim.endFlash - dt);
+      if (sim.particles.length) {
+        for (const p of sim.particles) {
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.vy += 120 * dt;
+          p.life -= dt;
+        }
+        sim.particles = sim.particles.filter((p) => p.life > 0);
       }
 
       draw(ctx, sim, stateRef.current);
@@ -548,7 +665,7 @@ export function SecondEscapeGame({ locale }: Props) {
         ref={canvasRef}
         width={W}
         height={H}
-        className="game-canvas"
+        className={`game-canvas${state === "win" ? " is-win" : ""}${state === "lose" ? " is-lose" : ""}`}
         aria-label={t.ariaGame}
         onPointerDown={onCanvasPointer}
       />
@@ -556,7 +673,7 @@ export function SecondEscapeGame({ locale }: Props) {
       {(state === "win" || state === "lose") && (
         <button
           type="button"
-          className="game-restart"
+          className={`game-restart${state === "win" ? " is-win" : " is-lose"}`}
           onClick={() => {
             reset();
             start();

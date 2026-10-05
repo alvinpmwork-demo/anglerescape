@@ -480,3 +480,21 @@ h3 {
     display: grid;
   }
 }
+
+
+.game-canvas.is-win {
+  box-shadow: 0 0 0 3px rgba(130, 224, 170, 0.65), 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+.game-canvas.is-lose {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.55), 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+.game-restart.is-win {
+  background: linear-gradient(135deg, #27ae60, #1e8449);
+  font-size: 1.05rem;
+  padding: 0.7rem 1.4rem;
+}
+.game-restart.is-lose {
+  background: linear-gradient(135deg, #c0392b, #922b21);
+  font-size: 1.05rem;
+  padding: 0.7rem 1.4rem;
+}
