@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CtaRow } from "@/components/CtaRow";
 import { Disclaimer } from "@/components/Disclaimer";
-import { PlayPlaceholder } from "@/components/PlayPlaceholder";
+import { SecondEscapeGame } from "@/components/SecondEscapeGame";
 import { Faq } from "@/components/Faq";
 import { FaqJsonLd } from "@/components/FaqJsonLd";
 
@@ -45,7 +45,7 @@ export function SecondEscapePage({ content: c }: Props) {
         </section>
 
         <div className="container">
-          <PlayPlaceholder title={c.playPlaceholder} hint={c.playPlaceholderHint} />
+          <SecondEscapeGame locale={c.locale} />
 
           <section>
             <h2>{c.bustTitle}</h2>

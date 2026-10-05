@@ -325,3 +325,158 @@ h3 {
     min-height: 180px;
   }
 }
+
+/* —— Second Escape mini-game —— */
+.game-wrap {
+  margin: 1.5rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.game-hud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.game-hud-title {
+  color: var(--accent-dark);
+}
+
+.game-hud-status {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #e8f4fa;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.game-hud-status[data-state="win"] {
+  background: #d5f5e3;
+  color: #1e8449;
+}
+
+.game-hud-status[data-state="lose"] {
+  background: #fadbd8;
+  color: #922b21;
+}
+
+.game-hud-status[data-state="playing"] {
+  background: #fef5e7;
+  color: #b9770e;
+}
+
+.game-hud-meter {
+  position: relative;
+  margin-left: auto;
+  min-width: 9rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  background: #eef3f6;
+  overflow: hidden;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.game-meter-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(231, 76, 60, 0.28);
+  pointer-events: none;
+  transition: width 0.08s linear;
+}
+
+.game-meter-bar[data-hot="1"] {
+  background: rgba(192, 57, 43, 0.45);
+}
+
+.game-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(20, 48, 68, 0.15);
+  background: #0f3d28;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.game-restart {
+  align-self: center;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game-restart:hover {
+  background: var(--accent-dark);
+}
+
+.game-controls {
+  display: none;
+  grid-template-columns: 56px 56px 56px;
+  grid-template-rows: 56px 56px;
+  gap: 0.4rem;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.game-pad {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(20, 48, 68, 0.08);
+  cursor: pointer;
+}
+
+.game-pad:active {
+  background: #e8f4fa;
+  transform: scale(0.96);
+}
+
+.game-pad-up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.game-pad-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.game-pad-down {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.game-pad-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+@media (max-width: 720px), (pointer: coarse) {
+  .game-controls {
+    display: grid;
+  }
+}
