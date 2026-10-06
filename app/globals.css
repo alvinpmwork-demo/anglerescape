@@ -648,3 +648,46 @@ a.content-card:hover {
 .article-body section:first-child h2 {
   margin-top: 1.25rem;
 }
+
+/* --- SEO pass: related links, figures, footer nav --- */
+.related {
+  margin-top: 2.5rem;
+}
+.related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.related-list a {
+  font-weight: 600;
+}
+.related-note {
+  opacity: 0.75;
+  font-size: 0.95em;
+}
+.figure-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0.5rem 0 1rem;
+}
+.content-figure {
+  margin: 0;
+  text-align: center;
+}
+.content-figure img {
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+.content-figure figcaption {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: 0.35rem;
+}
+.play-canvas-inner .btn {
+  margin-top: 0.75rem;
+  display: inline-block;
+}

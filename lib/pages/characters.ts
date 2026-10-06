@@ -3,16 +3,25 @@ import type { ArticleContent } from "./types";
 export const charactersEn: ArticleContent = {
   locale: "en",
   path: "/characters/",
-  title: "Characters: The Angler & the Inspector Captain | Angler Escape",
+  title: "Angler Escape Characters: Meet Ah Diao and Captain Zhang",
   description:
-    "Meet Angler Escape's cast: Ah Diao, the never-say-zero-catch angler, and Captain Zhang, who always yells \"Stop right there!\" Skills, catchphrases, fictional rivalry.",
-  h1: "Meet the Characters",
+    "Meet the Angler Escape characters: Ah Diao, the fishing guy who swears he never goes Air Force, and Captain Zhang, the Inspector who always yells \"Stop!\"",
+  h1: "Angler Escape Characters: The Angler and the Inspector",
   intro: [
-    "Angler Escape is a two-hander comedy: one obsessive angler who will not go home empty-handed, and one cartoon captain who will not let him finish the cast. Both are fiction. Neither maps to a real person or agency.",
+    "The Angler Escape characters are a classic comedy duo, and the game is a two-hander: one obsessive angler who will not go home empty-handed, and one cartoon captain who will not let him finish the cast. Both are fiction. Neither maps to a real person or agency.",
   ],
   sections: [
     {
       h2: 'The Angler, "Ah Diao"',
+      images: [
+        {
+          src: "/game/angler.png",
+          alt: "Ah Diao, the cartoon fishing guy: a smiling angler in a bucket hat and fishing vest with a rod over his shoulder",
+          width: 128,
+          height: 128,
+          caption: "Ah Diao, the playable angler",
+        },
+      ],
       subsections: [
         {
           title: "Bio",
@@ -30,6 +39,15 @@ export const charactersEn: ArticleContent = {
     },
     {
       h2: 'The Inspector Captain, "Captain Zhang"',
+      images: [
+        {
+          src: "/game/inspector.png",
+          alt: "Captain Zhang, the fictional park Inspector: a stern patroller in a dark cap and jacket holding a flashlight",
+          width: 128,
+          height: 128,
+          caption: "Captain Zhang, head of the fictional park patrol",
+        },
+      ],
       subsections: [
         {
           title: "Bio",
@@ -44,6 +62,13 @@ export const charactersEn: ArticleContent = {
           body: '"Stop right there, angler!" / "You again?"',
         },
       ],
+    },
+    {
+      h2: "Why the Fishing Guy vs Inspector Duo Works",
+      paragraphs: [
+        "Ah Diao is built on the Chinese internet's 钓鱼佬 (fishing guy) meme: endless optimism, zero catch, one more cast. Captain Zhang is the straight man who has heard every excuse twice. Neither is a villain. The joke is that both take a very small fish very seriously, and the chase is the punchline.",
+      ],
+      links: [{ label: "Read the fishing guy meme explainer →", href: "/meme/fishing-guy-meme/" }],
     },
     {
       h2: "Rivalry Highlights",
@@ -81,21 +106,36 @@ export const charactersEn: ArticleContent = {
     { label: "Home", href: "/" },
     { label: "Characters", href: "/characters/" },
   ],
+  related: [
+    { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/", note: "outsmart Captain Zhang" },
+    { label: "All levels and walkthroughs", href: "/levels/", note: "where the two meet" },
+    { label: "Play as Ah Diao for free", href: "/play/" },
+    { label: "Fishing guy meme explained", href: "/meme/fishing-guy-meme/" },
+  ],
 };
 
 export const charactersZh: ArticleContent = {
   locale: "zh",
   path: "/characters/",
-  title: "角色介绍：钓鱼佬与巡查队长｜钓鱼佬大逃亡",
+  title: "钓鱼佬大逃亡角色介绍｜钓鱼佬阿钓、巡查队长老张头像",
   description:
-    "认识钓鱼佬大逃亡的角色：执念满满的钓鱼佬阿钓、永远在喊「站住」的巡查队长老张。技能、口头禅、相爱相杀名场面，全部虚构。",
+    "钓鱼佬大逃亡角色介绍：嘴上永不空军的钓鱼佬阿钓，和永远在喊「钓鱼佬，站住！」的巡查队长老张。人设、技能、口头禅、角色头像与名场面，全部虚构。",
   h1: "钓鱼佬大逃亡角色介绍",
   intro: [
-    "《钓鱼佬大逃亡》是对手戏喜剧：一边是死不空军的钓鱼佬，一边是不让他把竿收完的卡通队长。两人都是虚构角色，不对应任何真实人物或机构。",
+    "钓鱼佬大逃亡角色介绍先说结论：主角只有一对冤家，整部游戏就是一出对手戏喜剧：一边是死不空军的钓鱼佬，一边是不让他把竿收完的卡通队长。两人都是虚构角色，不对应任何真实人物或机构。",
   ],
   sections: [
     {
       h2: "钓鱼佬「阿钓」",
+      images: [
+        {
+          src: "/game/angler.png",
+          alt: "钓鱼佬阿钓头像：戴渔夫帽、穿钓鱼马甲、肩扛鱼竿、笑眯眯的卡通钓鱼佬",
+          width: 128,
+          height: 128,
+          caption: "钓鱼佬阿钓（玩家角色）",
+        },
+      ],
       subsections: [
         {
           title: "人设",
@@ -113,6 +153,15 @@ export const charactersZh: ArticleContent = {
     },
     {
       h2: "巡查队长「老张」",
+      images: [
+        {
+          src: "/game/inspector.png",
+          alt: "巡查队长老张头像：戴深色帽子、手拿手电筒、表情严肃的虚构公园巡查员",
+          width: 128,
+          height: 128,
+          caption: "巡查队长老张（虚构公园巡逻队）",
+        },
+      ],
       subsections: [
         {
           title: "人设",
@@ -127,6 +176,13 @@ export const charactersZh: ArticleContent = {
           body: "「钓鱼佬，站住！」「又是你？」",
         },
       ],
+    },
+    {
+      h2: "钓鱼佬 vs 巡查员：这对组合为什么好笑",
+      paragraphs: [
+        "阿钓的人设直接来自网上的钓鱼佬梗：永远乐观、永远空军、永远「最后一竿」。老张则是那个什么借口都听过两遍的捧哏。两人都不是反派，笑点在于他们都把一条小鱼看得特别重，而追逐就是包袱。",
+      ],
+      links: [{ label: "看钓鱼佬梗是什么意思 →", href: "/zh/meme/fishing-guy-meme/" }],
     },
     {
       h2: "相爱相杀名场面",
@@ -163,5 +219,11 @@ export const charactersZh: ArticleContent = {
   breadcrumbs: [
     { label: "首页", href: "/zh/" },
     { label: "角色", href: "/zh/characters/" },
+  ],
+  related: [
+    { label: "钓鱼佬游戏攻略：甩掉巡查员", href: "/zh/guides/how-to-escape-inspector/", note: "怎么甩掉老张" },
+    { label: "钓鱼佬大逃亡关卡攻略大全", href: "/zh/levels/", note: "两人交手的地方" },
+    { label: "扮演阿钓，钓鱼小游戏在线玩", href: "/zh/play/" },
+    { label: "钓鱼佬梗是什么意思", href: "/zh/meme/fishing-guy-meme/" },
   ],
 };

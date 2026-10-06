@@ -3,14 +3,14 @@ import type { ArticleContent } from "./types";
 export const guideEn: ArticleContent = {
   locale: "en",
   path: "/guides/how-to-escape-inspector/",
-  title: "How to Escape the Inspector: 10 Stealth Fishing Tips | Angler Escape",
+  title: "How to Escape the Inspector: Angler Escape Stealth Guide",
   description:
-    "Angler Escape guide: read the Inspector's vision cone, keep the noise meter low, use cover and decoys, and pull off a Second Escape. In-game tips only, pure fiction.",
+    "How to escape the Inspector in Angler Escape: read vision cones, keep the noise meter low, use cover and decoys, and nail the Second Escape. In-game tips only.",
   h1: "How to Escape the Inspector (In-Game Guide)",
   topNote:
     "Every tip on this page is an Angler Escape game mechanic, not real-world advice. Do not try any of this IRL.",
   intro: [
-    "Want fewer busts and more fish in the bucket? This guide walks through how the fictional Inspector works, how to stay quiet while you cast, and what to do when the chase starts. Everything below is cartoon comedy for Angler Escape—vision cones, noise meters, rubber ducks, and all.",
+    "Want fewer busts and more fish in the bucket? Here is how to escape the Inspector in Angler Escape, step by step. This stealth fishing game guide walks through how the fictional Inspector works, how to stay quiet while you cast, and what to do when the chase starts. Everything below is cartoon comedy for Angler Escape—vision cones, noise meters, rubber ducks, and all.",
   ],
   sections: [
     {
@@ -160,7 +160,14 @@ export const guideEn: ArticleContent = {
   ],
   breadcrumbs: [
     { label: "Home", href: "/" },
-    { label: "Guides", href: "/guides/how-to-escape-inspector/" },
+    { label: "Escape Guide", href: "/guides/how-to-escape-inspector/" },
+  ],
+  related: [
+    { label: "Play the free stealth fishing game", href: "/play/", note: "try the tips right away" },
+    { label: "Practice Second Escape", href: "/play/second-escape/", note: "the comeback mini-game" },
+    { label: "All Angler Escape levels", href: "/levels/", note: "difficulty and walkthroughs" },
+    { label: "Meet Captain Zhang, the Inspector", href: "/characters/", note: "abilities and catchphrases" },
+    { label: "Why this is fiction", href: "/about/fishing-rules-disclaimer/", note: "disclaimer and real fishing rules" },
   ],
 };
 
@@ -169,12 +176,12 @@ export const guideZh: ArticleContent = {
   path: "/guides/how-to-escape-inspector/",
   title: "钓鱼佬游戏攻略：甩掉巡查员的10个技巧｜钓鱼佬大逃亡",
   description:
-    "钓鱼佬大逃亡游戏攻略：读懂巡查员视野锥、控制噪音条、用掩体和道具甩掉追兵，被抓了还能二次逃脱。纯游戏内技巧，虚构娱乐。",
+    "新手必看的钓鱼佬游戏攻略：读懂巡查员视野锥、控制噪音条、用掩体和道具甩掉追兵，被抓了还能二次逃脱。《钓鱼佬大逃亡》纯游戏内技巧，虚构娱乐，请勿模仿。",
   h1: "钓鱼佬游戏攻略：怎么甩掉巡查员（游戏内）",
   topNote:
     "以下全部是《钓鱼佬大逃亡》游戏机制技巧，与现实无关。请勿模仿。",
   intro: [
-    "想少被抓、多带点鱼回家？这篇攻略会讲清楚虚构的巡查员怎么工作、下竿时如何保持安静、以及被发现之后该怎么跑。下面说到的视野锥、噪音条、橡皮鸭，全是《钓鱼佬大逃亡》里的卡通玩法。",
+    "想少被抓、多带点鱼回家？这篇钓鱼佬游戏攻略会讲清楚虚构的巡查员怎么工作、下竿时如何保持安静、以及被发现之后该怎么跑。下面说到的视野锥、噪音条、橡皮鸭，全是《钓鱼佬大逃亡》里的卡通玩法。",
   ],
   sections: [
     {
@@ -322,7 +329,14 @@ export const guideZh: ArticleContent = {
   ],
   breadcrumbs: [
     { label: "首页", href: "/zh/" },
-    { label: "攻略", href: "/zh/guides/how-to-escape-inspector/" },
+    { label: "甩掉巡查员攻略", href: "/zh/guides/how-to-escape-inspector/" },
+  ],
+  related: [
+    { label: "钓鱼小游戏在线玩", href: "/zh/play/", note: "马上试试这些技巧" },
+    { label: "二次逃脱：被抓了还能跑", href: "/zh/play/second-escape/", note: "专练翻盘" },
+    { label: "钓鱼佬大逃亡关卡攻略大全", href: "/zh/levels/", note: "难度与三星条件" },
+    { label: "巡查队长老张角色介绍", href: "/zh/characters/", note: "能力与口头禅" },
+    { label: "为什么说游戏是虚构的", href: "/zh/about/fishing-rules-disclaimer/", note: "免责声明与现实钓鱼规定" },
   ],
 };
 

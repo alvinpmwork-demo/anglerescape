@@ -7,7 +7,9 @@ import { CtaRow } from "@/components/CtaRow";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SecondEscapeGame } from "@/components/SecondEscapeGame";
 import { Faq } from "@/components/Faq";
-import { FaqJsonLd } from "@/components/FaqJsonLd";
+import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { faqPage, videoGame } from "@/lib/schema";
 
 type Props = { content: SecondEscapeContent };
 
@@ -19,7 +21,17 @@ export function SecondEscapePage({ content: c }: Props) {
 
   return (
     <>
-      <FaqJsonLd items={c.faq} />
+      <JsonLd
+        data={[
+          videoGame({
+            locale: c.locale,
+            path: "/play/second-escape/",
+            name: c.locale === "zh" ? "钓鱼佬大逃亡：二次逃脱" : "Angler Escape: Second Escape",
+            description: c.description,
+          }),
+          faqPage(c.faq),
+        ]}
+      />
       <Header
         siteName={chrome.siteName}
         homeHref={homeHref}
@@ -30,6 +42,7 @@ export function SecondEscapePage({ content: c }: Props) {
       <main>
         <section className="hero">
           <div className="container">
+            <Breadcrumbs items={c.breadcrumbs} />
             <h1>{c.h1}</h1>
             <p>{c.intro}</p>
             <CtaRow
@@ -128,6 +141,18 @@ export function SecondEscapePage({ content: c }: Props) {
             />
           </section>
 
+          <section className="related" aria-labelledby="related-pages">
+            <h2 id="related-pages">{c.relatedTitle}</h2>
+            <ul className="related-list">
+              {c.related.map((r) => (
+                <li key={r.href}>
+                  <Link href={r.href}>{r.label}</Link>
+                  {r.note ? <span className="related-note"> — {r.note}</span> : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+
           <Faq title={c.faqTitle} items={c.faq} />
         </div>
       </main>
@@ -139,6 +164,8 @@ export function SecondEscapePage({ content: c }: Props) {
         footerHow={chrome.footerHow}
         footerDisclaimer={chrome.footerDisclaimer}
         disclaimer={chrome.disclaimer}
+        links={chrome.footerLinks}
+        navLabel={chrome.locale === "zh" ? "站点导航" : "Site pages"}
       />
     </>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { NavLink } from "@/lib/site";
 
 type Props = {
   siteName: string;
@@ -8,26 +9,25 @@ type Props = {
   footerDisclaimer: string;
   disclaimer: string;
   homeHref: string;
+  links?: NavLink[];
+  navLabel?: string;
 };
 
-export function Footer({
-  siteName,
-  howHref,
-  disclaimerHref,
-  footerHow,
-  footerDisclaimer,
-  disclaimer,
-  homeHref,
-}: Props) {
+export function Footer({ siteName, disclaimer, homeHref, links = [], navLabel }: Props) {
   return (
     <footer className="site-footer" id="disclaimer">
       <div className="container footer-inner">
         <p className="disclaimer">{disclaimer}</p>
-        <div className="footer-links">
+        <nav className="footer-links" aria-label={navLabel ?? "Site"}>
           <Link href={homeHref}>{siteName}</Link>
-          <Link href={howHref}>{footerHow}</Link>
-          <Link href={disclaimerHref}>{footerDisclaimer}</Link>
-        </div>
+          {links
+            .filter((l) => l.href !== homeHref)
+            .map((l) => (
+              <Link key={l.href} href={l.href}>
+                {l.label}
+              </Link>
+            ))}
+        </nav>
       </div>
     </footer>
   );

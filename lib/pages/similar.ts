@@ -3,12 +3,12 @@ import type { ArticleContent } from "./types";
 export const similarEn: ArticleContent = {
   locale: "en",
   path: "/similar-games/",
-  title: "Games Like unBAITable & Stealth Fishing: Sneaky Fishing Games | Angler Escape",
+  title: "Games Like unBAITable: Sneaky & Stealth Fishing Games",
   description:
-    "Looking for games like unBAITable or 偷偷钓个鱼 (Casual Fishing)? Cozy, stealth, and chase-style fishing games compared, with browser-play picks.",
+    "Looking for games like unBAITable or Stealth Fishing? Cozy, stealth, and chase-style sneaky fishing games compared, plus free browser picks like Angler Escape.",
   h1: "Games Like unBAITable: Sneaky Fishing Games to Play Next",
   intro: [
-    '"Sneaky fishing" covers more than one mood. Some games are chill collection loops. Others are careful stealth runs. A few—like Angler Escape—lean into the chase after you get spotted. Pick the flavor first, then pick the game.',
+    'Finished unBAITable and want more? Games like unBAITable come in different flavors, because "sneaky fishing" covers more than one mood. Some games are chill collection loops. Others are careful stealth runs. A few—like Angler Escape—lean into the chase after you get spotted. Pick the flavor first, then pick the game.',
   ],
   sections: [
     {
@@ -31,7 +31,7 @@ export const similarEn: ArticleContent = {
       subsections: [
         {
           title: "unBAITable (eninabox)",
-          body: "Fishing has been outlawed in this English indie story. You fish in a fish costume, dodge patrols, and sell to a black-market shopkeeper. Browser or Windows on itch.io, pay-what-you-want, with multiple endings and a longer session feel.",
+          body: "Fishing has been outlawed by the fictional Fish Protection Bureau in this English indie story. You fish in a fish costume, dodge patrols, and sell to a black-market shopkeeper. Play in the browser or download for Windows, macOS, or Linux on itch.io (name your own price). The alpha has 15 story nights, an endless mode, and multiple endings, with runs of about half an hour.",
         },
         {
           title: "Other same-theme titles",
@@ -43,6 +43,12 @@ export const similarEn: ArticleContent = {
       h2: "Chase Pick: Angler Escape",
       paragraphs: [
         "Angler Escape is built around what happens after you are spotted: chases, line-of-sight breaks, and the Second Escape. Rounds are short, fails are loud, and the comedy comes from getting caught and still trying again. Pure fiction, browser-friendly, bilingual.",
+      ],
+    },
+    {
+      h2: "Is There a Game Where You Fish Illegally and Run From Wardens?",
+      paragraphs: [
+        "In fiction, yes, and it is a surprisingly fun premise. unBAITable builds a whole story around a world where fishing is banned. Angler Escape plays it as slapstick: a cartoon angler, a cartoon Inspector, a fish that is definitely not worth the trouble, and a chase you can restart in one tap. Neither game teaches anything about real fishing rules or enforcement. They are comedies, and in real life the rules apply.",
       ],
     },
     {
@@ -115,17 +121,24 @@ export const similarEn: ArticleContent = {
     { label: "Home", href: "/" },
     { label: "Similar Games", href: "/similar-games/" },
   ],
+  related: [
+    { label: "Angler Escape vs unBAITable", href: "/vs/unbaitable/", note: "the head-to-head comparison" },
+    { label: "Play the free stealth fishing game", href: "/play/" },
+    { label: "Fishing guy meme explained", href: "/meme/fishing-guy-meme/", note: "where the theme comes from" },
+    { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/" },
+  ],
+  schemaType: "CollectionPage",
 };
 
 export const similarZh: ArticleContent = {
   locale: "zh",
   path: "/similar-games/",
-  title: "类似偷偷钓个鱼的游戏推荐｜钓鱼佬小游戏合集 - 钓鱼佬大逃亡",
+  title: "2026类似偷偷钓个鱼的游戏推荐｜潜行钓鱼佬小游戏合集",
   description:
-    "想找类似偷偷钓个鱼、unBAITable 的游戏？整理摸鱼休闲、潜行钓鱼、躲巡查逃跑三类钓鱼佬小游戏，附玩法对比与在线试玩入口。",
+    "类似偷偷钓个鱼的游戏有哪些？整理休闲摸鱼、潜行钓鱼、躲巡查逃跑三类钓鱼佬小游戏，含 unBAITable，附玩法对比表、免费试玩入口和选择建议。",
   h1: "类似偷偷钓个鱼的游戏：钓鱼佬小游戏推荐",
   intro: [
-    "同样叫「偷偷钓鱼」，有的是放松摸鱼，有的是潜行躲人，还有的是被追着跑。先选类型，再挑游戏，会省很多试错时间。",
+    "玩完偷偷钓个鱼，还想找类似偷偷钓个鱼的游戏？同样叫「偷偷钓鱼」，有的是放松摸鱼，有的是潜行躲人，还有的是被追着跑。先选类型，再挑游戏，会省很多试错时间。",
   ],
   sections: [
     {
@@ -148,7 +161,7 @@ export const similarZh: ArticleContent = {
       subsections: [
         {
           title: "unBAITable（eninabox）",
-          body: "英文独立游戏，itch.io 可在浏览器玩，也可下 Windows 版，自愿付费。剧情是钓鱼被禁后偷偷钓鱼，要躲巡逻、去黑市卖鱼，有多结局，单局偏长。",
+          body: "英文独立游戏，itch.io 可在浏览器玩，也可下载 Windows / macOS / Linux 版，自愿付费（name your own price）。剧情是虚构的「鱼类保护局」禁钓之后，你穿上鱼形套装偷偷钓鱼，要躲巡逻、去黑市卖鱼。目前 alpha 版有 15 个剧情夜、无尽模式和多结局，单局约半小时。",
         },
         {
           title: "其他同题材作品",
@@ -160,6 +173,12 @@ export const similarZh: ArticleContent = {
       h2: "躲巡查逃跑型：钓鱼佬大逃亡",
       paragraphs: [
         "本作把重点放在「被发现之后」：追逐、甩视线，被抓了还能二次逃脱。短局、翻车名场面多，浏览器可玩，中英双语。纯属虚构娱乐。",
+      ],
+    },
+    {
+      h2: "有没有钓鱼佬躲巡查的游戏？",
+      paragraphs: [
+        "有，而且都在虚构作品里。unBAITable 把「钓鱼被禁」做成了完整剧情；《钓鱼佬大逃亡》则走搞笑路线：卡通钓鱼佬、卡通巡查员、一条根本不值得冒险的鱼，加上一键就能重来的追逐。两款都不涉及任何现实钓鱼规定或执法内容，是喜剧，现实里请守规矩。",
       ],
     },
     {
@@ -211,4 +230,11 @@ export const similarZh: ArticleContent = {
     { label: "首页", href: "/zh/" },
     { label: "类似游戏", href: "/zh/similar-games/" },
   ],
+  related: [
+    { label: "钓鱼佬大逃亡 vs unBAITable 对比", href: "/zh/vs/unbaitable/" },
+    { label: "钓鱼小游戏在线玩", href: "/zh/play/" },
+    { label: "钓鱼佬梗是什么意思", href: "/zh/meme/fishing-guy-meme/", note: "题材从哪来" },
+    { label: "钓鱼佬游戏攻略：甩掉巡查员", href: "/zh/guides/how-to-escape-inspector/" },
+  ],
+  schemaType: "CollectionPage",
 };

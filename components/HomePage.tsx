@@ -7,7 +7,8 @@ import { CtaRow } from "@/components/CtaRow";
 import { Disclaimer } from "@/components/Disclaimer";
 import { PlayPlaceholder } from "@/components/PlayPlaceholder";
 import { Faq } from "@/components/Faq";
-import { FaqJsonLd } from "@/components/FaqJsonLd";
+import { JsonLd } from "@/components/JsonLd";
+import { faqPage, videoGame, website } from "@/lib/schema";
 
 type Props = { content: HomeContent };
 
@@ -20,7 +21,13 @@ export function HomePage({ content: c }: Props) {
 
   return (
     <>
-      <FaqJsonLd items={c.faq} />
+      <JsonLd
+        data={[
+          website(c.locale),
+          videoGame({ locale: c.locale, path: "/", description: c.description }),
+          faqPage(c.faq),
+        ]}
+      />
       <Header
         siteName={chrome.siteName}
         homeHref={homeHref}
@@ -47,7 +54,12 @@ export function HomePage({ content: c }: Props) {
         </section>
 
         <div className="container">
-          <PlayPlaceholder title={c.playPlaceholder} hint={c.playPlaceholderHint} />
+          <PlayPlaceholder
+            title={c.playPlaceholder}
+            hint={c.playPlaceholderHint}
+            linkLabel={c.playLinkLabel}
+            linkHref={secondHref}
+          />
 
           <section>
             <h2>{c.sectionStealthTitle}</h2>
@@ -108,6 +120,18 @@ export function HomePage({ content: c }: Props) {
             />
           </section>
 
+          <section className="related" aria-labelledby="related-pages">
+            <h2 id="related-pages">{c.relatedTitle}</h2>
+            <ul className="related-list">
+              {c.related.map((r) => (
+                <li key={r.href}>
+                  <Link href={r.href}>{r.label}</Link>
+                  {r.note ? <span className="related-note"> — {r.note}</span> : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+
           <Faq title={c.faqTitle} items={c.faq} />
         </div>
       </main>
@@ -119,6 +143,8 @@ export function HomePage({ content: c }: Props) {
         footerHow={chrome.footerHow}
         footerDisclaimer={chrome.footerDisclaimer}
         disclaimer={chrome.disclaimer}
+        links={chrome.footerLinks}
+        navLabel={chrome.locale === "zh" ? "站点导航" : "Site pages"}
       />
     </>
   );

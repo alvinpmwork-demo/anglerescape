@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import "../globals.css";
+import { homeEn } from "@/lib/content";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anglerescape.com"),
   title: {
-    default: "Angler Escape｜Steal Fish, Get Caught, Escape Again",
+    default: homeEn.title,
     template: "%s",
   },
-  description:
-    "Play Angler Escape—the stealth fishing game where you snatch fish, get spotted, bolt, and escape again. Funny, light, pure fiction. No real tips.",
+  description: homeEn.description,
+  applicationName: "Angler Escape",
+  robots: { index: true, follow: true },
   openGraph: {
     siteName: "Angler Escape",
     type: "website",

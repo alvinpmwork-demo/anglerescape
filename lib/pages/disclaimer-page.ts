@@ -3,12 +3,12 @@ import type { ArticleContent } from "./types";
 export const disclaimerEn: ArticleContent = {
   locale: "en",
   path: "/about/fishing-rules-disclaimer/",
-  title: "Disclaimer & Real Fishing Rules Reminder | Angler Escape",
+  title: "Angler Escape Disclaimer: Fiction Game, Real Fishing Rules",
   description:
-    "Angler Escape is pure fiction. We give no real-world poaching or evasion advice. In real life, follow local closed seasons, protected waters, and licensing rules.",
-  h1: "Disclaimer: The Game Is Fiction. The Rules Are Real.",
+    "Angler Escape disclaimer: pure fiction, with no real poaching or evasion advice. In real life, follow closed seasons, protected waters, and fishing license rules.",
+  h1: "Angler Escape Disclaimer: The Game Is Fiction. The Rules Are Real.",
   intro: [
-    "Angler Escape is a slapstick stealth comedy about cartoon anglers and cartoon Inspectors. This page exists so nobody confuses the joke with real-world fishing or enforcement.",
+    "This is the Angler Escape disclaimer. Angler Escape is a slapstick stealth comedy about cartoon anglers and cartoon Inspectors, and this page exists so nobody confuses the joke with real-world fishing or enforcement.",
   ],
   sections: [
     {
@@ -80,17 +80,24 @@ export const disclaimerEn: ArticleContent = {
     { label: "Home", href: "/" },
     { label: "Disclaimer", href: "/about/fishing-rules-disclaimer/" },
   ],
+  schemaType: "WebPage",
+  related: [
+    { label: "Back to the stealth fishing game", href: "/" },
+    { label: "Play free online", href: "/play/" },
+    { label: "In-game escape guide", href: "/guides/how-to-escape-inspector/" },
+    { label: "Meet the fictional characters", href: "/characters/" },
+  ],
 };
 
 export const disclaimerZh: ArticleContent = {
   locale: "zh",
   path: "/about/fishing-rules-disclaimer/",
-  title: "免责声明与钓鱼规则提醒｜钓鱼佬大逃亡",
+  title: "钓鱼佬大逃亡免责声明｜游戏纯属虚构，现实请遵守禁渔规定",
   description:
-    "钓鱼佬大逃亡是纯虚构休闲游戏，不提供任何现实偷钓或逃避检查的建议。现实钓鱼请遵守当地禁渔期、禁钓区与持证规定。",
-  h1: "免责声明：游戏是虚构的，规则是真实的",
+    "钓鱼佬大逃亡免责声明：本游戏纯属虚构，不提供任何现实偷钓或逃避检查的建议。现实钓鱼请遵守当地禁渔期、禁钓区与持证规定，文明垂钓，注意安全，请勿模仿游戏行为。",
+  h1: "钓鱼佬大逃亡免责声明：游戏是虚构的，规则是真实的",
   intro: [
-    "《钓鱼佬大逃亡》是关于卡通钓鱼佬和卡通巡查员的无厘头潜行喜剧。写这一页，是为了避免有人把玩笑当成现实钓鱼或执法内容。",
+    "这是钓鱼佬大逃亡免责声明。《钓鱼佬大逃亡》是关于卡通钓鱼佬和卡通巡查员的无厘头潜行喜剧，写这一页，是为了避免有人把玩笑当成现实钓鱼或执法内容。",
   ],
   sections: [
     {
@@ -161,5 +168,12 @@ export const disclaimerZh: ArticleContent = {
   breadcrumbs: [
     { label: "首页", href: "/zh/" },
     { label: "免责声明", href: "/zh/about/fishing-rules-disclaimer/" },
+  ],
+  schemaType: "WebPage",
+  related: [
+    { label: "回到钓鱼佬游戏首页", href: "/zh/" },
+    { label: "钓鱼小游戏在线玩", href: "/zh/play/" },
+    { label: "游戏内攻略：甩掉巡查员", href: "/zh/guides/how-to-escape-inspector/" },
+    { label: "虚构角色介绍", href: "/zh/characters/" },
   ],
 };

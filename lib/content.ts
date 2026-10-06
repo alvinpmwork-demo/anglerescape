@@ -26,6 +26,9 @@ export type HomeContent = {
   faq: FaqItem[];
   playPlaceholder: string;
   playPlaceholderHint: string;
+  playLinkLabel: string;
+  relatedTitle: string;
+  related: RelatedLink[];
   navHome: string;
   navSecond: string;
   langSwitchLabel: string;
@@ -34,6 +37,8 @@ export type HomeContent = {
   footerDisclaimer: string;
   siteName: string;
 };
+
+export type RelatedLink = { label: string; href: string; note?: string };
 
 export type SecondEscapeContent = {
   locale: Locale;
@@ -61,6 +66,9 @@ export type SecondEscapeContent = {
   faq: FaqItem[];
   playPlaceholder: string;
   playPlaceholderHint: string;
+  breadcrumbs: { label: string; href: string }[];
+  relatedTitle: string;
+  related: RelatedLink[];
   navHome: string;
   navSecond: string;
   langSwitchLabel: string;
@@ -78,13 +86,13 @@ export const DISCLAIMER_ZH =
 
 export const homeEn: HomeContent = {
   locale: "en",
-  title: "Angler Escape｜Steal Fish, Get Caught, Escape Again",
+  title: "Angler Escape: Free Stealth Fishing Game in Your Browser",
   description:
-    "Play Angler Escape—the stealth fishing game where you snatch fish, get spotted, bolt, and escape again. Funny, light, pure fiction. No real tips.",
-  h1: "Angler Escape: Steal the Fish. Blow the Cover. Run.",
+    "Angler Escape is a funny stealth fishing game: sneak a catch, get spotted by the Inspector, run, and escape again. Free in your browser, pure fiction.",
+  h1: "Angler Escape: The Stealth Fishing Game Where You Steal, Get Spotted, and Run",
   intro: [
-    'Somewhere past the "Private Pond" sign there\'s a fish everyone has heard about and no one has actually landed. You have a rod, a bucket, and way too much confidence. What could go wrong? Pretty much everything, and that\'s the game.',
-    "Angler Escape is a stealth fishing game played as comedy. You sneak in, hook something you shouldn't, get spotted at the worst moment, and run for it. If they catch you, you get to run again. The rounds are short, the fails are loud, and the guard is always a little too close.",
+    'Angler Escape is a free stealth fishing game you play right in your browser. Somewhere past the "Private Pond" sign there\'s a fish everyone has heard about and no one has actually landed. You have a rod, a bucket, and way too much confidence. What could go wrong? Pretty much everything, and that\'s the game.',
+    "It plays like a comedy heist. You sneak in, hook something you shouldn't, get spotted at the worst moment, and run for it. If they catch you, you get to run again. The rounds are short, the fails are loud, and the Inspector is always a little too close. The whole thing riffs on the Chinese internet's 钓鱼佬 (\"fishing guy\") meme, and every bit of it is cartoon fiction.",
   ],
   primaryCta: "Start the Fish Heist",
   secondaryCta: "Play Second Escape →",
@@ -130,13 +138,13 @@ export const homeEn: HomeContent = {
       body: "Getting caught mid-cast with a fish on the line is the kind of moment you'll want to send to your group chat.",
     },
     {
-      title: "A twist on a familiar genre.",
+      title: "A twist on sneaky fishing games.",
       body: 'If you like cozy, sneaky fishing comedies, you\'ll feel right at home. Angler Escape just keeps going after the bust and makes "caught, then escaped again" its signature move.',
     },
   ],
-  howTitle: "How to Play",
+  howTitle: "How to Play (Free, No Download)",
   howIntro:
-    "No download and no install. Angler Escape runs right in your browser on desktop or mobile.",
+    "No download and no install. Angler Escape is a browser stealth game that runs on desktop or mobile, and a run takes about as long as a coffee break.",
   howSteps: [
     "Hit Start the Fish Heist to begin a full run, from sneaking in to the final getaway.",
     "Watch the patrol, pick your moment, and land your fish.",
@@ -168,8 +176,19 @@ export const homeEn: HomeContent = {
       a: "Yes. Angler Escape runs in your browser and plays well on both mobile and desktop. Rounds are short, so it's a good fit for quick breaks.",
     },
   ],
-  playPlaceholder: "Demo coming soon",
-  playPlaceholderHint: "Playable canvas placeholder — full heist demo loading later.",
+  playPlaceholder: "Full heist demo coming soon",
+  playPlaceholderHint:
+    "The full run is still cooking. The Second Escape mini-game is already playable in your browser: sneak past the Inspector's flashlight and reach the bushes.",
+  playLinkLabel: "Play the Second Escape demo →",
+  relatedTitle: "Explore Angler Escape",
+  related: [
+    { label: "Play the free fishing game online", href: "/play/", note: "every playable mode in one hub" },
+    { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/", note: "vision cones, noise meter, decoys" },
+    { label: "All levels and walkthroughs", href: "/levels/", note: "Park Pond, Reservoir Night, City Canal" },
+    { label: "Meet the angler and the Inspector", href: "/characters/", note: "Ah Diao vs Captain Zhang" },
+    { label: "What is the fishing guy meme?", href: "/meme/fishing-guy-meme/", note: "钓鱼佬 and \"Air Force\" explained" },
+    { label: "Games like unBAITable", href: "/similar-games/", note: "more sneaky fishing games" },
+  ],
   navHome: "Home",
   navSecond: "Second Escape",
   langSwitchLabel: "中文",
@@ -181,13 +200,13 @@ export const homeEn: HomeContent = {
 
 export const homeZh: HomeContent = {
   locale: "zh",
-  title: "钓鱼佬大逃亡｜被抓了还能跑的钓鱼小游戏",
+  title: "钓鱼佬游戏《钓鱼佬大逃亡》｜被抓了还能跑的潜行小游戏",
   description:
-    "钓鱼佬小游戏《钓鱼佬大逃亡》：偷偷摸鱼、被发现、狂奔逃脱，被抓了还能跑！轻松幽默潜行钓鱼，纯属虚构娱乐。",
-  h1: "钓鱼佬大逃亡：摸鱼翻车，拔腿就跑",
+    "钓鱼佬游戏《钓鱼佬大逃亡》：偷偷摸鱼、被巡查员发现、撒腿狂奔，被抓了还能二次逃脱！浏览器免费玩的搞笑钓鱼佬小游戏，手机电脑都能玩，无需下载，纯属虚构娱乐。",
+  h1: "钓鱼佬大逃亡：摸鱼翻车、拔腿就跑的钓鱼佬游戏",
   intro: [
-    '"闲人免进"的牌子后面，据说住着一条传说中的大鱼。人人都听说过，谁也没钓上来过。你手里一根竿、一个桶，外加一份完全不知道从哪来的自信。能出什么事呢？什么事都能出，这正是这个游戏好玩的地方。',
-    "《钓鱼佬大逃亡》是一款当喜剧来玩的潜行钓鱼小游戏：悄悄摸进去，钓一条不该钓的鱼，在最要命的时候被发现，然后撒腿就跑。要是被抓了？没事，被抓了还能跑。一局很短，翻车动静很大，保安永远离你只差那么一点。",
+    '《钓鱼佬大逃亡》是一款打开浏览器就能免费玩的钓鱼佬游戏。"闲人免进"的牌子后面，据说住着一条传说中的大鱼。人人都听说过，谁也没钓上来过。你手里一根竿、一个桶，外加一份完全不知道从哪来的自信。能出什么事呢？什么事都能出，这正是这个游戏好玩的地方。',
+    "《钓鱼佬大逃亡》是一款当喜剧来玩的潜行钓鱼小游戏：悄悄摸进去，钓一条不该钓的鱼，在最要命的时候被发现，然后撒腿就跑。要是被抓了？没事，被抓了还能跑。一局很短，翻车动静很大，巡查员永远离你只差那么一点。灵感来自网上的钓鱼佬梗——钓鱼佬永不空军，嘴上说的。",
   ],
   primaryCta: "开始摸鱼大逃亡",
   secondaryCta: "先玩二次逃脱 →",
@@ -232,12 +251,12 @@ export const homeZh: HomeContent = {
       body: "鱼刚上钩就被逮个正着，这种画面你一定想发到群里。",
     },
     {
-      title: "熟悉的玩法，加点不一样的。",
+      title: "熟悉的偷偷钓鱼玩法，加点不一样的。",
       body: "喜欢偷偷钓个鱼这类轻松摸鱼风的话，你会很快上手。《钓鱼佬大逃亡》的不同是被抓之后游戏还没完，“抓了再逃”就是它的招牌。",
     },
   ],
-  howTitle: "怎么开玩",
-  howIntro: "浏览器就能上，无需下载、无需安装，手机电脑都能玩。",
+  howTitle: "怎么开玩（免费、无需下载）",
+  howIntro: "这是一款网页潜行钓鱼小游戏：浏览器就能上，无需下载、无需安装，手机电脑都能玩，一局也就一杯咖啡的工夫。",
   howSteps: [
     "点 开始摸鱼大逃亡，从潜入到最后逃出完整打一局。",
     "观察巡逻，挑准时机，把鱼钓上来。",
@@ -268,8 +287,19 @@ export const homeZh: HomeContent = {
       a: "能。游戏在浏览器里运行，手机和电脑都能流畅游玩。一局很短，碎片时间正合适。",
     },
   ],
-  playPlaceholder: "试玩即将上线",
-  playPlaceholderHint: "可玩画布占位 — 完整摸鱼大逃亡 demo 稍后上线。",
+  playPlaceholder: "完整摸鱼大逃亡 demo 即将上线",
+  playPlaceholderHint:
+    "完整流程还在打磨中，「二次逃脱」小游戏现在就能在浏览器里玩：躲开巡查员的手电光，溜进灌木丛出口。",
+  playLinkLabel: "先玩二次逃脱试玩版 →",
+  relatedTitle: "继续逛逛",
+  related: [
+    { label: "钓鱼小游戏在线玩", href: "/zh/play/", note: "所有可玩模式入口" },
+    { label: "钓鱼佬游戏攻略：甩掉巡查员", href: "/zh/guides/how-to-escape-inspector/", note: "视野锥、噪音条、道具" },
+    { label: "钓鱼佬大逃亡关卡攻略大全", href: "/zh/levels/", note: "公园池塘、水库夜钓、城市河道" },
+    { label: "钓鱼佬阿钓与巡查队长老张", href: "/zh/characters/", note: "角色介绍" },
+    { label: "钓鱼佬梗是什么意思？", href: "/zh/meme/fishing-guy-meme/", note: "空军、永不空军一次看懂" },
+    { label: "类似偷偷钓个鱼的游戏", href: "/zh/similar-games/", note: "同类钓鱼佬小游戏推荐" },
+  ],
   navHome: "首页",
   navSecond: "二次逃脱",
   langSwitchLabel: "English",
@@ -281,12 +311,12 @@ export const homeZh: HomeContent = {
 
 export const secondEn: SecondEscapeContent = {
   locale: "en",
-  title: "Second Escape｜Get Caught and Escape Again | Angler Escape",
+  title: "Second Escape: Stealth Escape Game Online, Free to Play",
   description:
-    "Second Escape mode in Angler Escape: get caught and escape again. Funny stealth fishing chaos after the bust—pure fiction, zero real-world tips.",
-  h1: "Second Escape: Get Caught and Escape Again",
+    "Second Escape is a free stealth escape game online: get caught, then sneak past the Inspector's flashlight and escape again. No download, pure fiction.",
+  h1: "Second Escape: Get Caught, Then Escape Again in This Stealth Escape Game",
   intro:
-    "In most stealth games, getting caught means game over. In Angler Escape, it means intermission. You've been spotted, chased, and finally collared, fish still in hand, looking very guilty. Second Escape picks up right there. The story isn't over and neither is your run.",
+    "Second Escape is a free stealth escape game you can play online right now, no download needed. In most stealth games, getting caught means game over. In Angler Escape, it means intermission. You've been spotted, chased, and finally collared, fish still in hand, looking very guilty. Second Escape picks up right there. The story isn't over and neither is your run.",
   primaryCta: "Launch Second Escape",
   secondaryCta: "Back to Homepage Heist →",
   disclaimer: DISCLAIMER_EN,
@@ -357,6 +387,19 @@ export const secondEn: SecondEscapeContent = {
   ],
   playPlaceholder: "Demo coming soon",
   playPlaceholderHint: "Second Escape playable canvas placeholder — demo loading later.",
+  breadcrumbs: [
+    { label: "Home", href: "/" },
+    { label: "Play", href: "/play/" },
+    { label: "Second Escape", href: "/play/second-escape/" },
+  ],
+  relatedTitle: "Related Pages",
+  related: [
+    { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/", note: "the full in-game escape guide" },
+    { label: "City Canal walkthrough", href: "/levels/03-city-canal/", note: "where the hardest Second Escape happens" },
+    { label: "Meet Captain Zhang, the Inspector", href: "/characters/", note: "know who you're running from" },
+    { label: "Free fishing game online hub", href: "/play/", note: "all playable modes" },
+    { label: "Back to the stealth fishing game homepage", href: "/" },
+  ],
   navHome: "Home",
   navSecond: "Second Escape",
   langSwitchLabel: "中文",
@@ -368,12 +411,12 @@ export const secondEn: SecondEscapeContent = {
 
 export const secondZh: SecondEscapeContent = {
   locale: "zh",
-  title: "二次逃脱｜钓鱼佬被抓了还能跑 - 钓鱼佬大逃亡",
+  title: "二次逃脱：钓鱼佬被抓了还能跑｜潜行逃脱小游戏在线玩",
   description:
-    "《钓鱼佬大逃亡》二次逃脱模式：被抓了还能跑！潜行摸鱼翻车后再逃一次，幽默轻松的钓鱼佬小游戏关卡，纯属虚构。",
+    "钓鱼佬被抓了还能跑！《钓鱼佬大逃亡》二次逃脱：躲开巡查员的手电、溜进灌木丛出口，免费在线玩的潜行逃脱小游戏，一局不到一分钟，无需下载，纯属虚构。",
   h1: "二次逃脱：钓鱼佬被抓了还能跑",
   intro:
-    "大多数潜行游戏里，被抓就是 Game Over。在《钓鱼佬大逃亡》里，被抓只是中场休息。你被发现了、被追了、最后被一把揪住，手里还拎着那条鱼，一脸心虚。「二次逃脱」就从这一刻开始：故事没完，这一局也没完。",
+    "钓鱼佬被抓了还能跑？在这款免费在线玩的潜行逃脱小游戏里可以。大多数潜行游戏里，被抓就是 Game Over。在《钓鱼佬大逃亡》里，被抓只是中场休息。你被发现了、被追了、最后被一把揪住，手里还拎着那条鱼，一脸心虚。「二次逃脱」就从这一刻开始：故事没完，这一局也没完。",
   primaryCta: "立刻二次逃脱",
   secondaryCta: "回首页重开摸鱼 →",
   disclaimer: DISCLAIMER_ZH,
@@ -438,6 +481,19 @@ export const secondZh: SecondEscapeContent = {
   ],
   playPlaceholder: "试玩即将上线",
   playPlaceholderHint: "二次逃脱可玩画布占位 — demo 稍后上线。",
+  breadcrumbs: [
+    { label: "首页", href: "/zh/" },
+    { label: "开始玩", href: "/zh/play/" },
+    { label: "二次逃脱", href: "/zh/play/second-escape/" },
+  ],
+  relatedTitle: "相关页面",
+  related: [
+    { label: "钓鱼佬游戏攻略：甩掉巡查员", href: "/zh/guides/how-to-escape-inspector/", note: "完整游戏内逃跑技巧" },
+    { label: "第3关 城市河道攻略", href: "/zh/levels/03-city-canal/", note: "最难的二次逃脱在这里" },
+    { label: "巡查队长老张角色介绍", href: "/zh/characters/", note: "先认识一下追你的人" },
+    { label: "钓鱼小游戏在线玩", href: "/zh/play/", note: "所有可玩模式" },
+    { label: "回到钓鱼佬游戏首页", href: "/zh/" },
+  ],
   navHome: "首页",
   navSecond: "二次逃脱",
   langSwitchLabel: "English",

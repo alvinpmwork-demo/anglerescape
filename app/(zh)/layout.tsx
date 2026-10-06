@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import "../globals.css";
+import { homeZh } from "@/lib/content";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anglerescape.com"),
   title: {
-    default: "钓鱼佬大逃亡｜被抓了还能跑的钓鱼小游戏",
+    default: homeZh.title,
     template: "%s",
   },
-  description:
-    "钓鱼佬小游戏《钓鱼佬大逃亡》：偷偷摸鱼、被发现、狂奔逃脱，被抓了还能跑！轻松幽默潜行钓鱼，纯属虚构娱乐。",
+  description: homeZh.description,
+  applicationName: "钓鱼佬大逃亡",
+  robots: { index: true, follow: true },
   openGraph: {
     siteName: "钓鱼佬大逃亡",
     type: "website",
@@ -23,7 +25,7 @@ export default function ZhLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-Hans">
       <body>{children}</body>
     </html>
   );

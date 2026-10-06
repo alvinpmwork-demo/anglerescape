@@ -5,10 +5,10 @@ export const memeEn: ArticleContent = {
   path: "/meme/fishing-guy-meme/",
   title: 'What Is the Fishing Guy Meme? 钓鱼佬 & "Air Force" Explained',
   description:
-    'What is the fishing guy (钓鱼佬) meme? The Chinese internet\'s obsessive angler, "air force" (zero-catch) jokes, and how they became the game Angler Escape.',
+    'What is the fishing guy meme? Meet 钓鱼佬, the Chinese internet\'s obsessive angler, learn what "Air Force" (zero catch) means, and see how it became a game.',
   h1: "What Is the Fishing Guy Meme?",
   intro: [
-    "If you have seen someone joke about 钓鱼佬 online, you have met the fishing guy: the die-hard angler who will sit all day for one bite—and still go home empty-handed. Here is the joke, the slang, and how it turned into Angler Escape.",
+    "The fishing guy meme comes from Chinese social media. If you have seen someone joke about 钓鱼佬 online, you have met the fishing guy: the die-hard angler who will sit all day for one bite—and still go home empty-handed. Here is the joke, the slang, and how it turned into Angler Escape.",
   ],
   sections: [
     {
@@ -36,6 +36,21 @@ export const memeEn: ArticleContent = {
           title: "Catch flex vs scenery post",
           body: "Land a fish and you post the haul. Go Air Force and you post the landscape. Everyone knows the code.",
         },
+      ],
+    },
+    {
+      h2: "Fishing Guy Meme Formats You'll See",
+      list: [
+        { title: "The scenery post:", body: "a gorgeous sunset lake photo with no fish anywhere. Everyone knows what it means." },
+        { title: "One last cast:", body: "the fishing guy promising, for the fifth time, that this is really the final cast before he goes home." },
+        { title: "The empty keep net:", body: "a dramatic close-up of an empty net or bucket, captioned \"Air Force again.\"" },
+        { title: "The stand-off skit:", body: "short comedy videos where a stubborn angler bargains with a very tired park worker for just one more minute. Angler Escape turns this into a cartoon chase." },
+      ],
+    },
+    {
+      h2: "How to Say It in English",
+      paragraphs: [
+        "There is no perfect translation, but English-speaking anglers already have a word for going Air Force: getting \"skunked.\" So \"今天又空军了\" is roughly \"skunked again today.\" 钓鱼佬 itself lands somewhere between \"fishing guy,\" \"fishing bro,\" and \"that uncle who is always at the pond.\" In memes you will also see the literal \"Air Force\" used as an in-joke.",
       ],
     },
     {
@@ -72,6 +87,10 @@ export const memeEn: ArticleContent = {
       a: "Catching nothing all day.",
     },
     {
+      q: "What is the English word for going Air Force?",
+      a: 'English-speaking anglers say they got "skunked" when they catch nothing.',
+    },
+    {
       q: "Is it offensive?",
       a: "Usually not. It is mostly self-deprecating.",
     },
@@ -88,17 +107,23 @@ export const memeEn: ArticleContent = {
     { label: "Home", href: "/" },
     { label: "Fishing Guy Meme", href: "/meme/fishing-guy-meme/" },
   ],
+  related: [
+    { label: "Play the fishing guy game", href: "/play/", note: "Angler Escape, free in your browser" },
+    { label: "Meet Ah Diao, the never-say-Air-Force angler", href: "/characters/" },
+    { label: "Stealth fishing game homepage", href: "/" },
+    { label: "Sneaky fishing games like unBAITable", href: "/similar-games/" },
+  ],
 };
 
 export const memeZh: ArticleContent = {
   locale: "zh",
   path: "/meme/fishing-guy-meme/",
-  title: "钓鱼佬梗是什么意思？空军、永不空军等钓鱼佬梗大全",
+  title: "钓鱼佬梗是什么意思？空军、永不空军、钓鱼佬梗图一次看懂",
   description:
-    "钓鱼佬梗是什么意思？一页看懂「钓鱼佬」「空军」「钓鱼佬永不空军」等网络梗的来源和用法，再看这些梗怎么变成钓鱼佬大逃亡小游戏。",
+    "钓鱼佬梗是什么意思？一页看懂「钓鱼佬」「空军」「钓鱼佬永不空军」的来源、用法和常见梗图，空军用英文怎么说，以及这些梗怎么变成了钓鱼佬小游戏。",
   h1: "钓鱼佬梗是什么意思？",
   intro: [
-    "网上说的「钓鱼佬」，指的是那种风雨无阻、一坐一整天的钓鱼痴迷人群——常常还空军回家。下面把梗讲清楚，再看看它怎么变成《钓鱼佬大逃亡》。",
+    "钓鱼佬梗是什么意思？网上说的「钓鱼佬」，指的是那种风雨无阻、一坐一整天的钓鱼痴迷人群——常常还空军回家。下面把梗讲清楚，再看看它怎么变成《钓鱼佬大逃亡》。",
   ],
   sections: [
     {
@@ -126,6 +151,27 @@ export const memeZh: ArticleContent = {
           title: "鱼获晒图",
           body: "钓到了一定要发朋友圈；没钓到就发风景。懂的都懂。",
         },
+      ],
+    },
+    {
+      h2: "钓鱼为什么叫空军？",
+      paragraphs: [
+        "最常见的说法是取一个「空」字：空手而归、鱼护空空。借「空军」这个现成的词来自嘲，听起来比「一条没钓到」体面多了，于是就在钓友圈里传开了。钓到鱼叫「爆护」，一条没有就是「空军」，再配上一句「钓鱼佬永不空军」，反差感直接拉满。",
+      ],
+    },
+    {
+      h2: "空军用英文怎么说？",
+      paragraphs: [
+        "英语钓友圈里，一条没钓到叫 \"get skunked\"，所以「今天又空军了」可以说成 \"Skunked again today.\"。网上的中英梗图里也常直接写 \"Air Force\"，算是圈内玩笑。钓鱼佬本身可以译成 fishing guy 或 fishing bro。",
+      ],
+    },
+    {
+      h2: "常见的钓鱼佬梗图",
+      list: [
+        { title: "风景照：", body: "晚霞、湖面、远山，就是没有鱼。懂的都懂。" },
+        { title: "最后一竿：", body: "说了五次「真的最后一竿」，人还在水边。" },
+        { title: "空鱼护特写：", body: "空荡荡的鱼护配文「又空军了」。" },
+        { title: "讨价还价短视频：", body: "钓鱼佬跟一脸疲惫的公园工作人员磨「再给一分钟」。《钓鱼佬大逃亡》把这种桥段做成了卡通追逐。" },
       ],
     },
     {
@@ -162,6 +208,14 @@ export const memeZh: ArticleContent = {
       a: "钓鱼一条都没钓到。",
     },
     {
+      q: "钓鱼为什么叫空军？",
+      a: "常见说法取「空」字，指空手而归、鱼护空空，是钓友之间的自嘲。",
+    },
+    {
+      q: "空军用英文怎么说？",
+      a: "英语钓友常说 get skunked，梗图里也会直接写 Air Force。",
+    },
+    {
       q: "钓鱼佬是贬义词吗？",
       a: "一般不是，多数是自嘲或朋友间的玩笑。",
     },
@@ -177,5 +231,11 @@ export const memeZh: ArticleContent = {
   breadcrumbs: [
     { label: "首页", href: "/zh/" },
     { label: "钓鱼佬梗", href: "/zh/meme/fishing-guy-meme/" },
+  ],
+  related: [
+    { label: "钓鱼佬小游戏在线玩", href: "/zh/play/", note: "亲自体验钓鱼佬名场面" },
+    { label: "钓鱼佬阿钓角色介绍", href: "/zh/characters/", note: "嘴上永不空军" },
+    { label: "钓鱼佬游戏首页", href: "/zh/" },
+    { label: "类似偷偷钓个鱼的游戏", href: "/zh/similar-games/" },
   ],
 };

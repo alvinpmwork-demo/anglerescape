@@ -31,7 +31,7 @@ export function Header({
           <Link
             href={langSwitchHref}
             className="lang-switch"
-            hrefLang={langSwitchLabel === "English" ? "en" : "zh-CN"}
+            hrefLang={langSwitchLabel === "English" ? "en" : "zh"}
           >
             {langSwitchLabel}
           </Link>

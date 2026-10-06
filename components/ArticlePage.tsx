@@ -6,17 +6,32 @@ import { Footer } from "@/components/Footer";
 import { CtaRow } from "@/components/CtaRow";
 import { Disclaimer } from "@/components/Disclaimer";
 import { Faq } from "@/components/Faq";
-import { FaqJsonLd } from "@/components/FaqJsonLd";
+import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { article, faqPage, videoGame } from "@/lib/schema";
 
 type Props = { content: ArticleContent };
 
 export function ArticlePage({ content: c }: Props) {
   const chrome = getChrome(c.locale);
   const switcher = langSwitch(c.locale, c.path);
+  const schemaType = c.schemaType ?? "Article";
+  const mainSchema =
+    schemaType === "VideoGame"
+      ? videoGame({ locale: c.locale, path: c.path, description: c.description })
+      : article({
+          locale: c.locale,
+          path: c.path,
+          headline: c.h1,
+          description: c.description,
+          type: schemaType,
+        });
+  const schemas: object[] = [mainSchema];
+  if (c.faq.length > 0 && c.faqSchema !== false) schemas.push(faqPage(c.faq));
 
   return (
     <>
-      <FaqJsonLd items={c.faq} />
+      <JsonLd data={schemas} />
       <Header
         siteName={chrome.siteName}
         homeHref={chrome.homeHref}
@@ -27,26 +42,7 @@ export function ArticlePage({ content: c }: Props) {
       <main>
         <section className="hero">
           <div className="container">
-            {c.breadcrumbs && c.breadcrumbs.length > 0 ? (
-              <nav className="breadcrumbs" aria-label="Breadcrumb">
-                <ol>
-                  {c.breadcrumbs.map((crumb, i) => (
-                    <li key={crumb.href}>
-                      {i < c.breadcrumbs!.length - 1 ? (
-                        <Link href={crumb.href}>{crumb.label}</Link>
-                      ) : (
-                        <span aria-current="page">{crumb.label}</span>
-                      )}
-                      {i < c.breadcrumbs!.length - 1 ? (
-                        <span className="bc-sep" aria-hidden>
-                          /
-                        </span>
-                      ) : null}
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            ) : null}
+            {c.breadcrumbs ? <Breadcrumbs items={c.breadcrumbs} /> : null}
             <h1>{c.h1}</h1>
             {c.topNote ? <Disclaimer text={`※ ${c.topNote.replace(/^※\s*/, "")}`} /> : null}
             {c.intro?.map((p) => (
@@ -66,6 +62,23 @@ export function ArticlePage({ content: c }: Props) {
           {c.sections.map((section) => (
             <section key={section.h2}>
               <h2>{section.h2}</h2>
+              {section.images ? (
+                <div className="figure-row">
+                  {section.images.map((img) => (
+                    <figure key={img.src} className="content-figure">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        width={img.width}
+                        height={img.height}
+                        loading="lazy"
+                      />
+                      {img.caption ? <figcaption>{img.caption}</figcaption> : null}
+                    </figure>
+                  ))}
+                </div>
+              ) : null}
               {section.paragraphs?.map((p) => (
                 <p key={p.slice(0, 32)}>{p}</p>
               ))}
@@ -140,6 +153,22 @@ export function ArticlePage({ content: c }: Props) {
             </section>
           ))}
 
+          {c.related && c.related.length > 0 ? (
+            <section className="related" aria-labelledby="related-pages">
+              <h2 id="related-pages">
+                {c.relatedTitle ?? (c.locale === "zh" ? "相关页面" : "Related Pages")}
+              </h2>
+              <ul className="related-list">
+                {c.related.map((r) => (
+                  <li key={r.href}>
+                    <Link href={r.href}>{r.label}</Link>
+                    {r.note ? <span className="related-note"> — {r.note}</span> : null}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
           <CtaRow
             primaryLabel={c.primaryCta}
             primaryHref={c.primaryHref}
@@ -158,6 +187,8 @@ export function ArticlePage({ content: c }: Props) {
         footerHow={chrome.footerHow}
         footerDisclaimer={chrome.footerDisclaimer}
         disclaimer={chrome.disclaimer}
+        links={chrome.footerLinks}
+        navLabel={chrome.locale === "zh" ? "站点导航" : "Site pages"}
       />
     </>
   );
