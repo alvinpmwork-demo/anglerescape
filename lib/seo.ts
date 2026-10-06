@@ -12,11 +12,11 @@ export const SITE_NAME = { en: "Angler Escape", zh: "钓鱼佬大逃亡" } as co
 export const OG_IMAGE = {
   en: {
     url: "/og/angler-escape-en.png",
-    alt: "Angler Escape – free stealth fishing game: a cartoon angler and the Inspector",
+    alt: "Angler Escape – free stealth fishing game: a cartoon angler and the Inspector in a reflective vest",
   },
   zh: {
     url: "/og/angler-escape-zh.png",
-    alt: "钓鱼佬大逃亡——被抓了还能跑的钓鱼佬小游戏：钓鱼佬与巡查员",
+    alt: "钓鱼佬大逃亡——被抓了还能跑的钓鱼佬小游戏：钓鱼佬与穿反光背心的巡查员",
   },
 } as const;
 

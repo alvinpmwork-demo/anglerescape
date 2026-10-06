@@ -48,7 +48,7 @@ const copy = {
     legendYou: "You — the angler",
     legendCop: "Inspector — avoid the light",
     altYou: "Cartoon angler in a bucket hat holding a fishing rod (the player)",
-    altCop: "Fictional park Inspector holding a flashlight (avoid his light)",
+    altCop: "Fictional park inspector in a reflective vest holding a flashlight (avoid his light)",
   },
   zh: {
     title: "二次逃脱",
@@ -75,7 +75,7 @@ const copy = {
     legendYou: "你 — 钓鱼佬",
     legendCop: "巡查 — 躲开探照灯",
     altYou: "戴渔夫帽、扛着鱼竿的卡通钓鱼佬（玩家角色）",
-    altCop: "拿手电筒的虚构公园巡查员（躲开他的光）",
+    altCop: "穿反光背心、拿手电筒的虚构公园巡查员（躲开他的光）",
   },
 } as const;
 

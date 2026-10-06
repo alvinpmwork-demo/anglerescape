@@ -42,7 +42,7 @@ export const charactersEn: ArticleContent = {
       images: [
         {
           src: "/game/inspector.png",
-          alt: "Captain Zhang, the fictional park Inspector: a stern patroller in a dark cap and jacket holding a flashlight",
+          alt: "Captain Zhang, the fictional park Inspector: a stern patroller in a dark cap, olive work jacket and neon-yellow reflective vest, holding a flashlight",
           width: 128,
           height: 128,
           caption: "Captain Zhang, head of the fictional park patrol",
@@ -51,7 +51,7 @@ export const charactersEn: ArticleContent = {
       subsections: [
         {
           title: "Bio",
-          body: "Head patroller of a fictional park office. The whistle is louder than he is, and his cartoon uniform has no real insignia, badge, or agency name.",
+          body: "Head patroller of a fictional park office. The whistle is louder than he is, and his plain cap and reflective vest carry no insignia, badge, or agency name.",
         },
         {
           title: "Abilities",
@@ -156,7 +156,7 @@ export const charactersZh: ArticleContent = {
       images: [
         {
           src: "/game/inspector.png",
-          alt: "巡查队长老张头像：戴深色帽子、手拿手电筒、表情严肃的虚构公园巡查员",
+          alt: "巡查队长老张头像：戴深色帽子、穿橄榄色工装外套和荧光黄反光背心、手拿手电筒、表情严肃的虚构公园巡查员",
           width: 128,
           height: 128,
           caption: "巡查队长老张（虚构公园巡逻队）",
@@ -165,7 +165,7 @@ export const charactersZh: ArticleContent = {
       subsections: [
         {
           title: "人设",
-          body: "虚构公园管理处的巡查队长。哨子比嗓门大，穿卡通制服，没有任何真实标识、徽章或机构名。",
+          body: "虚构公园管理处的巡查队长。哨子比嗓门大，一顶普通帽子加一件荧光反光背心，没有任何标识、徽章或机构名。",
         },
         {
           title: "能力",
