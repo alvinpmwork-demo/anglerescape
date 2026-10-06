@@ -1,33 +1,39 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  EXIT_R,
+  H,
+  INSPECTOR_R,
+  PLAYER_R,
+  SPOT_DETECT_MS,
+  SPOT_RANGE,
+  W,
+  coneOutline,
+  decayJuice,
+  initialSim,
+  stepSim,
+  type Keys,
+  type Sim,
+} from "@/components/secondEscapeLogic";
 
 type Locale = "en" | "zh";
 type GameState = "ready" | "playing" | "win" | "lose";
 
 type Props = { locale: Locale };
 
-const W = 640;
-const H = 400;
-const PLAYER_R = 20;
-const INSPECTOR_R = 22;
-const EXIT_R = 28;
-const SPOT_RANGE = 130;
-const SPOT_HALF_ANGLE = 0.42; // radians ~24deg
-const SPOT_DETECT_MS = 800;
-const PLAYER_SPEED = 145;
-const INSPECTOR_SPEED = 55;
-
 const copy = {
   en: {
     title: "Second Escape",
-    ready: "Tap / press any key to start",
-    hint: "Sneak past the inspector spotlight to the bush",
+    ready: "Tap, or press Space / an arrow key to start",
+    hint: "Rocks block the flashlight. Sneak through their shadows to the bush",
     win: "Clear!",
     winSub: "Gear secured — you made it out.",
     loseSpot: "Spotted! Stay out of the light.",
     loseHit: "Caught by the inspector!",
-    loseHint: "Tap Restart and try again",
+    loseHint: "Space / Enter or tap to try again",
+    again: "Space / Enter or tap to play again",
+    hidden: "hidden",
     restart: "Restart",
     statusReady: "Ready",
     statusPlaying: "Sneaking…",
@@ -46,13 +52,15 @@ const copy = {
   },
   zh: {
     title: "二次逃脱",
-    ready: "点击 / 按任意键开始",
-    hint: "躲开检查员探照灯，潜入灌木丛出口",
+    ready: "点击，或按空格 / 方向键开始",
+    hint: "石头能挡住手电光，借着阴影潜入灌木丛出口",
     win: "恭喜通关",
     winSub: "装备成功保下",
     loseSpot: "被发现了！别待在光里。",
     loseHit: "被检查员抓住了！",
-    loseHint: "点再来一次，保装备再冲",
+    loseHint: "按空格 / 回车或点击，保装备再冲",
+    again: "按空格 / 回车或点击再来一局",
+    hidden: "藏好了",
     restart: "再来一次",
     statusReady: "准备",
     statusPlaying: "潜行中…",
@@ -71,148 +79,13 @@ const copy = {
   },
 } as const;
 
-type Keys = { up: boolean; down: boolean; left: boolean; right: boolean };
+/** Max backing-store scale vs the 640x400 logical canvas (keeps 4K fullscreen sane). */
+const MAX_BACKING_SCALE = 4;
 
-type Particle = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  life: number;
-  color: string;
-  size: number;
-};
-
-type Sim = {
-  player: { x: number; y: number };
-  inspector: { x: number; y: number; facing: number; patrolDir: 1 | -1 };
-  exit: { x: number; y: number };
-  covers: { x: number; y: number; w: number; h: number }[];
-  spotTimer: number;
-  loseReason: "spot" | "hit" | null;
-  particles: Particle[];
-  shake: number;
-  endFlash: number;
-  juiceSpawned: boolean;
-};
-
-function initialSim(): Sim {
-  return {
-    player: { x: 70, y: H - 55 },
-    inspector: { x: W * 0.5, y: H * 0.48, facing: 0, patrolDir: 1 },
-    exit: { x: W - 70, y: 55 },
-    covers: [
-      { x: 160, y: 250, w: 70, h: 28 },
-      { x: 320, y: 160, w: 80, h: 28 },
-      { x: 460, y: 280, w: 60, h: 28 },
-    ],
-    spotTimer: 0,
-    loseReason: null,
-    particles: [],
-    shake: 0,
-    endFlash: 0,
-    juiceSpawned: false,
-  };
-}
-
-function spawnWinBurst(sim: Sim) {
-  const colors = ["#f9e79f", "#82e0aa", "#85c1e9", "#f5b041", "#ffffff"];
-  for (let i = 0; i < 48; i++) {
-    const a = Math.random() * Math.PI * 2;
-    const sp = 60 + Math.random() * 180;
-    sim.particles.push({
-      x: sim.player.x,
-      y: sim.player.y,
-      vx: Math.cos(a) * sp,
-      vy: Math.sin(a) * sp - 40,
-      life: 0.7 + Math.random() * 0.6,
-      color: colors[i % colors.length],
-      size: 3 + Math.random() * 4,
-    });
-  }
-  sim.endFlash = 0.45;
-}
-
-function spawnLoseFlash(sim: Sim) {
-  sim.shake = 10;
-  sim.endFlash = 0.35;
-  for (let i = 0; i < 18; i++) {
-    const a = Math.random() * Math.PI * 2;
-    const sp = 40 + Math.random() * 90;
-    sim.particles.push({
-      x: sim.player.x,
-      y: sim.player.y,
-      vx: Math.cos(a) * sp,
-      vy: Math.sin(a) * sp,
-      life: 0.35 + Math.random() * 0.35,
-      color: i % 2 ? "#f5b7b1" : "#922b21",
-      size: 2 + Math.random() * 3,
-    });
-  }
-}
-
-function pointInCover(
-  x: number,
-  y: number,
-  covers: Sim["covers"],
-): boolean {
-  return covers.some(
-    (c) => x >= c.x && x <= c.x + c.w && y >= c.y && y <= c.y + c.h,
-  );
-}
-
-function inSpotlight(
-  px: number,
-  py: number,
-  ix: number,
-  iy: number,
-  facing: number,
-  covers: Sim["covers"],
-): boolean {
-  if (pointInCover(px, py, covers)) return false;
-  const dx = px - ix;
-  const dy = py - iy;
-  const dist = Math.hypot(dx, dy);
-  if (dist > SPOT_RANGE || dist < 1) return false;
-  const angle = Math.atan2(dy, dx);
-  let diff = angle - facing;
-  while (diff > Math.PI) diff -= Math.PI * 2;
-  while (diff < -Math.PI) diff += Math.PI * 2;
-  return Math.abs(diff) <= SPOT_HALF_ANGLE;
-}
-
-function circlesOverlap(
-  ax: number,
-  ay: number,
-  ar: number,
-  bx: number,
-  by: number,
-  br: number,
-): boolean {
-  return Math.hypot(ax - bx, ay - by) < ar + br;
-}
-
-function clampPlayer(x: number, y: number, covers: Sim["covers"]) {
-  let nx = Math.max(PLAYER_R, Math.min(W - PLAYER_R, x));
-  let ny = Math.max(PLAYER_R, Math.min(H - PLAYER_R, y));
-  for (const c of covers) {
-    const nearestX = Math.max(c.x, Math.min(nx, c.x + c.w));
-    const nearestY = Math.max(c.y, Math.min(ny, c.y + c.h));
-    const dx = nx - nearestX;
-    const dy = ny - nearestY;
-    const d = Math.hypot(dx, dy);
-    if (d < PLAYER_R && d > 0) {
-      const push = (PLAYER_R - d) / d;
-      nx += dx * push;
-      ny += dy * push;
-    } else if (d === 0) {
-      ny = c.y - PLAYER_R;
-    }
-  }
-  nx = Math.max(PLAYER_R, Math.min(W - PLAYER_R, nx));
-  ny = Math.max(PLAYER_R, Math.min(H - PLAYER_R, ny));
-  return { x: nx, y: ny };
-}
+const MOVE_CODES = new Set([
+  "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "KeyW", "KeyA", "KeyS", "KeyD",
+]);
+const ACTION_CODES = new Set(["Space", "Enter", "NumpadEnter"]);
 
 export function SecondEscapeGame({ locale }: Props) {
   const t = copy[locale] ?? copy.en;
@@ -280,6 +153,9 @@ export function SecondEscapeGame({ locale }: Props) {
 
   const draw = useCallback(
     (ctx: CanvasRenderingContext2D, sim: Sim, gs: GameState) => {
+      // Backing store is (CSS size x devicePixelRatio); keep drawing in 640x400 logical units.
+      const k = ctx.canvas.width / W;
+      ctx.setTransform(k, 0, 0, k, 0, 0);
       ctx.save();
       if (sim.shake > 0) {
         const mag = sim.shake;
@@ -333,17 +209,12 @@ export function SecondEscapeGame({ locale }: Props) {
 
       const { inspector: ins } = sim;
 
-      // spotlight cone
+      // spotlight cone, clipped by rocks (rocks cast shadows you can hide in)
       ctx.save();
+      const cone = coneOutline(ins.x, ins.y, ins.facing, sim.covers);
       ctx.beginPath();
-      ctx.moveTo(ins.x, ins.y);
-      ctx.arc(
-        ins.x,
-        ins.y,
-        SPOT_RANGE,
-        ins.facing - SPOT_HALF_ANGLE,
-        ins.facing + SPOT_HALF_ANGLE,
-      );
+      ctx.moveTo(cone[0].x, cone[0].y);
+      for (let i = 1; i < cone.length; i++) ctx.lineTo(cone[i].x, cone[i].y);
       ctx.closePath();
       const spotGrad = ctx.createRadialGradient(
         ins.x,
@@ -379,6 +250,12 @@ export function SecondEscapeGame({ locale }: Props) {
       // player angler avatar (钓鱼佬)
       const { player: p } = sim;
       drawAnglerAvatar(ctx, p.x, p.y, PLAYER_R, anglerImgRef.current);
+      if (gs === "playing" && sim.hidden) {
+        ctx.font = "bold 11px system-ui,sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "rgba(213, 245, 227, 0.95)";
+        ctx.fillText(t.hidden, p.x, p.y - PLAYER_R - 6);
+      }
 
       // particles
       for (const p of sim.particles) {
@@ -420,9 +297,10 @@ export function SecondEscapeGame({ locale }: Props) {
           ctx.font = "bold 18px system-ui,sans-serif";
           ctx.fillStyle = "#f9e79f";
           ctx.fillText(t.winSub, W / 2, H / 2 + 14);
+          // the Restart *button* lives in the DOM; the canvas only hints the shortcut
           ctx.font = "14px system-ui,sans-serif";
           ctx.fillStyle = "#d5f5e3";
-          ctx.fillText(t.restart, W / 2, H / 2 + 48);
+          ctx.fillText(t.again, W / 2, H / 2 + 46);
         } else if (gs === "lose") {
           ctx.font = "bold 26px system-ui,sans-serif";
           ctx.fillStyle = "#f5b7b1";
@@ -432,8 +310,6 @@ export function SecondEscapeGame({ locale }: Props) {
           ctx.font = "15px system-ui,sans-serif";
           ctx.fillStyle = "#fadbd8";
           ctx.fillText(t.loseHint, W / 2, H / 2 + 18);
-          ctx.font = "14px system-ui,sans-serif";
-          ctx.fillText(t.restart, W / 2, H / 2 + 46);
         }
       }
 
@@ -449,6 +325,8 @@ export function SecondEscapeGame({ locale }: Props) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    let frame = 0;
+    syncBackingStore(canvas);
     const tick = (ts: number) => {
       const last = lastTsRef.current || ts;
       let dt = (ts - last) / 1000;
@@ -459,123 +337,13 @@ export function SecondEscapeGame({ locale }: Props) {
       const gs = stateRef.current;
 
       if (gs === "playing") {
-        const keys = keysRef.current;
-        let mx = 0;
-        let my = 0;
-        if (keys.left) mx -= 1;
-        if (keys.right) mx += 1;
-        if (keys.up) my -= 1;
-        if (keys.down) my += 1;
-        if (mx !== 0 || my !== 0) {
-          const len = Math.hypot(mx, my);
-          mx /= len;
-          my /= len;
-          const next = clampPlayer(
-            sim.player.x + mx * PLAYER_SPEED * dt,
-            sim.player.y + my * PLAYER_SPEED * dt,
-            sim.covers,
-          );
-          sim.player.x = next.x;
-          sim.player.y = next.y;
-        }
-
-        // inspector patrol left-right, face toward player with sweep bias
-        sim.inspector.x +=
-          sim.inspector.patrolDir * INSPECTOR_SPEED * dt;
-        if (sim.inspector.x > W - 80) {
-          sim.inspector.x = W - 80;
-          sim.inspector.patrolDir = -1;
-        } else if (sim.inspector.x < 80) {
-          sim.inspector.x = 80;
-          sim.inspector.patrolDir = 1;
-        }
-        // facing: blend toward player + patrol direction
-        const toPlayer = Math.atan2(
-          sim.player.y - sim.inspector.y,
-          sim.player.x - sim.inspector.x,
-        );
-        const patrolFace =
-          sim.inspector.patrolDir === 1 ? 0 : Math.PI;
-        // mostly look along patrol, peek toward player
-        let desired = lerpAngle(patrolFace, toPlayer, 0.35);
-        // slow oscillation so spotlight sweeps
-        desired += Math.sin(ts / 700) * 0.55;
-        sim.inspector.facing = lerpAngle(
-          sim.inspector.facing,
-          desired,
-          Math.min(1, 3 * dt),
-        );
-
-        // detection
-        const spotted = inSpotlight(
-          sim.player.x,
-          sim.player.y,
-          sim.inspector.x,
-          sim.inspector.y,
-          sim.inspector.facing,
-          sim.covers,
-        );
-        if (spotted) {
-          sim.spotTimer += dt * 1000;
-        } else {
-          sim.spotTimer = Math.max(0, sim.spotTimer - dt * 1400);
-        }
-        const pct = Math.min(100, (sim.spotTimer / SPOT_DETECT_MS) * 100);
-        setSpotPct(pct);
-
-        if (sim.spotTimer >= SPOT_DETECT_MS) {
-          sim.loseReason = "spot";
-          if (!sim.juiceSpawned) {
-            spawnLoseFlash(sim);
-            sim.juiceSpawned = true;
-          }
-          setGameState("lose");
-        } else if (
-          circlesOverlap(
-            sim.player.x,
-            sim.player.y,
-            PLAYER_R,
-            sim.inspector.x,
-            sim.inspector.y,
-            INSPECTOR_R,
-          )
-        ) {
-          sim.loseReason = "hit";
-          if (!sim.juiceSpawned) {
-            spawnLoseFlash(sim);
-            sim.juiceSpawned = true;
-          }
-          setGameState("lose");
-        } else if (
-          circlesOverlap(
-            sim.player.x,
-            sim.player.y,
-            PLAYER_R,
-            sim.exit.x,
-            sim.exit.y,
-            EXIT_R - 6,
-          )
-        ) {
-          if (!sim.juiceSpawned) {
-            spawnWinBurst(sim);
-            sim.juiceSpawned = true;
-          }
-          setGameState("win");
-        }
+        const result = stepSim(sim, keysRef.current, dt, ts);
+        setSpotPct(Math.min(100, (sim.spotTimer / SPOT_DETECT_MS) * 100));
+        if (result) setGameState(result);
       }
 
-      // juice decay always
-      if (sim.shake > 0) sim.shake = Math.max(0, sim.shake - dt * 28);
-      if (sim.endFlash > 0) sim.endFlash = Math.max(0, sim.endFlash - dt);
-      if (sim.particles.length) {
-        for (const p of sim.particles) {
-          p.x += p.vx * dt;
-          p.y += p.vy * dt;
-          p.vy += 120 * dt;
-          p.life -= dt;
-        }
-        sim.particles = sim.particles.filter((p) => p.life > 0);
-      }
+      decayJuice(sim, dt);
+      if (++frame % 30 === 0) syncBackingStore(canvas);
 
       draw(ctx, sim, stateRef.current);
       rafRef.current = requestAnimationFrame(tick);
@@ -614,12 +382,22 @@ export function SecondEscapeGame({ locale }: Props) {
     };
 
     const onDown = (e: KeyboardEvent) => {
-      if (mapKey(e.code, true)) e.preventDefault();
-      if (stateRef.current === "ready") start();
-      else if (
-        (stateRef.current === "win" || stateRef.current === "lose") &&
-        (e.code === "Space" || e.code === "Enter")
-      ) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const el = e.target as HTMLElement | null;
+      if (el?.closest?.("input, textarea, select, [contenteditable='true']")) return;
+      const isAction = ACTION_CODES.has(e.code);
+      // let Space/Enter activate a focused button or link natively (e.g. the Restart button)
+      if (isAction && el?.closest?.("button, a")) return;
+      const isMove = MOVE_CODES.has(e.code) && mapKey(e.code, true);
+      if (isMove) e.preventDefault();
+      const gs = stateRef.current;
+      if (gs === "ready") {
+        // only movement / Space / Enter start the round (not Tab, Shift, etc.)
+        if (isMove || isAction) {
+          if (isAction) e.preventDefault();
+          start();
+        }
+      } else if ((gs === "win" || gs === "lose") && isAction && !e.repeat) {
         e.preventDefault();
         reset();
         start();
@@ -636,6 +414,27 @@ export function SecondEscapeGame({ locale }: Props) {
       window.removeEventListener("keyup", onUp);
     };
   }, [reset, start]);
+
+  // re-size the backing store when the canvas' on-screen size or DPR changes
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    let raf = 0;
+    const sync = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => syncBackingStore(canvas));
+    };
+    window.addEventListener("resize", sync);
+    document.addEventListener("fullscreenchange", sync);
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(sync) : null;
+    ro?.observe(canvas);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", sync);
+      document.removeEventListener("fullscreenchange", sync);
+      ro?.disconnect();
+    };
+  }, []);
 
   const onCanvasPointer = () => {
     if (stateRef.current === "ready") start();
@@ -881,9 +680,20 @@ function roundRect(
   ctx.closePath();
 }
 
-function lerpAngle(a: number, b: number, t: number) {
-  let diff = b - a;
-  while (diff > Math.PI) diff -= Math.PI * 2;
-  while (diff < -Math.PI) diff += Math.PI * 2;
-  return a + diff * t;
+/**
+ * Match the canvas backing store to its on-screen size x devicePixelRatio (getBoundingClientRect
+ * includes CSS transforms, so a scaled-up iframe/fullscreen stage renders crisp), keeping 8:5.
+ */
+function syncBackingStore(canvas: HTMLCanvasElement) {
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width) return;
+  const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+  const w = Math.round(
+    Math.min(W * MAX_BACKING_SCALE, Math.max(W, rect.width * dpr)),
+  );
+  const h = Math.round((w * H) / W);
+  if (canvas.width !== w || canvas.height !== h) {
+    canvas.width = w;
+    canvas.height = h;
+  }
 }

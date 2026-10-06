@@ -14,7 +14,7 @@ export const playEn: ArticleContent = {
     {
       h2: "Playable Now: Second Escape",
       paragraphs: [
-        "Second Escape drops you in already caught. Sneak past the Inspector's flashlight cone, use the hedges as cover, and slip into the bushes by the exit. Linger in the light and the detection meter fills up; bump into the Inspector and you're busted again. A round takes less than a minute and restarts instantly, so it's an easy one to squeeze into a break.",
+        "Second Escape drops you in already caught. Sneak past the Inspector's flashlight cone, duck into the shadows behind the rocks (they block the beam), and slip into the bushes by the exit. Linger in the light and the detection meter fills up; bump into the Inspector and you're busted again. A round takes less than a minute and restarts instantly, so it's an easy one to squeeze into a break.",
       ],
       cards: [
         {
@@ -28,7 +28,7 @@ export const playEn: ArticleContent = {
     {
       h2: "Controls and Devices",
       list: [
-        { title: "Desktop:", body: "arrow keys or WASD to move. Press any key to start, Space or Enter to retry." },
+        { title: "Desktop:", body: "arrow keys or WASD to move. Press Space, Enter, or an arrow/WASD key to start; Space or Enter to retry." },
         { title: "Phone and tablet:", body: "tap the canvas to start, then use the on-screen arrow pad." },
         { title: "Browsers:", body: "any up-to-date Chrome, Edge, Safari, or Firefox. Nothing to install, no account." },
         { title: "Languages:", body: "every page has an English and a Chinese (中文) version." },
@@ -111,7 +111,7 @@ export const playZh: ArticleContent = {
     {
       h2: "现在就能玩：二次逃脱",
       paragraphs: [
-        "二次逃脱开局你就已经被抓住了。躲开巡查员的手电光锥，借着灌木掩护，溜进出口旁的草丛就算成功。在光里待太久，暴露度会涨满；撞上巡查员就会再次被抓。一局不到一分钟，失败立刻重来，摸鱼间隙玩一把刚好。",
+        "二次逃脱开局你就已经被抓住了。躲开巡查员的手电光锥，躲进石头背后的阴影（石头能挡住手电光），溜进出口旁的草丛就算成功。在光里待太久，暴露度会涨满；撞上巡查员就会再次被抓。一局不到一分钟，失败立刻重来，摸鱼间隙玩一把刚好。",
       ],
       cards: [
         {
@@ -125,7 +125,7 @@ export const playZh: ArticleContent = {
     {
       h2: "操作方式与设备",
       list: [
-        { title: "电脑：", body: "方向键或 WASD 移动，按任意键开始，空格或回车重来。" },
+        { title: "电脑：", body: "方向键或 WASD 移动，按空格、回车或方向键 / WASD 开始，空格或回车重来。" },
         { title: "手机 / 平板：", body: "点一下画布开始，用屏幕上的方向键移动。" },
         { title: "浏览器：", body: "较新版本的 Chrome、Edge、Safari、Firefox 都可以，无需安装，无需账号。" },
         { title: "语言：", body: "每个页面都有中文和英文（English）版本。" },
