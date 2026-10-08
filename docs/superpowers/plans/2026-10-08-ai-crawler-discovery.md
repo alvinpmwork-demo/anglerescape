@@ -90,7 +90,7 @@ node <<'NODE'
 const fs = require('node:fs');
 const index = fs.readFileSync('out/llms.txt', 'utf8');
 const sitemap = fs.readFileSync('out/sitemap.xml', 'utf8');
-const links = [...index.matchAll(/^- \[[^\]]+\]\((https:\/\/anglerescape\.com\/[^)]+)\):/gm)].map(x => x[1]);
+const links = [...index.matchAll(/^- \[[^\]]+\]\((https:\/\/anglerescape\.com\/[^)]*)\):/gm)].map(x => x[1]);
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x => x[1]);
 if (links.length !== 26 || new Set(links).size !== 26 || JSON.stringify([...links].sort()) !== JSON.stringify([...urls].sort())) process.exit(1);
 console.log('26 URLs match');
