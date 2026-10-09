@@ -77,7 +77,7 @@ export const similarEn: ArticleContent = {
             "Slapstick chase",
             "Yes + Second Escape",
             "Yes",
-            "A few minutes",
+            "~30 s (Second Escape)",
             "Quick laughs",
           ],
         ],
@@ -188,7 +188,7 @@ export const similarZh: ArticleContent = {
         rows: [
           ["偷偷钓个鱼", "休闲像素", "无", "能", "几分钟", "放松收集"],
           ["unBAITable", "剧情潜行", "巡逻压力", "能（itch.io）", "约半小时", "抉择与多结局"],
-          ["钓鱼佬大逃亡", "搞笑追逐", "有 + 二次逃脱", "能", "几分钟", "短局笑点"],
+          ["钓鱼佬大逃亡", "搞笑追逐", "有 + 二次逃脱", "能", "约 30 秒（二次逃脱）", "短局笑点"],
         ],
       },
     },

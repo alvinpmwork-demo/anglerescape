@@ -44,6 +44,20 @@ export type ArticleContent = {
   h1: string;
   /** Extra above-the-fold disclaimer (guide/levels) */
   topNote?: string;
+  /**
+   * Prominent "in development" callout for pages that describe planned (not yet playable)
+   * features. Rendered above the intro with a link to the playable Second Escape.
+   */
+  devNotice?: string;
+  /** Closing disclaimer rendered at the very bottom of the article */
+  bottomNote?: string;
+  /** Page exists only in this locale: no hreflang twin, language switch goes to the other home */
+  singleLocale?: boolean;
+  /** Per-page Article dates (ISO); default to the site-wide content dates */
+  datePublished?: string;
+  dateModified?: string;
+  /** Primary source cited by the article (Article.citation) */
+  citation?: string;
   intro?: string[];
   sections: ArticleSection[];
   primaryCta: string;

@@ -7,6 +7,8 @@ export const charactersEn: ArticleContent = {
   description:
     "Meet the Angler Escape characters: Ah Diao, the fishing guy who swears he never goes Air Force, and Captain Zhang, the Inspector who always yells \"Stop!\"",
   h1: "Angler Escape Characters: The Angler and the Inspector",
+  devNotice:
+    "Only Second Escape is playable today. The character skills below (Soft Reel, Dodge Roll, Drop the Catch) belong to the full game, which is still in development.",
   intro: [
     "The Angler Escape characters are a classic comedy duo, and the game is a two-hander: one obsessive angler who will not go home empty-handed, and one cartoon captain who will not let him finish the cast. Both are fiction. Neither maps to a real person or agency.",
   ],
@@ -121,6 +123,8 @@ export const charactersZh: ArticleContent = {
   description:
     "钓鱼佬大逃亡角色介绍：嘴上永不空军的钓鱼佬阿钓，和永远在喊「钓鱼佬，站住！」的巡查队长老张。人设、技能、口头禅、角色头像与名场面，全部虚构。",
   h1: "钓鱼佬大逃亡角色介绍",
+  devNotice:
+    "目前能玩的只有二次逃脱。下面写的角色技能（轻收竿、翻滚、丢鱼保命）属于还在开发中的完整版。",
   intro: [
     "钓鱼佬大逃亡角色介绍先说结论：主角只有一对冤家，整部游戏就是一出对手戏喜剧：一边是死不空军的钓鱼佬，一边是不让他把竿收完的卡通队长。两人都是虚构角色，不对应任何真实人物或机构。",
   ],

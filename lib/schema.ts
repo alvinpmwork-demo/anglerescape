@@ -117,6 +117,9 @@ export function article(opts: {
   headline: string;
   description: string;
   type?: "Article" | "WebPage" | "CollectionPage";
+  datePublished?: string;
+  dateModified?: string;
+  citation?: string;
 }) {
   const { locale, path, headline, description, type = "Article" } = opts;
   const url = absUrl(locale, path);
@@ -130,8 +133,9 @@ export function article(opts: {
     url,
     mainEntityOfPage: url,
     image: `${SITE_URL}${OG_IMAGE[locale].url}`,
-    datePublished: CONTENT_PUBLISHED,
-    dateModified: CONTENT_UPDATED,
+    datePublished: opts.datePublished ?? CONTENT_PUBLISHED,
+    dateModified: opts.dateModified ?? CONTENT_UPDATED,
+    ...(opts.citation ? { citation: opts.citation } : {}),
     isPartOf: { "@id": `${absUrl(locale, "/")}#website` },
   };
   if (type === "Article") {

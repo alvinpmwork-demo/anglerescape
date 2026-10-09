@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/content";
 import { SITE_URL } from "@/lib/content";
 
 /** Date the current copy/SEO pass was published (used for sitemap lastmod + Article dateModified). */
-export const CONTENT_UPDATED = "2026-10-06";
+export const CONTENT_UPDATED = "2026-10-09";
 /** Original launch date of the Week-1 pages. */
 export const CONTENT_PUBLISHED = "2026-10-05";
 /** Last site-wide change to page HTML (structured data, head tags); used for sitemap lastmod. */
@@ -48,6 +48,8 @@ type PageMetaInput = {
   title: string;
   description: string;
   ogType?: "website" | "article";
+  /** Page has no counterpart in the other locale: omit hreflang alternates */
+  singleLocale?: boolean;
 };
 
 export function buildPageMetadata({
@@ -56,6 +58,7 @@ export function buildPageMetadata({
   title,
   description,
   ogType = "website",
+  singleLocale = false,
 }: PageMetaInput): Metadata {
   const url = absUrl(locale, path);
   const image = OG_IMAGE[locale];
@@ -64,7 +67,7 @@ export function buildPageMetadata({
     description,
     alternates: {
       canonical: url,
-      languages: hreflangMap(path),
+      ...(singleLocale ? {} : { languages: hreflangMap(path) }),
       // Machine-readable site guide for AI agents (llmstxt.org)
       types: { "text/markdown": "/llms.txt" },
     },

@@ -3,14 +3,20 @@ import type { ArticleContent } from "./types";
 export const memeEn: ArticleContent = {
   locale: "en",
   path: "/meme/fishing-guy-meme/",
-  title: 'What Is the Fishing Guy Meme? 钓鱼佬 & "Air Force" Explained',
+  title: 'Chinese Fishing Guy Meme (钓鱼佬) & "Air Force" Meaning Explained',
   description:
-    'What is the fishing guy meme? Meet 钓鱼佬, the Chinese internet\'s obsessive angler, learn what "Air Force" (zero catch) means, and see how it became a game.',
-  h1: "What Is the Fishing Guy Meme?",
+    'The Chinese fishing guy meme, explained: who 钓鱼佬 is, what "Air Force" (catching zero fish) means, the classic meme formats, and how it became a browser game.',
+  h1: "Chinese Fishing Guy Meme (钓鱼佬), Explained",
   intro: [
-    "The fishing guy meme comes from Chinese social media. If you have seen someone joke about 钓鱼佬 online, you have met the fishing guy: the die-hard angler who will sit all day for one bite—and still go home empty-handed. Here is the joke, the slang, and how it turned into Angler Escape.",
+    "The Chinese fishing guy meme comes from Chinese social media. If you have seen someone joke about 钓鱼佬 (diàoyú lǎo) online, you have met the fishing guy: the die-hard angler who will sit all day for one bite—and still go home empty-handed. Here is the joke, the slang, and how it turned into Angler Escape.",
   ],
   sections: [
+    {
+      h2: "Looking for the State Farm Fishing Guy?",
+      paragraphs: [
+        'Different meme. In the US, "fishing guy meme" often refers to a State Farm insurance commercial with the line "You gotta be quicker than that." This page is not about that ad, and we don\'t host any clips or audio from it. It covers 钓鱼佬, the Chinese internet\'s obsessive-angler meme, and the slang that comes with it.',
+      ],
+    },
     {
       h2: "Meet 钓鱼佬, the Fishing Guy",
       paragraphs: [
@@ -105,7 +111,7 @@ export const memeEn: ArticleContent = {
   ],
   breadcrumbs: [
     { label: "Home", href: "/" },
-    { label: "Fishing Guy Meme", href: "/meme/fishing-guy-meme/" },
+    { label: "Chinese Fishing Guy Meme", href: "/meme/fishing-guy-meme/" },
   ],
   related: [
     { label: "Play the fishing guy game", href: "/play/", note: "Angler Escape, free in your browser" },
@@ -171,7 +177,7 @@ export const memeZh: ArticleContent = {
         { title: "风景照：", body: "晚霞、湖面、远山，就是没有鱼。懂的都懂。" },
         { title: "最后一竿：", body: "说了五次「真的最后一竿」，人还在水边。" },
         { title: "空鱼护特写：", body: "空荡荡的鱼护配文「又空军了」。" },
-        { title: "讨价还价短视频：", body: "钓鱼佬跟一脸疲惫的公园工作人员磨「再给一分钟」。《钓鱼佬大逃亡》把这种桥段做成了卡通追逐。" },
+        { title: "讨价还价短视频：", body: "钓鱼佬跟一脸疲惫的公园工作人员磨「再给一分钟」。这类视频后来还演变出了「路亚跑毒」梗。《钓鱼佬大逃亡》把这种桥段做成了卡通追逐。" },
       ],
     },
     {
@@ -237,5 +243,6 @@ export const memeZh: ArticleContent = {
     { label: "钓鱼佬阿钓角色介绍", href: "/zh/characters/", note: "嘴上永不空军" },
     { label: "钓鱼佬游戏首页", href: "/zh/" },
     { label: "类似偷偷钓个鱼的游戏", href: "/zh/similar-games/" },
+    { label: "路亚跑毒是什么意思？", href: "/zh/meme/luya-paodu/", note: "毒区、跑毒梗科普" },
   ],
 };
