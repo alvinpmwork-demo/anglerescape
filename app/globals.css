@@ -412,6 +412,43 @@ h3 {
   cursor: pointer;
 }
 
+.game-end-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.game-share {
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent-dark);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game-share:hover {
+  background: #e8f4fa;
+}
+
+.game-share-msg {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.game-wrap:focus {
+  outline: none;
+}
+
+.game-wrap:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: var(--radius);
+}
+
 .game-restart {
   align-self: center;
   padding: 0.55rem 1.2rem;
@@ -691,4 +728,70 @@ a.content-card:hover {
 .play-canvas-inner .btn {
   margin-top: 0.75rem;
   display: inline-block;
+}
+
+/* —— Homepage hero with the playable game —— */
+.hero--play {
+  padding-top: 1.75rem;
+}
+
+.hero--play h1 {
+  margin-bottom: 0.6rem;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+.trust-labels {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0 0 0.25rem;
+}
+
+.trust-labels li {
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: #e3f2f9;
+  color: var(--accent-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero--play .game-wrap {
+  margin-top: 1rem;
+}
+
+.game-hint {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 0 0 0.5rem;
+}
+
+.next-card,
+.dev-notice {
+  border: 1px solid #f1c48d;
+  background: #fff7ec;
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  margin: 1.25rem 0;
+}
+
+.next-card p,
+.dev-notice p {
+  margin: 0;
+}
+
+.dev-notice a,
+.next-card a {
+  font-weight: 600;
+}
+
+.footer-trust {
+  margin-top: 0.5rem;
 }
