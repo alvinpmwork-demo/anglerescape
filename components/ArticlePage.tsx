@@ -14,7 +14,10 @@ type Props = { content: ArticleContent };
 
 export function ArticlePage({ content: c }: Props) {
   const chrome = getChrome(c.locale);
-  const switcher = langSwitch(c.locale, c.path);
+  const switcher = c.singleLocale
+    ? { label: c.locale === "zh" ? "English" : "中文", href: c.locale === "zh" ? "/" : "/zh/" }
+    : langSwitch(c.locale, c.path);
+  const playHref = c.locale === "zh" ? "/zh/play/second-escape/" : "/play/second-escape/";
   const schemaType = c.schemaType ?? "Article";
   const mainSchema =
     schemaType === "VideoGame"
@@ -25,6 +28,9 @@ export function ArticlePage({ content: c }: Props) {
           headline: c.h1,
           description: c.description,
           type: schemaType,
+          datePublished: c.datePublished,
+          dateModified: c.dateModified,
+          citation: c.citation,
         });
   const schemas: object[] = [mainSchema];
   if (c.faq.length > 0 && c.faqSchema !== false) schemas.push(faqPage(c.faq));
@@ -44,6 +50,16 @@ export function ArticlePage({ content: c }: Props) {
           <div className="container">
             {c.breadcrumbs ? <Breadcrumbs items={c.breadcrumbs} /> : null}
             <h1>{c.h1}</h1>
+            {c.devNotice ? (
+              <aside className="dev-notice" role="note">
+                <p>
+                  <strong>{c.locale === "zh" ? "开发中：" : "In development:"}</strong> {c.devNotice}{" "}
+                  <Link href={playHref}>
+                    {c.locale === "zh" ? "现在能玩的是二次逃脱 →" : "Playable today: Second Escape →"}
+                  </Link>
+                </p>
+              </aside>
+            ) : null}
             {c.topNote ? <Disclaimer text={`※ ${c.topNote.replace(/^※\s*/, "")}`} /> : null}
             {c.intro?.map((p) => (
               <p key={p.slice(0, 32)}>{p}</p>
@@ -176,7 +192,8 @@ export function ArticlePage({ content: c }: Props) {
             secondaryHref={c.secondaryHref}
           />
 
-          <Faq title={c.faqTitle} items={c.faq} />
+          {c.faq.length > 0 ? <Faq title={c.faqTitle} items={c.faq} /> : null}
+          {c.bottomNote ? <Disclaimer text={c.bottomNote} /> : null}
         </div>
       </main>
       <Footer

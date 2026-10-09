@@ -7,6 +7,8 @@ export const guideEn: ArticleContent = {
   description:
     "How to escape the Inspector in Angler Escape: read vision cones, keep the noise meter low, use cover and decoys, and nail the Second Escape. In-game tips only.",
   h1: "How to Escape the Inspector (In-Game Guide)",
+  devNotice:
+    "Angler Escape's full heist (fishing, the noise meter, decoys, legendary fish, and the three levels) is still being built. This guide describes the planned design and may change before launch. Today you can play Second Escape: dodge the flashlight, hide behind rocks, reach the exit.",
   topNote:
     "Every tip on this page is an Angler Escape game mechanic, not real-world advice. Do not try any of this IRL.",
   intro: [
@@ -107,7 +109,7 @@ export const guideEn: ArticleContent = {
     {
       h2: "Tips by Level",
       paragraphs: [
-        "Week 1 opens three fictional stages. Park Pond teaches the noise meter, Reservoir Night teaches flashlight cones, and City Canal teaches dual patrols. Jump to a walkthrough when you are stuck.",
+        "Three fictional stages are planned for the first release (in development). Park Pond teaches the noise meter, Reservoir Night teaches flashlight cones, and City Canal teaches dual patrols. Jump to a walkthrough when you are stuck.",
       ],
       cards: [
         {
@@ -131,8 +133,8 @@ export const guideEn: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "Try These Tips Now",
-  primaryHref: "/play/",
+  primaryCta: "Play Second Escape Now",
+  primaryHref: "/play/second-escape/",
   secondaryCta: "Practice Second Escape →",
   secondaryHref: "/play/second-escape/",
   faqTitle: "FAQ",
@@ -178,6 +180,8 @@ export const guideZh: ArticleContent = {
   description:
     "新手必看的钓鱼佬游戏攻略：读懂巡查员视野锥、控制噪音条、用掩体和道具甩掉追兵，被抓了还能二次逃脱。《钓鱼佬大逃亡》纯游戏内技巧，虚构娱乐，请勿模仿。",
   h1: "钓鱼佬游戏攻略：怎么甩掉巡查员（游戏内）",
+  devNotice:
+    "《钓鱼佬大逃亡》完整版（钓鱼、噪音条、道具、传说鱼和三个关卡）还在开发中，本攻略介绍的是规划中的玩法，上线前可能调整。现在能玩的是二次逃脱：躲开手电光、借石头藏身、冲进出口。",
   topNote:
     "以下全部是《钓鱼佬大逃亡》游戏机制技巧，与现实无关。请勿模仿。",
   intro: [
@@ -276,7 +280,7 @@ export const guideZh: ArticleContent = {
     {
       h2: "按关卡找攻略",
       paragraphs: [
-        "首周开放三关虚构场景：第 1 关公园池塘练噪音，第 2 关水库夜钓练手电视野，第 3 关城市河道练多巡查员。卡住了就点进对应关卡页。",
+        "首批规划了三关虚构场景（开发中）：第 1 关公园池塘练噪音，第 2 关水库夜钓练手电视野，第 3 关城市河道练多巡查员。卡住了就点进对应关卡页。",
       ],
       cards: [
         {
@@ -300,8 +304,8 @@ export const guideZh: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "用技巧再来一局",
-  primaryHref: "/zh/play/",
+  primaryCta: "先玩二次逃脱",
+  primaryHref: "/zh/play/second-escape/",
   secondaryCta: "去练二次逃脱 →",
   secondaryHref: "/zh/play/second-escape/",
   faqTitle: "常见问题（FAQ）",
@@ -324,7 +328,7 @@ export const guideZh: ArticleContent = {
     },
     {
       q: "最难的是哪一关？",
-      a: "Week 1 开放的三关里，第 3 关城市河道有两名巡查员交叉巡逻，最考验路线判断。",
+      a: "首批规划的三关里，第 3 关城市河道有两名巡查员交叉巡逻，最考验路线判断。",
     },
   ],
   breadcrumbs: [

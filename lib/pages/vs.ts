@@ -40,8 +40,8 @@ export const vsEn: ArticleContent = {
         headers: ["", "unBAITable", "Angler Escape"],
         rows: [
           ["Core loop", "Fish, dodge patrols, sell, upgrade", "Steal, get spotted, escape, Second Escape"],
-          ["Session", "About half an hour", "One to three minutes"],
-          ["Structure", "15 story nights + endless mode", "Short levels + Second Escape mini-game"],
+          ["Session", "About half an hour", "About 30 seconds per Second Escape run"],
+          ["Structure", "15 story nights + endless mode", "Second Escape mini-game (playable now); short heist levels in development"],
           ["Platforms", "Browser, Windows, macOS, Linux", "Browser (desktop and mobile)"],
           ["Price", "Name your own price (itch.io)", "Free"],
           ["Languages", "English", "English and Chinese"],
@@ -149,8 +149,8 @@ export const vsZh: ArticleContent = {
         headers: ["", "unBAITable", "钓鱼佬大逃亡"],
         rows: [
           ["玩法循环", "钓鱼、躲巡逻、卖鱼、升级", "偷钓、被发现、逃跑、二次逃脱"],
-          ["单局时长", "约半小时", "一到三分钟"],
-          ["内容结构", "15 个剧情夜 + 无尽模式", "短关卡 + 二次逃脱小游戏"],
+          ["单局时长", "约半小时", "二次逃脱一局约 30 秒"],
+          ["内容结构", "15 个剧情夜 + 无尽模式", "二次逃脱小游戏（现在可玩）；短关卡开发中"],
           ["平台", "浏览器、Windows、macOS、Linux", "浏览器（电脑和手机）"],
           ["价格", "itch.io 自愿付费", "免费"],
           ["语言", "英文", "中文、英文"],

@@ -17,6 +17,8 @@ export {
 export { charactersEn, charactersZh } from "./characters";
 export { disclaimerEn, disclaimerZh } from "./disclaimer-page";
 export { playEn, playZh } from "./play";
+export { luyaZh } from "./luya";
+export { aboutEn, aboutZh, contactEn, contactZh, privacyEn, privacyZh, CONTACT_EMAIL } from "./trust";
 
 import type { ArticleContent } from "./types";
 import { guideEn, guideZh } from "./guide";
@@ -36,6 +38,8 @@ import {
 import { charactersEn, charactersZh } from "./characters";
 import { disclaimerEn, disclaimerZh } from "./disclaimer-page";
 import { playEn, playZh } from "./play";
+import { luyaZh } from "./luya";
+import { aboutEn, aboutZh, contactEn, contactZh, privacyEn, privacyZh } from "./trust";
 
 /** All SEO article pages for sitemap / tooling */
 export const allArticles: ArticleContent[] = [
@@ -61,4 +65,11 @@ export const allArticles: ArticleContent[] = [
   charactersZh,
   disclaimerEn,
   disclaimerZh,
+  luyaZh,
+  aboutEn,
+  aboutZh,
+  contactEn,
+  contactZh,
+  privacyEn,
+  privacyZh,
 ];

@@ -6,7 +6,7 @@ This index covers the public English and Chinese pages. The complete URL list is
 
 ## English: game and play
 
-- [Home](https://anglerescape.com/): Game premise, four-act loop, controls, and FAQ.
+- [Home](https://anglerescape.com/): Playable Second Escape mini-game, game premise, four-act loop, controls, and FAQ.
 - [Play](https://anglerescape.com/play/): Browser play hub and ways to start the game.
 - [Second Escape](https://anglerescape.com/play/second-escape/): Playable second-chance escape mode and its rules.
 
@@ -21,14 +21,17 @@ This index covers the public English and Chinese pages. The complete URL list is
 
 ## English: context
 
-- [Fishing guy meme](https://anglerescape.com/meme/fishing-guy-meme/): Explanation of the game's fishing-guy meme.
+- [Chinese fishing guy meme](https://anglerescape.com/meme/fishing-guy-meme/): Explanation of the Chinese 钓鱼佬 ("fishing guy") meme behind the game (not the State Farm ad).
 - [Similar games](https://anglerescape.com/similar-games/): Related casual and stealth games.
 - [Angler Escape vs unBAITable](https://anglerescape.com/vs/unbaitable/): Comparison of two fishing-themed games.
 - [Fishing rules disclaimer](https://anglerescape.com/about/fishing-rules-disclaimer/): Fictional-game context and real-world fishing reminder.
+- [About](https://anglerescape.com/about/): Who makes the game, what's playable now, and what's in development.
+- [Contact](https://anglerescape.com/contact/): How to reach the developer.
+- [Privacy policy](https://anglerescape.com/privacy/): No accounts, no ads, no game cookies.
 
 ## 中文：游戏与试玩
 
-- [首页](https://anglerescape.com/zh/): 游戏设定、四幕循环、操作与常见问题。
+- [首页](https://anglerescape.com/zh/): 可直接玩的二次逃脱小游戏、游戏设定、四幕循环、操作与常见问题。
 - [开始玩](https://anglerescape.com/zh/play/): 浏览器试玩入口与玩法说明。
 - [二次逃脱](https://anglerescape.com/zh/play/second-escape/): 可玩的二次逃脱模式与规则。
 
@@ -44,6 +47,10 @@ This index covers the public English and Chinese pages. The complete URL list is
 ## 中文：背景信息
 
 - [钓鱼佬梗](https://anglerescape.com/zh/meme/fishing-guy-meme/): 游戏中钓鱼佬梗的解释。
+- [路亚跑毒是什么意思](https://anglerescape.com/zh/meme/luya-paodu/): 毒区、跑毒、百万撤离梗科普，以及现实中违规垂钓的处罚（仅中文）。
 - [类似游戏](https://anglerescape.com/zh/similar-games/): 相关休闲与潜行游戏。
 - [钓鱼佬大逃亡与 unBAITable 对比](https://anglerescape.com/zh/vs/unbaitable/): 两款钓鱼主题游戏的比较。
 - [免责声明与钓鱼规定](https://anglerescape.com/zh/about/fishing-rules-disclaimer/): 虚构游戏声明与现实钓鱼提醒。
+- [关于](https://anglerescape.com/zh/about/): 谁在做、现在能玩什么、哪些在开发中。
+- [联系我们](https://anglerescape.com/zh/contact/): 联系开发者。
+- [隐私政策](https://anglerescape.com/zh/privacy/): 不用注册、没有广告、游戏不设 Cookie。

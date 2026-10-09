@@ -20,12 +20,21 @@ import {
 type Locale = "en" | "zh";
 type GameState = "ready" | "playing" | "win" | "lose";
 
-type Props = { locale: Locale };
+type Props = {
+  locale: Locale;
+  /**
+   * "page": the game owns the keyboard while it is on screen (dedicated play page).
+   * "focus": keys are only captured after the player clicks/taps/tabs into the game
+   * (or while a round is running), so Space / arrows still scroll a long page (homepage).
+   */
+  keyCapture?: "page" | "focus";
+};
 
 const copy = {
   en: {
     title: "Second Escape",
     ready: "Tap, or press Space / an arrow key to start",
+    readyFocus: "Click or tap here to start",
     hint: "Rocks block the flashlight. Sneak through their shadows to the bush",
     win: "Clear!",
     winSub: "Gear secured — you made it out.",
@@ -35,6 +44,12 @@ const copy = {
     again: "Space / Enter or tap to play again",
     hidden: "hidden",
     restart: "Restart",
+    share: "Share",
+    shareCopied: "Link copied!",
+    shareFailed: "Copy failed — share this page's URL",
+    shareTitle: "Angler Escape: Second Escape",
+    shareWin: "I slipped past the Inspector's flashlight in Second Escape. Can you?",
+    shareLose: "The Inspector got me in Second Escape. Bet you can't do better.",
     statusReady: "Ready",
     statusPlaying: "Sneaking…",
     statusWin: "Escaped",
@@ -53,15 +68,22 @@ const copy = {
   zh: {
     title: "二次逃脱",
     ready: "点击，或按空格 / 方向键开始",
+    readyFocus: "点一下这里开始",
     hint: "石头能挡住手电光，借着阴影潜入灌木丛出口",
     win: "恭喜通关",
     winSub: "装备成功保下",
     loseSpot: "被发现了！别待在光里。",
-    loseHit: "被检查员抓住了！",
+    loseHit: "被巡查员抓住了！",
     loseHint: "按空格 / 回车或点击，保装备再冲",
     again: "按空格 / 回车或点击再来一局",
     hidden: "藏好了",
     restart: "再来一次",
+    share: "分享",
+    shareCopied: "链接已复制！",
+    shareFailed: "复制失败，请手动分享本页网址",
+    shareTitle: "钓鱼佬大逃亡·二次逃脱",
+    shareWin: "我躲过了巡查员的手电，从二次逃脱里溜出来了，你行吗？",
+    shareLose: "二次逃脱里又被巡查员逮住了，你来试试？",
     statusReady: "准备",
     statusPlaying: "潜行中…",
     statusWin: "逃脱成功",
@@ -73,7 +95,7 @@ const copy = {
     right: "右",
     ariaGame: "二次逃脱小游戏画布",
     legendYou: "你 — 钓鱼佬",
-    legendCop: "巡查 — 躲开探照灯",
+    legendCop: "巡查员 — 别被手电照到",
     altYou: "戴渔夫帽、扛着鱼竿的卡通钓鱼佬（玩家角色）",
     altCop: "穿反光背心、拿手电筒的虚构公园巡查员（躲开他的光）",
   },
@@ -87,9 +109,15 @@ const MOVE_CODES = new Set([
 ]);
 const ACTION_CODES = new Set(["Space", "Enter", "NumpadEnter"]);
 
-export function SecondEscapeGame({ locale }: Props) {
+export function SecondEscapeGame({ locale, keyCapture = "page" }: Props) {
   const t = copy[locale] ?? copy.en;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  /** player clicked / tapped / tabbed into the game */
+  const engagedRef = useRef(false);
+  /** game is (mostly) on screen */
+  const visibleRef = useRef(true);
+  const [shareMsg, setShareMsg] = useState<string | null>(null);
   const simRef = useRef<Sim>(initialSim());
   const keysRef = useRef<Keys>({
     up: false,
@@ -289,7 +317,7 @@ export function SecondEscapeGame({ locale }: Props) {
           ctx.fillStyle = "#d6eaf8";
           ctx.fillText(t.hint, W / 2, H / 2);
           ctx.fillStyle = "#f9e79f";
-          ctx.fillText(t.ready, W / 2, H / 2 + 32);
+          ctx.fillText(keyCapture === "focus" ? t.readyFocus : t.ready, W / 2, H / 2 + 32);
         } else if (gs === "win") {
           ctx.font = "bold 34px system-ui,sans-serif";
           ctx.fillStyle = "#82e0aa";
@@ -315,7 +343,7 @@ export function SecondEscapeGame({ locale }: Props) {
 
       ctx.restore(); // undo shake
     },
-    [locale, t, spritesReady],
+    [locale, t, spritesReady, keyCapture],
   );
 
   // game loop
@@ -383,6 +411,13 @@ export function SecondEscapeGame({ locale }: Props) {
 
     const onDown = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
+      // Only own the keyboard when the player is actually using the game, so Space / arrows
+      // keep scrolling the page otherwise.
+      const active =
+        stateRef.current === "playing" ||
+        engagedRef.current ||
+        (keyCapture === "page" && visibleRef.current);
+      if (!active) return;
       const el = e.target as HTMLElement | null;
       if (el?.closest?.("input, textarea, select, [contenteditable='true']")) return;
       const isAction = ACTION_CODES.has(e.code);
@@ -413,7 +448,65 @@ export function SecondEscapeGame({ locale }: Props) {
       window.removeEventListener("keydown", onDown);
       window.removeEventListener("keyup", onUp);
     };
-  }, [reset, start]);
+  }, [reset, start, keyCapture]);
+
+  // track whether the player is "in" the game (pointer / focus inside it) and whether it is on screen
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const inside = (target: EventTarget | null) =>
+      target instanceof Node && section.contains(target);
+    const onPointer = (e: PointerEvent) => {
+      engagedRef.current = inside(e.target);
+    };
+    const onFocus = (e: FocusEvent) => {
+      engagedRef.current = inside(e.target);
+    };
+    const onHash = () => {
+      if (window.location.hash === "#play") engagedRef.current = true;
+    };
+    document.addEventListener("pointerdown", onPointer, true);
+    document.addEventListener("focusin", onFocus);
+    window.addEventListener("hashchange", onHash);
+    let io: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          visibleRef.current = entry.isIntersecting;
+          if (!entry.isIntersecting) engagedRef.current = false;
+        },
+        { threshold: 0.5 },
+      );
+      io.observe(section);
+    }
+    return () => {
+      document.removeEventListener("pointerdown", onPointer, true);
+      document.removeEventListener("focusin", onFocus);
+      window.removeEventListener("hashchange", onHash);
+      io?.disconnect();
+    };
+  }, []);
+
+  const onShare = async () => {
+    const url = `${window.location.origin}${window.location.pathname}?ref=share`;
+    const text = stateRef.current === "win" ? t.shareWin : t.shareLose;
+    if (typeof navigator.share === "function") {
+      try {
+        await navigator.share({ title: t.shareTitle, text, url });
+        return;
+      } catch (err) {
+        // user closed the share sheet: nothing to do
+        if (err instanceof DOMException && err.name === "AbortError") return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      setShareMsg(t.shareCopied);
+    } catch {
+      setShareMsg(t.shareFailed);
+    }
+    window.setTimeout(() => setShareMsg(null), 2500);
+  };
 
   // re-size the backing store when the canvas' on-screen size or DPR changes
   useEffect(() => {
@@ -459,7 +552,13 @@ export function SecondEscapeGame({ locale }: Props) {
           : t.statusLose;
 
   return (
-    <section className="play-area game-wrap" id="play" aria-label={t.title}>
+    <section
+      ref={sectionRef}
+      className="play-area game-wrap"
+      id="play"
+      aria-label={t.title}
+      tabIndex={keyCapture === "focus" ? 0 : -1}
+    >
       <div className="game-hud">
         <span className="game-hud-title">{t.title}</span>
         <span className="game-hud-status" data-state={state}>
@@ -497,16 +596,26 @@ export function SecondEscapeGame({ locale }: Props) {
       />
 
       {(state === "win" || state === "lose") && (
-        <button
-          type="button"
-          className={`game-restart${state === "win" ? " is-win" : " is-lose"}`}
-          onClick={() => {
-            reset();
-            start();
-          }}
-        >
-          {t.restart}
-        </button>
+        <div className="game-end-actions">
+          <button
+            type="button"
+            className={`game-restart${state === "win" ? " is-win" : " is-lose"}`}
+            onClick={() => {
+              reset();
+              start();
+            }}
+          >
+            {t.restart}
+          </button>
+          <button type="button" className="game-share" onClick={onShare}>
+            {t.share}
+          </button>
+          {shareMsg ? (
+            <span className="game-share-msg" role="status">
+              {shareMsg}
+            </span>
+          ) : null}
+        </div>
       )}
 
       <div className="game-controls" aria-hidden={false}>

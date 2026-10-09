@@ -7,10 +7,12 @@ export const levelsHubEn: ArticleContent = {
   description:
     "All Angler Escape levels at a glance: Park Pond, Reservoir Night, and City Canal with difficulty, Inspector count, legendary fish, items, and walkthrough links.",
   h1: "Angler Escape Levels: All Stages and Walkthroughs",
+  devNotice:
+    "These three levels are planned and not playable yet. The walkthroughs describe the design in progress (fish, items, star goals) and may change before launch.",
   topNote:
     "Every location below is fictional. Tips are in-game only—no real waters, agencies, or illegal fishing advice.",
   intro: [
-    "Angler Escape levels are short cartoon heists, and Week 1 opens three of them. Each one teaches a new skill: noise, flashlight cones, then dual patrols. Pick a card for the full walkthrough, or scan the table below to see what each stage throws at you.",
+    "Angler Escape levels are short cartoon heists, and three are planned for the first release. Each one teaches a new skill: noise, flashlight cones, then dual patrols. Pick a card for the full walkthrough, or scan the table below to see what each stage throws at you.",
   ],
   sections: [
     {
@@ -72,7 +74,7 @@ export const levelsHubEn: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "Start Level 1",
+  primaryCta: "Read the Level 1 Walkthrough",
   primaryHref: "/levels/01-park-pond/",
   secondaryCta: "Read the Escape Guide →",
   secondaryHref: "/guides/how-to-escape-inspector/",
@@ -111,10 +113,12 @@ export const levelsHubZh: ArticleContent = {
   description:
     "钓鱼佬大逃亡关卡攻略大全：公园池塘、水库夜钓、城市河道三关的难度、巡查员数量、传说鱼、新道具和三星条件一览，点进关卡页看完整通关攻略，纯属虚构。",
   h1: "钓鱼佬大逃亡关卡攻略大全",
+  devNotice:
+    "这三关还在开发中，暂时不能玩。攻略里写的是规划中的设计（传说鱼、道具、星级条件），上线前可能调整。",
   topNote:
     "以下场景全部虚构。技巧只适用于游戏内，不含真实水域、机构或非法捕捞建议。",
   intro: [
-    "这份钓鱼佬大逃亡关卡攻略覆盖首周开放的三关，每关都是短小的卡通逃亡关。每一关教一个新技能：噪音、手电视野，再到双巡查员。点卡片看完整攻略，或者先看下面的对比表，了解每关难在哪。",
+    "这份钓鱼佬大逃亡关卡攻略覆盖首批规划的三关，每关都是短小的卡通逃亡关。每一关教一个新技能：噪音、手电视野，再到双巡查员。点卡片看完整攻略，或者先看下面的对比表，了解每关难在哪。",
   ],
   sections: [
     {
@@ -176,7 +180,7 @@ export const levelsHubZh: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "从第1关开始",
+  primaryCta: "先看第1关攻略",
   primaryHref: "/zh/levels/01-park-pond/",
   secondaryCta: "看甩掉巡查员攻略 →",
   secondaryHref: "/zh/guides/how-to-escape-inspector/",
@@ -184,7 +188,7 @@ export const levelsHubZh: ArticleContent = {
   faq: [
     {
       q: "一共有多少关？",
-      a: "首周开放 3 关，后续会持续更新。",
+      a: "首批规划 3 关（开发中），后续会持续更新。",
     },
     {
       q: "要按顺序解锁吗？",
@@ -215,6 +219,8 @@ export const level01En: ArticleContent = {
   description:
     "Park Pond walkthrough for Angler Escape Level 1: the Inspector's route, best casting spots, how to catch the Golden Koi, the escape path, and 3-star tips.",
   h1: "Level 1: Park Pond Walkthrough",
+  devNotice:
+    "Park Pond is a planned level and isn't playable yet. This walkthrough describes the design in progress, including the Golden Koi and star goals, and may change before launch.",
   topNote:
     "In-game tips only. Park Pond is a fictional stage—no real park, pond, or enforcement advice.",
   intro: [
@@ -269,8 +275,8 @@ export const level01En: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "Play Level 1",
-  primaryHref: "/play/",
+  primaryCta: "Play Second Escape (Playable Now)",
+  primaryHref: "/play/second-escape/",
   secondaryCta: "Next: Reservoir Night →",
   secondaryHref: "/levels/02-reservoir-night/",
   faqTitle: "FAQ",
@@ -308,6 +314,8 @@ export const level01Zh: ArticleContent = {
   description:
     "钓鱼佬大逃亡第1关公园池塘攻略：巡查员路线、最佳下竿位、金色锦鲤怎么钓、被发现后的逃跑路线和常见翻车点。新手三星通关指南，纯游戏内技巧，请勿模仿。",
   h1: "第1关 公园池塘攻略",
+  devNotice:
+    "第1关公园池塘还在开发中，暂时不能玩。本攻略写的是规划中的设计（包括金色锦鲤和三星条件），上线前可能调整。",
   topNote:
     "纯游戏内技巧。公园池塘是虚构关卡，不含真实公园、水域或执法建议。",
   intro: [
@@ -362,8 +370,8 @@ export const level01Zh: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "开始第1关",
-  primaryHref: "/zh/play/",
+  primaryCta: "先玩二次逃脱（现在可玩）",
+  primaryHref: "/zh/play/second-escape/",
   secondaryCta: "下一关：水库夜钓 →",
   secondaryHref: "/zh/levels/02-reservoir-night/",
   faqTitle: "常见问题（FAQ）",
@@ -401,6 +409,8 @@ export const level02En: ArticleContent = {
   description:
     "Reservoir Night walkthrough for Angler Escape Level 2: flashlight beam rules, the Firefly Jar decoy, the Moonlight Silverfish, and the dam escape route.",
   h1: "Level 2: Reservoir Night Walkthrough",
+  devNotice:
+    "Reservoir Night is a planned level and isn't playable yet. This walkthrough describes the design in progress, including the Firefly Jar, and may change before launch.",
   topNote:
     "Fiction only. Reservoir Night is a cartoon stage with made-up fish, items, and patrol rules.",
   intro: [
@@ -455,8 +465,8 @@ export const level02En: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "Play Level 2",
-  primaryHref: "/play/",
+  primaryCta: "Play Second Escape (Playable Now)",
+  primaryHref: "/play/second-escape/",
   secondaryCta: "Next: City Canal →",
   secondaryHref: "/levels/03-city-canal/",
   faqTitle: "FAQ",
@@ -494,6 +504,8 @@ export const level02Zh: ArticleContent = {
   description:
     "钓鱼佬大逃亡第2关水库夜钓攻略：夜间手电视野规则、发光浮漂注意事项、萤火虫罐用法、月光银鱼怎么钓、堤坝阴影逃跑路线。纯虚构游戏关卡技巧，请勿模仿。",
   h1: "第2关 水库夜钓攻略",
+  devNotice:
+    "第2关水库夜钓还在开发中，暂时不能玩。本攻略写的是规划中的设计（包括萤火虫罐），上线前可能调整。",
   topNote:
     "纯属虚构。水库夜钓是卡通关卡，鱼、道具和巡逻规则都是游戏设定。",
   intro: [
@@ -548,8 +560,8 @@ export const level02Zh: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "开始第2关",
-  primaryHref: "/zh/play/",
+  primaryCta: "先玩二次逃脱（现在可玩）",
+  primaryHref: "/zh/play/second-escape/",
   secondaryCta: "下一关：城市河道 →",
   secondaryHref: "/zh/levels/03-city-canal/",
   faqTitle: "常见问题（FAQ）",
@@ -587,10 +599,12 @@ export const level03En: ArticleContent = {
   description:
     "City Canal walkthrough for Angler Escape Level 3: read the crossing patrol, use bridge cover and the rubber duck, land the Neon Catfish, escape via the alley.",
   h1: "Level 3: City Canal Walkthrough",
+  devNotice:
+    "City Canal is a planned level and isn't playable yet. This walkthrough describes the design in progress, including the dual patrols and the Neon Catfish, and may change before launch.",
   topNote:
     "In-game fiction only. City Canal is a made-up dusk stage with cartoon Inspectors and no real city location.",
   intro: [
-    "This City Canal walkthrough covers Level 3. Dusk on the canal is Week 1's final exam: two Inspectors on crossing routes, noisy bystanders, and a legendary Neon Catfish waiting under the bridge.",
+    "This City Canal walkthrough covers Level 3. Dusk on the canal is planned as the first release's final exam: two Inspectors on crossing routes, noisy bystanders, and a legendary Neon Catfish waiting under the bridge.",
   ],
   sections: [
     {
@@ -650,8 +664,8 @@ export const level03En: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "Play Level 3",
-  primaryHref: "/play/",
+  primaryCta: "Play Second Escape (Playable Now)",
+  primaryHref: "/play/second-escape/",
   secondaryCta: "Practice Second Escape →",
   secondaryHref: "/play/second-escape/",
   faqTitle: "FAQ",
@@ -689,10 +703,12 @@ export const level03Zh: ArticleContent = {
   description:
     "钓鱼佬大逃亡第3关城市河道攻略：两名巡查员交叉巡逻怎么躲、桥洞掩体、橡皮鸭诱饵、霓虹鲶鱼怎么钓、小巷逃跑路线与二次逃脱。纯虚构游戏技巧，请勿模仿。",
   h1: "第3关 城市河道攻略",
+  devNotice:
+    "第3关城市河道还在开发中，暂时不能玩。本攻略写的是规划中的设计（包括双巡查员和霓虹鲶鱼），上线前可能调整。",
   topNote:
     "纯游戏虚构。城市河道是黄昏卡通关，巡查员与地点都不是现实映射。",
   intro: [
-    "这篇第3关城市河道攻略专讲双巡查员怎么躲。黄昏河道是首周的期末考：两名巡查员交叉巡逻，围观路人爱起哄，桥下还藏着传说霓虹鲶鱼。",
+    "这篇第3关城市河道攻略专讲双巡查员怎么躲。黄昏河道被设计成首批关卡的期末考：两名巡查员交叉巡逻，围观路人爱起哄，桥下还藏着传说霓虹鲶鱼。",
   ],
   sections: [
     {
@@ -752,8 +768,8 @@ export const level03Zh: ArticleContent = {
       ],
     },
   ],
-  primaryCta: "开始第3关",
-  primaryHref: "/zh/play/",
+  primaryCta: "先玩二次逃脱（现在可玩）",
+  primaryHref: "/zh/play/second-escape/",
   secondaryCta: "先练二次逃脱 →",
   secondaryHref: "/zh/play/second-escape/",
   faqTitle: "常见问题（FAQ）",
@@ -768,7 +784,7 @@ export const level03Zh: ArticleContent = {
     },
     {
       q: "第3关是最后一关吗？",
-      a: "是首周的最后一关，后续还会更新。",
+      a: "是首批规划的最后一关（开发中），后续还会更新。",
     },
   ],
   breadcrumbs: [

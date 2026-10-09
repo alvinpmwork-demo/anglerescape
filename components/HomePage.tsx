@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CtaRow } from "@/components/CtaRow";
 import { Disclaimer } from "@/components/Disclaimer";
-import { PlayPlaceholder } from "@/components/PlayPlaceholder";
+import { SecondEscapeGame } from "@/components/SecondEscapeGame";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { faqPage, videoGame } from "@/lib/schema";
@@ -35,30 +35,38 @@ export function HomePage({ content: c }: Props) {
         langSwitchHref={switcher.href}
       />
       <main>
-        <section className="hero">
+        <section className="hero hero--play">
           <div className="container">
             <h1>{c.h1}</h1>
-            {c.intro.map((p) => (
-              <p key={p.slice(0, 24)}>{p}</p>
-            ))}
-            <CtaRow
-              primaryLabel={c.primaryCta}
-              primaryHref="#play"
-              secondaryLabel={c.secondaryCta}
-              secondaryHref={secondHref}
-              primaryAnchor
-            />
+            <p className="hero-sub">{c.subhead}</p>
+            <ul className="trust-labels" aria-label={c.locale === "zh" ? "游戏信息" : "Game facts"}>
+              {c.trustLabels.map((label) => (
+                <li key={label}>{label}</li>
+              ))}
+            </ul>
+            <SecondEscapeGame locale={c.locale} keyCapture="focus" />
+            <p className="game-hint">{c.gameHint}</p>
             <Disclaimer text={c.disclaimer} />
           </div>
         </section>
 
         <div className="container">
-          <PlayPlaceholder
-            title={c.playPlaceholder}
-            hint={c.playPlaceholderHint}
-            linkLabel={c.playLinkLabel}
-            linkHref={secondHref}
+          {c.intro.map((p) => (
+            <p key={p.slice(0, 24)}>{p}</p>
+          ))}
+          <CtaRow
+            primaryLabel={c.primaryCta}
+            primaryHref="#play"
+            secondaryLabel={c.secondaryCta}
+            secondaryHref={secondHref}
+            primaryAnchor
           />
+
+          <aside className="next-card" id="next" aria-label={c.locale === "zh" ? "开发进度" : "Development status"}>
+            <p>
+              <strong>{c.nextTitle}</strong> {c.nextBody}
+            </p>
+          </aside>
 
           <section>
             <h2>{c.sectionStealthTitle}</h2>
@@ -109,7 +117,17 @@ export function HomePage({ content: c }: Props) {
                 <li key={step}>{step}</li>
               ))}
             </ol>
-            <p>{c.howOutro}</p>
+            <p>
+              <strong>{c.howFutureTitle}</strong>
+            </p>
+            <ul className="how-steps">
+              {c.howFutureSteps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ul>
+            <p>
+              {c.howOutro} <Link href={secondHref}>{c.secondaryCta}</Link>
+            </p>
             <CtaRow
               primaryLabel={c.primaryCta}
               primaryHref="#play"
