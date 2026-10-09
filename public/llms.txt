@@ -2,7 +2,7 @@
 
 > Angler Escape is a free bilingual browser game about a fictional angler, a watchful Inspector, and a second chance to escape. The English pages are at the site root; Chinese versions are under /zh/. The story is cartoon fiction, not real-world fishing or evasion advice.
 
-This index covers the public English and Chinese pages. The complete URL list is also available in the [XML sitemap](https://anglerescape.com/sitemap.xml).
+This index covers the public English and Chinese pages. The complete URL list is also available in the [XML sitemap](https://anglerescape.com/sitemap.xml), and the full text of every page (English and Chinese) is in [llms-full.txt](https://anglerescape.com/llms-full.txt).
 
 ## English: game and play
 

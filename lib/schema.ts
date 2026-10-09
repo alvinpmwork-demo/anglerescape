@@ -21,6 +21,23 @@ export function organization() {
   };
 }
 
+/** Compact reference to the site-wide Organization node (full node is emitted once per page). */
+function orgRef() {
+  return { "@type": "Organization", "@id": `${SITE_URL}/#org`, name: "Angler Escape", url: `${SITE_URL}/` };
+}
+
+/** Site-wide Organization node, emitted on every page via the locale layouts. */
+export function organizationNode(locale: Locale) {
+  return {
+    "@context": "https://schema.org",
+    ...organization(),
+    description:
+      locale === "zh"
+        ? "《钓鱼佬大逃亡》（Angler Escape）是一款免费的双语网页潜行小游戏，内容为纯虚构的卡通喜剧。"
+        : "Angler Escape (钓鱼佬大逃亡) is a free, bilingual browser stealth game. All content is cartoon fiction.",
+  };
+}
+
 export function breadcrumbList(crumbs: Crumb[]) {
   return {
     "@context": "https://schema.org",
@@ -64,9 +81,9 @@ export function videoGame(opts: {
     image: `${SITE_URL}${OG_IMAGE[locale].url}`,
     inLanguage: LANG[locale],
     genre: ["Stealth", "Casual", "Comedy", "Fishing"],
-    gamePlatform: ["Web browser", "Desktop", "Mobile"],
+    gamePlatform: "Web browser",
     applicationCategory: "Game",
-    operatingSystem: "Any (web browser)",
+    operatingSystem: "Any",
     playMode: "SinglePlayer",
     isAccessibleForFree: true,
     offers: {
@@ -75,7 +92,9 @@ export function videoGame(opts: {
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
     },
-    publisher: organization(),
+    author: orgRef(),
+    publisher: orgRef(),
+    isPartOf: { "@id": `${absUrl(locale, "/")}#website` },
   };
 }
 
@@ -88,7 +107,7 @@ export function website(locale: Locale) {
     alternateName: locale === "zh" ? "Angler Escape" : "钓鱼佬大逃亡",
     url: absUrl(locale, "/"),
     inLanguage: LANG[locale],
-    publisher: organization(),
+    publisher: orgRef(),
   };
 }
 
@@ -116,7 +135,7 @@ export function article(opts: {
     isPartOf: { "@id": `${absUrl(locale, "/")}#website` },
   };
   if (type === "Article") {
-    return { ...base, author: organization(), publisher: organization() };
+    return { ...base, author: orgRef(), publisher: orgRef() };
   }
   return base;
 }

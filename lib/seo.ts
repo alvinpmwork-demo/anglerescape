@@ -6,6 +6,8 @@ import { SITE_URL } from "@/lib/content";
 export const CONTENT_UPDATED = "2026-10-06";
 /** Original launch date of the Week-1 pages. */
 export const CONTENT_PUBLISHED = "2026-10-05";
+/** Last site-wide change to page HTML (structured data, head tags); used for sitemap lastmod. */
+export const SITE_UPDATED = "2026-10-09";
 
 export const SITE_NAME = { en: "Angler Escape", zh: "钓鱼佬大逃亡" } as const;
 
@@ -63,6 +65,8 @@ export function buildPageMetadata({
     alternates: {
       canonical: url,
       languages: hreflangMap(path),
+      // Machine-readable site guide for AI agents (llmstxt.org)
+      types: { "text/markdown": "/llms.txt" },
     },
     openGraph: {
       title,

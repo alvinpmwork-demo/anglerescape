@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
+import { JsonLd } from "@/components/JsonLd";
+import { organizationNode, website } from "@/lib/schema";
 import { homeZh } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -26,7 +28,10 @@ export default function ZhLayout({
 }>) {
   return (
     <html lang="zh-Hans">
-      <body>{children}</body>
+      <body>
+        <JsonLd data={[organizationNode("zh"), website("zh")]} />
+        {children}
+      </body>
     </html>
   );
 }

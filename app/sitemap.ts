@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { absUrl, CONTENT_UPDATED, hreflangMap } from "@/lib/seo";
+import { absUrl, hreflangMap, SITE_UPDATED } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -21,7 +21,7 @@ const ROUTES: { path: string; priority: number; changeFrequency: "weekly" | "mon
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = CONTENT_UPDATED;
+  const lastModified = SITE_UPDATED;
   return ROUTES.flatMap((r) =>
     (["en", "zh"] as const).map((locale) => ({
       url: absUrl(locale, r.path),

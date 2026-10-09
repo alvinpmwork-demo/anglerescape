@@ -8,7 +8,7 @@ import { Disclaimer } from "@/components/Disclaimer";
 import { PlayPlaceholder } from "@/components/PlayPlaceholder";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
-import { faqPage, videoGame, website } from "@/lib/schema";
+import { faqPage, videoGame } from "@/lib/schema";
 
 type Props = { content: HomeContent };
 
@@ -23,7 +23,6 @@ export function HomePage({ content: c }: Props) {
     <>
       <JsonLd
         data={[
-          website(c.locale),
           videoGame({ locale: c.locale, path: "/", description: c.description }),
           faqPage(c.faq),
         ]}
