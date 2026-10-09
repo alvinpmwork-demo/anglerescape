@@ -59,6 +59,15 @@ export function SecondEscapePage({ content: c }: Props) {
         <div className="container">
           <SecondEscapeGame locale={c.locale} />
 
+          <section id="how-to-play">
+            <h2>{c.howTitle}</h2>
+            <ul className="how-steps">
+              {c.howSteps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ul>
+          </section>
+
           <section>
             <h2>{c.bustTitle}</h2>
             {c.bustBody.map((p, i) => (
@@ -117,21 +126,7 @@ export function SecondEscapePage({ content: c }: Props) {
 
           <section>
             <h2>{c.practiceTitle}</h2>
-            <p>
-              {c.locale === "zh" ? (
-                <>
-                  {c.practiceBody.split("回首页")[0]}
-                  <Link href={homeHref}>回首页</Link>
-                  {c.practiceBody.split("回首页")[1]}
-                </>
-              ) : (
-                <>
-                  {c.practiceBody.split("the homepage")[0]}
-                  <Link href={homeHref}>the homepage</Link>
-                  {c.practiceBody.split("the homepage")[1]}
-                </>
-              )}
-            </p>
+            <p>{c.practiceBody}</p>
             <CtaRow
               primaryLabel={c.primaryCta}
               primaryHref="#play"

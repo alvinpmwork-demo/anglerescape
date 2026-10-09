@@ -26,7 +26,13 @@ function header(title: string, url: string, description: string): string[] {
 function homeMd(c: HomeContent): string {
   return [
     ...header(c.h1, absUrl(c.locale, "/"), c.description),
+    c.subhead,
+    "",
+    `${c.trustLabels.join(" · ")}`,
+    "",
     ...c.intro.flatMap((p) => [p, ""]),
+    `**${c.nextTitle}** ${c.nextBody}`,
+    "",
     `### ${c.sectionStealthTitle}`,
     "",
     ...c.sectionStealthBody.flatMap((p) => [p, ""]),
@@ -46,6 +52,10 @@ function homeMd(c: HomeContent): string {
     "",
     ...c.howSteps.map((s, i) => `${i + 1}. ${s}`),
     "",
+    `**${c.howFutureTitle}**`,
+    "",
+    ...c.howFutureSteps.map((s) => `- ${s}`),
+    "",
     c.howOutro,
     "",
     ...faqMd(c.faqTitle, c.faq),
@@ -57,6 +67,10 @@ function secondMd(c: SecondEscapeContent): string {
   return [
     ...header(c.h1, absUrl(c.locale, "/play/second-escape/"), c.description),
     c.intro,
+    "",
+    `### ${c.howTitle}`,
+    "",
+    ...c.howSteps.map((s) => `- ${s}`),
     "",
     `### ${c.bustTitle}`,
     "",
@@ -99,6 +113,7 @@ function tableMd(t: { headers: string[]; rows: string[][] }): string[] {
 
 function articleMd(c: ArticleContent): string {
   const out: string[] = [...header(c.h1, absUrl(c.locale, c.path), c.description)];
+  if (c.devNotice) out.push(`**${c.locale === "zh" ? "开发中：" : "In development:"}** ${c.devNotice}`, "");
   if (c.topNote) out.push(`*${c.topNote.replace(/^※\s*/, "")}*`, "");
   c.intro?.forEach((p) => out.push(p, ""));
   for (const s of c.sections) {
@@ -122,6 +137,7 @@ function articleMd(c: ArticleContent): string {
     }
   }
   out.push(...faqMd(c.faqTitle, c.faq));
+  if (c.bottomNote) out.push(`*${c.bottomNote.replace(/^※\s*/, "")}*`, "");
   out.push(...relatedMd(c.relatedTitle ?? (c.locale === "zh" ? "相关页面" : "Related pages"), c.related));
   return out.join("\n");
 }
