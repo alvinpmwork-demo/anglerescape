@@ -13,6 +13,8 @@ type Route = {
   locales?: Locale[];
   /** Per-route lastmod (ISO date); defaults to SITE_UPDATED */
   lastModified?: string;
+  /** Per-locale lastmod override (ISO date), e.g. when only one language version changed */
+  lastModifiedByLocale?: Partial<Record<Locale, string>>;
 };
 
 const ROUTES: Route[] = [
@@ -25,7 +27,12 @@ const ROUTES: Route[] = [
   { path: "/levels/02-reservoir-night/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/levels/03-city-canal/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/characters/", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/meme/fishing-guy-meme/", priority: 0.8, changeFrequency: "monthly" },
+  {
+    path: "/meme/fishing-guy-meme/",
+    priority: 0.8,
+    changeFrequency: "monthly",
+    lastModifiedByLocale: { zh: "2026-10-11" },
+  },
   { path: "/meme/luya-paodu/", priority: 0.8, changeFrequency: "monthly", locales: ["zh"] },
   { path: "/similar-games/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/vs/unbaitable/", priority: 0.7, changeFrequency: "monthly" },
@@ -41,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const twin = locales.length > 1;
     return locales.map((locale) => ({
       url: absUrl(locale, r.path),
-      lastModified: r.lastModified ?? SITE_UPDATED,
+      lastModified: r.lastModifiedByLocale?.[locale] ?? r.lastModified ?? SITE_UPDATED,
       changeFrequency: r.changeFrequency,
       priority: r.priority,
       ...(twin ? { alternates: { languages: hreflangMap(r.path) } } : {}),
