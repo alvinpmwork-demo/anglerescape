@@ -3,9 +3,9 @@ import type { ArticleContent } from "./types";
 export const charactersEn: ArticleContent = {
   locale: "en",
   path: "/characters/",
-  title: "Angler Escape Characters: Meet Ah Diao and Captain Zhang",
+  title: "Angler Escape Characters: The Fishing Guy Meme Hero & the Inspector",
   description:
-    "Meet the Angler Escape characters: Ah Diao, the fishing guy who swears he never goes Air Force, and Captain Zhang, the Inspector who always yells \"Stop!\"",
+    "Meet the Angler Escape characters: Ah Diao, the fishing guy meme come to life who swears he never goes Air Force, and Captain Zhang, the Inspector chasing him through Second Escape.",
   h1: "Angler Escape Characters: The Angler and the Inspector",
   devNotice:
     "Only Second Escape is playable today. The character skills below (Soft Reel, Dodge Roll, Drop the Catch) belong to the full game, which is still in development.",
@@ -73,6 +73,13 @@ export const charactersEn: ArticleContent = {
       links: [{ label: "Read the fishing guy meme explainer →", href: "/meme/fishing-guy-meme/" }],
     },
     {
+      h2: "Ah Diao and Captain Zhang in Second Escape",
+      paragraphs: [
+        "Second Escape, the free browser level you can play today, starts after Captain Zhang has already spotted Ah Diao. The Captain sweeps his flashlight across the bank while you duck behind rocks and wait for the cone to pass; the moment he turns away, you run for the exit. Learning the Captain's sweep pattern is the whole trick.",
+      ],
+      links: [{ label: "Play Second Escape free →", href: "/play/second-escape/" }],
+    },
+    {
       h2: "Rivalry Highlights",
       paragraphs: [
         "Favorite slapstick beats (GIFs coming soon): a head-on bump at the bridge, a double slip on the docks, and the Captain zoning out for one perfect second during Second Escape.",
@@ -100,8 +107,12 @@ export const charactersEn: ArticleContent = {
       a: "No. They are fictional cartoon characters.",
     },
     {
+      q: "Is Ah Diao based on the fishing guy meme?",
+      a: "Yes. He is a cartoon take on the Chinese 钓鱼佬 (fishing guy) meme: always optimistic, often empty-handed, always asking for one more cast.",
+    },
+    {
       q: "Can I unlock skins?",
-      a: "Yes, through Daily Challenge rewards.",
+      a: "Not yet. Skins are planned for the full game, which is still in development.",
     },
   ],
   breadcrumbs: [
@@ -119,7 +130,7 @@ export const charactersEn: ArticleContent = {
 export const charactersZh: ArticleContent = {
   locale: "zh",
   path: "/characters/",
-  title: "钓鱼佬大逃亡角色介绍｜钓鱼佬阿钓、巡查队长老张头像",
+  title: "钓鱼佬大逃亡角色介绍｜永不空军的钓鱼佬阿钓与巡查队长老张",
   description:
     "钓鱼佬大逃亡角色介绍：嘴上永不空军的钓鱼佬阿钓，和永远在喊「钓鱼佬，站住！」的巡查队长老张。人设、技能、口头禅、角色头像与名场面，全部虚构。",
   h1: "钓鱼佬大逃亡角色介绍",
@@ -189,6 +200,14 @@ export const charactersZh: ArticleContent = {
       links: [{ label: "看钓鱼佬梗是什么意思 →", href: "/zh/meme/fishing-guy-meme/" }],
     },
     {
+      h2: "二次逃脱里的阿钓和老张",
+      paragraphs: [
+        "现在就能玩的「二次逃脱」，开场时老张已经发现了阿钓。老张用手电扫过岸边，你躲在石头后面等光圈过去；他一转身，你就冲向出口。摸清老张的巡视节奏，就是通关的全部诀窍。",
+        "阿钓嘴上永不空军（繁体网友常说「釣魚 空軍」），但在游戏里，能空手全身而退已经算赢了。",
+      ],
+      links: [{ label: "二次逃脱在线玩 →", href: "/zh/play/second-escape/" }],
+    },
+    {
       h2: "相爱相杀名场面",
       paragraphs: [
         "经典无厘头瞬间（动图稍后上线）：桥上撞个正着、码头一起摔跤、二次逃脱时老张转身发呆那一秒。",
@@ -216,8 +235,12 @@ export const charactersZh: ArticleContent = {
       a: "没有，全部是虚构的卡通角色。",
     },
     {
+      q: "阿钓是根据钓鱼佬梗设计的吗？",
+      a: "是的。阿钓就是钓鱼佬梗的卡通版：永远乐观、经常空军、永远还要再来一竿。",
+    },
+    {
       q: "阿钓能换装吗？",
-      a: "每日挑战可以解锁草帽等皮肤。",
+      a: "暂时不能。皮肤计划在还在开发中的完整版里加入。",
     },
   ],
   breadcrumbs: [

@@ -31,7 +31,7 @@ const ROUTES: Route[] = [
     path: "/meme/fishing-guy-meme/",
     priority: 0.8,
     changeFrequency: "monthly",
-    lastModifiedByLocale: { zh: "2026-10-11" },
+    lastModifiedByLocale: { zh: "2026-10-12" },
   },
   { path: "/meme/luya-paodu/", priority: 0.8, changeFrequency: "monthly", locales: ["zh"] },
   { path: "/similar-games/", priority: 0.8, changeFrequency: "monthly" },

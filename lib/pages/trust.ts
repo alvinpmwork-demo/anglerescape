@@ -47,6 +47,29 @@ export const aboutEn: ArticleContent = {
       ],
     },
     {
+      h2: "Why a fishing guy game?",
+      paragraphs: [
+        "The fishing guy meme (钓鱼佬) is one of the Chinese internet's favourite running jokes: the angler who sits by the water all day, comes home with nothing (\"goes Air Force\", 空军), and still swears the next cast is the one. In Taiwan and Hong Kong you will see the same joke written 釣魚 空軍. Angler Escape turns that stubborn optimism into a stealth comedy: the angler only wants one more cast, and a cartoon park Inspector only wants him gone.",
+      ],
+      links: [{ label: "Fishing guy meme explained", href: "/meme/fishing-guy-meme/" }],
+    },
+    {
+      h2: "How Second Escape plays",
+      paragraphs: [
+        "Second Escape is the playable slice of the game. You control Ah Diao after he has already been spotted: slip between rocks, keep out of the flashlight cone, and reach the exit before the chase meter fills. It runs on keyboard or touch, needs no download, and saves nothing about you.",
+      ],
+      links: [
+        { label: "Meet the characters", href: "/characters/" },
+        { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/" },
+      ],
+    },
+    {
+      h2: "Two languages, one game",
+      paragraphs: [
+        "Every page exists in English and Simplified Chinese, written separately rather than machine-translated, because most of the jokes only land in the language they came from. Switch with the language toggle at the top of any page.",
+      ],
+    },
+    {
       h2: "What this site is not",
       paragraphs: [
         "There's no real-world fishing, poaching, or escape advice anywhere on this site, no ads, no accounts, and nothing to buy. In real life, fish only where it's allowed and follow local rules.",
@@ -58,6 +81,19 @@ export const aboutEn: ArticleContent = {
   secondaryCta: "Contact →",
   secondaryHref: "/contact/",
   faqTitle: "FAQ",
+  dateModified: "2026-10-12",
+  faqSchema: true,
+  faq: [
+    { q: "Is Angler Escape free?", a: "Yes. Second Escape is free to play in the browser, with no ads, no account and nothing to buy." },
+    { q: "What does \"Air Force\" (空军) mean for a fishing guy?", a: "It is slang for coming home with zero fish. The fishing guy meme is built on anglers who go Air Force and keep casting anyway." },
+    { q: "Who is behind Angler Escape?", a: "A solo indie developer. Character art is made with AI assistance; code and game design are hand-made." },
+  ],
+  related: [
+    { label: "Play Second Escape free", href: "/play/second-escape/" },
+    { label: "Angler Escape characters", href: "/characters/" },
+    { label: "Fishing guy meme explained", href: "/meme/fishing-guy-meme/" },
+    { label: "Games like Angler Escape", href: "/similar-games/" },
+  ],
   breadcrumbs: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about/" },
@@ -94,6 +130,29 @@ export const aboutZh: ArticleContent = {
       ],
     },
     {
+      h2: "为什么做一款钓鱼佬游戏",
+      paragraphs: [
+        "钓鱼佬是网上经久不衰的梗：在水边坐一整天，一条没钓到（空军），回家还说下一竿必中。港台网友也常写成「釣魚 空軍」。《钓鱼佬大逃亡》把这种死不服输的乐观做成了潜行喜剧：钓鱼佬只想再来一竿，卡通巡查员只想把他请走。",
+      ],
+      links: [{ label: "钓鱼佬梗是什么意思", href: "/zh/meme/fishing-guy-meme/" }],
+    },
+    {
+      h2: "二次逃脱怎么玩",
+      paragraphs: [
+        "「二次逃脱」是目前能玩的部分：阿钓已经被发现，你要在石头之间穿行、避开手电光，在追击条满之前冲到出口。键盘和触屏都能操作，不用下载，也不收集任何个人信息。",
+      ],
+      links: [
+        { label: "钓鱼佬大逃亡角色介绍", href: "/zh/characters/" },
+        { label: "甩掉巡查员攻略", href: "/zh/guides/how-to-escape-inspector/" },
+      ],
+    },
+    {
+      h2: "中英双语",
+      paragraphs: [
+        "每个页面都有英文版和简体中文版，分别撰写而不是机翻，因为很多梗只有在原来的语言里才好笑。页面顶部可以切换语言。",
+      ],
+    },
+    {
       h2: "本站不是什么",
       paragraphs: [
         "本站不含任何现实钓鱼、偷钓或逃脱建议，没有广告、不用注册，也没有任何付费内容。现实钓鱼请只在允许垂钓的水域，遵守当地规定。",
@@ -105,6 +164,19 @@ export const aboutZh: ArticleContent = {
   secondaryCta: "联系我们 →",
   secondaryHref: "/zh/contact/",
   faqTitle: "常见问题（FAQ）",
+  dateModified: "2026-10-12",
+  faqSchema: true,
+  faq: [
+    { q: "钓鱼佬大逃亡免费吗？", a: "免费。二次逃脱直接在浏览器里玩，没有广告、不用注册、没有付费内容。" },
+    { q: "钓鱼佬说的「空军」是什么意思？", a: "空军指钓了一天一条鱼都没有，繁体也写作「釣魚 空軍」。钓鱼佬梗的核心就是空军了还要接着甩竿。" },
+    { q: "游戏是谁做的？", a: "一位独立开发者。角色美术用了 AI 辅助，代码和玩法设计是自己做的。" },
+  ],
+  related: [
+    { label: "二次逃脱在线玩", href: "/zh/play/second-escape/" },
+    { label: "钓鱼佬大逃亡角色介绍", href: "/zh/characters/" },
+    { label: "钓鱼佬梗是什么意思", href: "/zh/meme/fishing-guy-meme/" },
+    { label: "类似钓鱼佬大逃亡的游戏", href: "/zh/similar-games/" },
+  ],
   breadcrumbs: [
     { label: "首页", href: "/zh/" },
     { label: "关于", href: "/zh/about/" },
