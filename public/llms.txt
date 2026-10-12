@@ -23,6 +23,7 @@ This index covers the public English and Chinese pages. The complete URL list is
 
 - [Chinese fishing guy meme](https://anglerescape.com/meme/fishing-guy-meme/): Explanation of the Chinese 钓鱼佬 ("fishing guy") meme behind the game (not the State Farm ad).
 - [Similar games](https://anglerescape.com/similar-games/): Related casual and stealth games.
+- [Illegal fishing games](https://anglerescape.com/similar-games/illegal-fishing-games/): Fiction-only list of games where you fish illegally and run from wardens (unBAITable, Risk of Reel, Stealth Fishing, Angler Escape).
 - [Angler Escape vs unBAITable](https://anglerescape.com/vs/unbaitable/): Comparison of two fishing-themed games.
 - [Fishing rules disclaimer](https://anglerescape.com/about/fishing-rules-disclaimer/): Fictional-game context and real-world fishing reminder.
 - [About](https://anglerescape.com/about/): Who makes the game, what's playable now, and what's in development.

@@ -50,6 +50,9 @@ export const similarEn: ArticleContent = {
       paragraphs: [
         "In fiction, yes, and it is a surprisingly fun premise. unBAITable builds a whole story around a world where fishing is banned. Angler Escape plays it as slapstick: a cartoon angler, a cartoon Inspector, a fish that is definitely not worth the trouble, and a chase you can restart in one tap. Neither game teaches anything about real fishing rules or enforcement. They are comedies, and in real life the rules apply.",
       ],
+      links: [
+        { label: "Full list: illegal fishing games (all fiction) →", href: "/similar-games/illegal-fishing-games/" },
+      ],
     },
     {
       h2: "Quick Comparison",
@@ -123,6 +126,7 @@ export const similarEn: ArticleContent = {
   ],
   related: [
     { label: "Angler Escape vs unBAITable", href: "/vs/unbaitable/", note: "the head-to-head comparison" },
+    { label: "Illegal fishing games (all fiction)", href: "/similar-games/illegal-fishing-games/", note: "run-from-the-warden picks" },
     { label: "Play the free stealth fishing game", href: "/play/" },
     { label: "Fishing guy meme explained", href: "/meme/fishing-guy-meme/", note: "where the theme comes from" },
     { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/" },

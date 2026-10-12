@@ -35,6 +35,13 @@ const ROUTES: Route[] = [
   },
   { path: "/meme/luya-paodu/", priority: 0.8, changeFrequency: "monthly", locales: ["zh"] },
   { path: "/similar-games/", priority: 0.8, changeFrequency: "monthly" },
+  {
+    path: "/similar-games/illegal-fishing-games/",
+    priority: 0.8,
+    changeFrequency: "monthly",
+    locales: ["en"],
+    lastModified: "2026-10-12",
+  },
   { path: "/vs/unbaitable/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/about/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/contact/", priority: 0.3, changeFrequency: "monthly" },

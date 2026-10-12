@@ -118,6 +118,7 @@ export const memeEn: ArticleContent = {
     { label: "Meet Ah Diao, the never-say-Air-Force angler", href: "/characters/" },
     { label: "Stealth fishing game homepage", href: "/" },
     { label: "Sneaky fishing games like unBAITable", href: "/similar-games/" },
+    { label: "Illegal fishing games (all fiction)", href: "/similar-games/illegal-fishing-games/" },
   ],
 };
 
