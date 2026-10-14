@@ -95,9 +95,9 @@ export const DISCLAIMER_ZH =
 
 export const homeEn: HomeContent = {
   locale: "en",
-  title: "Angler Escape: Free Stealth Fishing Game in Your Browser",
+  title: "Play Angler Escape Online Free: Stealth Fishing Game",
   description:
-    "Angler Escape is a funny stealth fishing game: sneak a catch, get spotted by the Inspector, run, and escape again. Free in your browser, pure fiction.",
+    "Play Angler Escape online, free in your browser with no download: sneak a catch, get spotted by the Inspector, then run in Second Escape. ~30s rounds.",
   h1: "Angler Escape: The Stealth Fishing Game Where You Steal, Get Spotted, and Run",
   subhead:
     "You've already been caught. Slip past the Inspector's flashlight, hide behind the rocks, and reach the bush to save your gear.",
@@ -218,9 +218,9 @@ export const homeEn: HomeContent = {
 
 export const homeZh: HomeContent = {
   locale: "zh",
-  title: "钓鱼佬游戏《钓鱼佬大逃亡》｜被抓了还能跑的潜行小游戏",
+  title: "钓鱼佬小游戏在线玩｜免费免下载《钓鱼佬大逃亡》",
   description:
-    "钓鱼佬游戏《钓鱼佬大逃亡》：偷偷摸鱼、被巡查员发现、撒腿狂奔，被抓了还能二次逃脱！浏览器免费玩的搞笑钓鱼佬小游戏，手机电脑都能玩，无需下载，纯属虚构娱乐。",
+    "免费在线玩钓鱼佬小游戏：偷偷摸鱼、被巡查员发现就跑，被抓了还能二次逃脱。浏览器打开即玩，手机电脑都行，无需下载，纯属虚构。",
   h1: "钓鱼佬大逃亡：摸鱼翻车、拔腿就跑的钓鱼佬游戏",
   subhead: "刚被巡查员逮住？躲开手电光、借石头阴影溜进灌木丛出口，把装备保下来。",
   trustLabels: ["免费", "无需下载", "一局约 30 秒", "手机电脑都能玩"],
@@ -338,9 +338,9 @@ export const homeZh: HomeContent = {
 
 export const secondEn: SecondEscapeContent = {
   locale: "en",
-  title: "Second Escape: Stealth Escape Game Online, Free to Play",
+  title: "Second Escape: Play Free Online, No Download | Angler Escape",
   description:
-    "Second Escape is a free stealth escape game online: get caught, then sneak past the Inspector's flashlight and escape again. No download, pure fiction.",
+    "Play Second Escape free online in your browser, no download: start already caught, dodge the Inspector's flashlight and escape again. Short cartoon rounds.",
   h1: "Second Escape: Get Caught, Then Escape Again in This Stealth Escape Game",
   intro:
     "Second Escape is a free stealth escape game you can play online right now, no download needed. In most stealth games, getting caught means game over. In Angler Escape, it means intermission. You've been spotted, chased, and finally collared, fish still in hand, looking very guilty. Second Escape picks up right there. The story isn't over and neither is your run.",

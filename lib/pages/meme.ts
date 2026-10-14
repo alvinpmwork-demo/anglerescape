@@ -3,9 +3,9 @@ import type { ArticleContent } from "./types";
 export const memeEn: ArticleContent = {
   locale: "en",
   path: "/meme/fishing-guy-meme/",
-  title: 'Chinese Fishing Guy Meme (钓鱼佬) & "Air Force" Meaning Explained',
+  title: 'Fishing Guy Meme (钓鱼佬): "Air Force" Meaning + Free Game',
   description:
-    'The Chinese fishing guy meme, explained: who 钓鱼佬 is, what "Air Force" (catching zero fish) means, the classic meme formats, and how it became a browser game.',
+    'The fishing guy meme explained: who 钓鱼佬 is, why "Air Force" means catching zero fish, the classic formats, plus a free browser game you can play, no download.',
   h1: "Chinese Fishing Guy Meme (钓鱼佬), Explained",
   intro: [
     "The Chinese fishing guy meme comes from Chinese social media. If you have seen someone joke about 钓鱼佬 (diàoyú lǎo) online, you have met the fishing guy: the die-hard angler who will sit all day for one bite—and still go home empty-handed. Here is the joke, the slang, and how it turned into Angler Escape.",
@@ -126,12 +126,13 @@ export const memeZh: ArticleContent = {
   locale: "zh",
   path: "/meme/fishing-guy-meme/",
   dateModified: "2026-10-11",
-  title: "钓鱼佬梗是什么意思？空军、永不空军、钓鱼佬梗图一次看懂",
+  title: "钓鱼佬空军梗是什么意思？附免费在线小游戏",
   description:
-    "钓鱼佬梗是什么意思？一页看懂「钓鱼佬」「空军」「钓鱼佬永不空军」的来源、用法和常见梗图，空军用英文怎么说，以及这些梗怎么变成了钓鱼佬小游戏。",
+    "钓鱼佬梗、空军是什么意思？一页看懂来源和梗图（繁体：釣魚佬・空軍）。看完还能免费在线玩钓鱼佬小游戏，无需下载。",
   h1: "钓鱼佬梗是什么意思？",
   intro: [
     "钓鱼佬梗是什么意思？网上说的「钓鱼佬」，指的是那种风雨无阻、一坐一整天的钓鱼痴迷人群——常常还空军回家。下面把梗讲清楚，再看看它怎么变成《钓鱼佬大逃亡》。",
+    "繁体写法：釣魚佬・空軍・釣魚佬永不空軍，意思和简体完全一样。",
   ],
   sections: [
     {
@@ -244,6 +245,10 @@ export const memeZh: ArticleContent = {
     {
       q: "「空军」是什么意思？",
       a: "钓鱼一条都没钓到。",
+    },
+    {
+      q: "「釣魚佬」「空軍」和简体是一个意思吗？",
+      a: "是的。「釣魚佬」「空軍」「釣魚 空軍」是港台和繁体网友的写法，和「钓鱼佬」「空军」说的是同一个梗。",
     },
     {
       q: "钓鱼为什么叫空军？",
