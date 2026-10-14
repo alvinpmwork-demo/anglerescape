@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { NavLink } from "@/lib/site";
+import { SteamWishlist } from "@/components/SteamWishlist";
 
 type Props = {
   siteName: string;
@@ -34,6 +35,7 @@ export function Footer({ siteName, disclaimer, homeHref, links = [], navLabel }:
   return (
     <footer className="site-footer" id="disclaimer">
       <div className="container footer-inner">
+        <SteamWishlist locale={isZh ? "zh" : "en"} variant="footer" />
         <p className="disclaimer">{disclaimer}</p>
         <nav className="footer-links" aria-label={navLabel ?? "Site"}>
           <Link href={homeHref}>{siteName}</Link>

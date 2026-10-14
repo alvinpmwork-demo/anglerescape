@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CtaRow } from "@/components/CtaRow";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SecondEscapeGame } from "@/components/SecondEscapeGame";
+import { SteamWishlist } from "@/components/SteamWishlist";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -58,6 +59,7 @@ export function SecondEscapePage({ content: c }: Props) {
 
         <div className="container">
           <SecondEscapeGame locale={c.locale} />
+          <SteamWishlist locale={c.locale} />
 
           <section id="how-to-play">
             <h2>{c.howTitle}</h2>

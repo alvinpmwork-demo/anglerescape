@@ -19,6 +19,7 @@ export { disclaimerEn, disclaimerZh } from "./disclaimer-page";
 export { playEn, playZh } from "./play";
 export { luyaZh } from "./luya";
 export { illegalFishingEn } from "./illegal-fishing";
+export { fishingGamesEn, fishingGamesZh } from "./fishing-games";
 export { aboutEn, aboutZh, contactEn, contactZh, privacyEn, privacyZh, CONTACT_EMAIL } from "./trust";
 
 import type { ArticleContent } from "./types";
@@ -41,6 +42,7 @@ import { disclaimerEn, disclaimerZh } from "./disclaimer-page";
 import { playEn, playZh } from "./play";
 import { luyaZh } from "./luya";
 import { illegalFishingEn } from "./illegal-fishing";
+import { fishingGamesEn, fishingGamesZh } from "./fishing-games";
 import { aboutEn, aboutZh, contactEn, contactZh, privacyEn, privacyZh } from "./trust";
 
 /** All SEO article pages for sitemap / tooling */
@@ -69,6 +71,8 @@ export const allArticles: ArticleContent[] = [
   disclaimerZh,
   luyaZh,
   illegalFishingEn,
+  fishingGamesEn,
+  fishingGamesZh,
   aboutEn,
   aboutZh,
   contactEn,

@@ -74,6 +74,8 @@ export type ArticleContent = {
   /** Cross-links rendered as a "related pages" block (keyword-rich anchors) */
   relatedTitle?: string;
   related?: { label: string; href: string; note?: string }[];
+  /** ItemList JSON-LD entries (name + absolute url) */
+  itemList?: { name: string; url: string }[];
 };
 
 export type { FaqItem, Locale };

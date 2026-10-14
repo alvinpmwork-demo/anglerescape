@@ -24,6 +24,7 @@ This index covers the public English and Chinese pages. The complete URL list is
 - [Chinese fishing guy meme](https://anglerescape.com/meme/fishing-guy-meme/): Explanation of the Chinese 钓鱼佬 ("fishing guy") meme behind the game (not the State Farm ad).
 - [Similar games](https://anglerescape.com/similar-games/): Related casual and stealth games.
 - [Illegal fishing games](https://anglerescape.com/similar-games/illegal-fishing-games/): Fiction-only list of games where you fish illegally and run from wardens (unBAITable, Risk of Reel, Stealth Fishing, Angler Escape).
+- [Fishing games](https://anglerescape.com/fishing-games/): Free online fishing game (Angler Escape) plus a curated list: WEBFISHING, DREDGE, Cast n Chill, unBAITable, Tiny Fishing, Stardew Valley and more, with platform and price; games like WEBFISHING / DREDGE.
 - [Angler Escape vs unBAITable](https://anglerescape.com/vs/unbaitable/): Comparison of two fishing-themed games.
 - [Fishing rules disclaimer](https://anglerescape.com/about/fishing-rules-disclaimer/): Fictional-game context and real-world fishing reminder.
 - [About](https://anglerescape.com/about/): Who makes the game, what's playable now, and what's in development.
@@ -50,6 +51,7 @@ This index covers the public English and Chinese pages. The complete URL list is
 - [钓鱼佬梗](https://anglerescape.com/zh/meme/fishing-guy-meme/): 钓鱼佬梗解释：空军、扛龟、打龟、爆护，钓鱼佬经典十句话，钓鱼佬是不是骂人，「钓鱼佬的天都塌了」是什么梗。
 - [路亚跑毒是什么意思](https://anglerescape.com/zh/meme/luya-paodu/): 毒区、跑毒、百万撤离梗科普，以及现实中违规垂钓的处罚（仅中文）。
 - [类似游戏](https://anglerescape.com/zh/similar-games/): 相关休闲与潜行游戏。
+- [钓鱼小游戏](https://anglerescape.com/zh/fishing-games/): 免费在线钓鱼小游戏入口与钓鱼游戏推荐（WEBFISHING、DREDGE、星露谷物语等）。
 - [钓鱼佬大逃亡与 unBAITable 对比](https://anglerescape.com/zh/vs/unbaitable/): 两款钓鱼主题游戏的比较。
 - [免责声明与钓鱼规定](https://anglerescape.com/zh/about/fishing-rules-disclaimer/): 虚构游戏声明与现实钓鱼提醒。
 - [关于](https://anglerescape.com/zh/about/): 谁在做、现在能玩什么、哪些在开发中。
