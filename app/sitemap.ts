@@ -42,6 +42,7 @@ const ROUTES: Route[] = [
     locales: ["en"],
     lastModified: "2026-10-12",
   },
+  { path: "/fishing-games/", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-10-14" },
   { path: "/vs/unbaitable/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/about/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/contact/", priority: 0.3, changeFrequency: "monthly" },

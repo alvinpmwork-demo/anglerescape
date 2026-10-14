@@ -34,6 +34,19 @@ export function ArticlePage({ content: c }: Props) {
         });
   const schemas: object[] = [mainSchema];
   if (c.faq.length > 0 && c.faqSchema !== false) schemas.push(faqPage(c.faq));
+  if (c.itemList && c.itemList.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: c.h1,
+      itemListElement: c.itemList.map((it, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: it.name,
+        url: it.url,
+      })),
+    });
+  }
 
   return (
     <>

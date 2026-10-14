@@ -127,6 +127,7 @@ export const similarEn: ArticleContent = {
   related: [
     { label: "Angler Escape vs unBAITable", href: "/vs/unbaitable/", note: "the head-to-head comparison" },
     { label: "Illegal fishing games (all fiction)", href: "/similar-games/illegal-fishing-games/", note: "run-from-the-warden picks" },
+    { label: "All fishing games (free online + best picks)", href: "/fishing-games/" },
     { label: "Play the free stealth fishing game", href: "/play/" },
     { label: "Fishing guy meme explained", href: "/meme/fishing-guy-meme/", note: "where the theme comes from" },
     { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/" },
@@ -238,6 +239,7 @@ export const similarZh: ArticleContent = {
     { label: "钓鱼佬大逃亡 vs unBAITable 对比", href: "/zh/vs/unbaitable/" },
     { label: "钓鱼小游戏在线玩", href: "/zh/play/" },
     { label: "钓鱼佬梗是什么意思", href: "/zh/meme/fishing-guy-meme/", note: "题材从哪来" },
+    { label: "钓鱼小游戏推荐大全", href: "/zh/fishing-games/" },
     { label: "钓鱼佬游戏攻略：甩掉巡查员", href: "/zh/guides/how-to-escape-inspector/" },
   ],
   schemaType: "CollectionPage",

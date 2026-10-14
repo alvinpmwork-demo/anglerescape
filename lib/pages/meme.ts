@@ -119,6 +119,7 @@ export const memeEn: ArticleContent = {
     { label: "Stealth fishing game homepage", href: "/" },
     { label: "Sneaky fishing games like unBAITable", href: "/similar-games/" },
     { label: "Illegal fishing games (all fiction)", href: "/similar-games/illegal-fishing-games/" },
+    { label: "Fishing games online free", href: "/fishing-games/" },
   ],
 };
 
@@ -284,6 +285,7 @@ export const memeZh: ArticleContent = {
     { label: "钓鱼佬阿钓角色介绍", href: "/zh/characters/", note: "嘴上永不空军" },
     { label: "钓鱼佬游戏首页", href: "/zh/" },
     { label: "类似偷偷钓个鱼的游戏", href: "/zh/similar-games/" },
+    { label: "钓鱼小游戏推荐大全", href: "/zh/fishing-games/" },
     { label: "路亚跑毒是什么意思？", href: "/zh/meme/luya-paodu/", note: "毒区、跑毒梗科普" },
   ],
 };

@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CtaRow } from "@/components/CtaRow";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SecondEscapeGame } from "@/components/SecondEscapeGame";
+import { SteamWishlist } from "@/components/SteamWishlist";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { faqPage, videoGame } from "@/lib/schema";
@@ -45,6 +46,7 @@ export function HomePage({ content: c }: Props) {
               ))}
             </ul>
             <SecondEscapeGame locale={c.locale} keyCapture="focus" />
+          <SteamWishlist locale={c.locale} />
             <p className="game-hint">{c.gameHint}</p>
             <Disclaimer text={c.disclaimer} />
           </div>
