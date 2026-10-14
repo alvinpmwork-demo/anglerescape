@@ -3,9 +3,9 @@ import type { ArticleContent } from "./types";
 export const playEn: ArticleContent = {
   locale: "en",
   path: "/play/",
-  title: "Free Fishing Game Online, No Download | Play Angler Escape",
+  title: "Play Angler Escape Online: Free Fishing Game, No Download",
   description:
-    "Play a free fishing game online with a stealth twist: launch the Second Escape demo, browse levels, and learn to shake the Inspector. No download needed.",
+    "Play Angler Escape online free in your browser: launch the Second Escape demo, pick a level and shake the Inspector. Phone or desktop, no download needed.",
   h1: "Play a Free Fishing Game Online: Angler Escape",
   intro: [
     "Looking for a free fishing game online that starts in seconds? Angler Escape runs in any modern browser on desktop or phone, with no download and no sign-up. Second Escape is playable today. Full heist levels and more modes are rolling out behind the same short, slapstick loop: steal, get spotted, run, and escape again.",

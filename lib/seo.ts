@@ -7,7 +7,7 @@ export const CONTENT_UPDATED = "2026-10-09";
 /** Original launch date of the Week-1 pages. */
 export const CONTENT_PUBLISHED = "2026-10-05";
 /** Last site-wide change to page HTML (structured data, head tags); used for sitemap lastmod. */
-export const SITE_UPDATED = "2026-10-12";
+export const SITE_UPDATED = "2026-10-14";
 
 export const SITE_NAME = { en: "Angler Escape", zh: "钓鱼佬大逃亡" } as const;
 
