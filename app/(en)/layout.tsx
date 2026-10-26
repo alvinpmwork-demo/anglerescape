@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: homeEn.description,
   applicationName: "Angler Escape",
   robots: { index: true, follow: true },
+  other: {
+    "google-adsense-account": "ca-pub-2744930871626192",
+  },
   openGraph: {
     siteName: "Angler Escape",
     type: "website",

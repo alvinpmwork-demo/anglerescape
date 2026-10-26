@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: homeZh.description,
   applicationName: "钓鱼佬大逃亡",
   robots: { index: true, follow: true },
+  other: {
+    "google-adsense-account": "ca-pub-2744930871626192",
+  },
   openGraph: {
     siteName: "钓鱼佬大逃亡",
     type: "website",
