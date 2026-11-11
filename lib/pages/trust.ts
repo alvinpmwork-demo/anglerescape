@@ -8,6 +8,7 @@ import type { ArticleContent } from "./types";
 export const CONTACT_EMAIL = "hello@anglerescape.com";
 
 const TRUST_UPDATED = "2026-10-09";
+const PRIVACY_UPDATED = "2026-11-11";
 
 const base = {
   datePublished: TRUST_UPDATED,
@@ -254,13 +255,14 @@ export const contactZh: ArticleContent = {
 
 export const privacyEn: ArticleContent = {
   ...base,
+  dateModified: PRIVACY_UPDATED,
   locale: "en",
   path: "/privacy/",
   title: "Privacy Policy | Angler Escape",
   description:
     "Angler Escape privacy policy: no accounts, no ads, no cookies set by the game. What hosting and analytics may record, and how to contact us.",
   h1: "Privacy Policy",
-  intro: [`Last updated: ${TRUST_UPDATED}. Short version: you can play without an account, the game doesn't set cookies, and there are no ads.`],
+  intro: [`Last updated: ${PRIVACY_UPDATED}. Short version: you can play without an account, the game doesn't set cookies, and there are no ads.`],
   sections: [
     {
       h2: "What we collect",
@@ -274,8 +276,11 @@ export const privacyEn: ArticleContent = {
       h2: "Hosting and analytics",
       paragraphs: [
         "The site is hosted on Cloudflare. Like any web host, Cloudflare processes technical request data (such as IP address, browser type, and the page requested) to deliver the site and protect it from abuse.",
+        "We use Microsoft Clarity on anglerescape.com and www.anglerescape.com to understand how visitors use the site through session recordings and heatmaps, and to improve usability. The game itself does not set cookies; third-party analytics may do so.",
+        "There is no cookie consent banner or consent management platform (CMP). We integrate Clarity in its default no-cookie mode by loading the script without sending consent grants. This alone does not guarantee no cookies: if Consent Mode is not enabled in the Clarity project, visitors outside the European Economic Area (EEA), United Kingdom (UK), and Switzerland (CH) may still receive cookies such as _clck and _clsk. Actual behavior is subject to Microsoft's policies and the project's settings.",
         "We may use Cloudflare Web Analytics to count visits. It doesn't use cookies and only gives us aggregated numbers, such as page views, countries, and referring websites.",
       ],
+      links: [{ label: "Microsoft Privacy Statement", href: "https://privacy.microsoft.com/privacystatement" }],
     },
     {
       h2: "Ads and third parties",
@@ -307,12 +312,13 @@ export const privacyEn: ArticleContent = {
 
 export const privacyZh: ArticleContent = {
   ...base,
+  dateModified: PRIVACY_UPDATED,
   locale: "zh",
   path: "/privacy/",
   title: "隐私政策｜钓鱼佬大逃亡",
   description: "《钓鱼佬大逃亡》隐私政策：不用注册、没有广告，游戏不设置 Cookie。说明托管和统计可能记录的信息，以及联系方式。",
   h1: "隐私政策",
-  intro: [`最后更新：${TRUST_UPDATED}。简单说：不用注册就能玩，游戏不设置 Cookie，也没有广告。`],
+  intro: [`最后更新：${PRIVACY_UPDATED}。简单说：不用注册就能玩，游戏不设置 Cookie，也没有广告。`],
   sections: [
     {
       h2: "我们收集什么",
@@ -326,8 +332,11 @@ export const privacyZh: ArticleContent = {
       h2: "托管和统计",
       paragraphs: [
         "本站托管在 Cloudflare。和所有网站托管一样，Cloudflare 会处理访问时的技术数据（例如 IP 地址、浏览器类型、访问的页面），用于提供网站服务和防止滥用。",
+        "本站在 anglerescape.com 和 www.anglerescape.com 使用 Microsoft Clarity，通过会话录制和热图了解访客如何使用网站，帮助改进使用体验。游戏本身不写入 Cookie，但第三方统计工具可能设置 Cookie。",
+        "本站没有 Cookie 同意横幅或同意管理平台（CMP）。我们按 Clarity 默认无 Cookie 模式接入：加载脚本，但不调用同意授予。这本身不保证完全无 Cookie：如果 Clarity 项目未开启 Consent Mode，欧洲经济区（EEA）、英国（UK）和瑞士（CH）以外的访客仍可能被设置 _clck、_clsk 等 Cookie。具体行为以微软政策和项目设置为准。",
         "我们可能使用 Cloudflare Web Analytics 统计访问量。它不使用 Cookie，我们只能看到汇总数据，例如页面访问量、国家和来源网站。",
       ],
+      links: [{ label: "微软隐私声明", href: "https://privacy.microsoft.com/privacystatement" }],
     },
     {
       h2: "广告和第三方",
