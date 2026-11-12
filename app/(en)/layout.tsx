@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Clarity } from "@/components/Clarity";
 import "../globals.css";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationNode, website } from "@/lib/schema";
@@ -32,6 +33,7 @@ export default function EnLayout({
   return (
     <html lang="en">
       <body>
+        <Clarity />
         <JsonLd data={[organizationNode("en"), website("en")]} />
         {children}
       </body>

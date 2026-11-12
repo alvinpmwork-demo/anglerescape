@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:clarity": "node scripts/check-clarity.mjs",
+    "test:check-clarity": "node --test scripts/check-clarity.test.mjs"
   },
   "dependencies": {
     "react": "19.1.0",
