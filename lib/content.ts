@@ -201,6 +201,7 @@ export const homeEn: HomeContent = {
   relatedTitle: "Explore Angler Escape",
   related: [
     { label: "Play the free fishing game online", href: "/play/", note: "every playable mode in one hub" },
+    { label: "Play Second Escape", href: "/play/second-escape/", note: "get caught, then escape again in the playable comeback round" },
     { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/", note: "planned full-game mechanics (in development)" },
     { label: "All levels and walkthroughs", href: "/levels/", note: "Park Pond, Reservoir Night, City Canal (in development)" },
     { label: "Meet the angler and the Inspector", href: "/characters/", note: "Ah Diao vs Captain Zhang" },
@@ -323,6 +324,7 @@ export const homeZh: HomeContent = {
     { label: "钓鱼小游戏在线玩", href: "/zh/play/", note: "所有可玩模式入口" },
     { label: "钓鱼佬游戏攻略：甩掉巡查员", href: "/zh/guides/how-to-escape-inspector/", note: "完整版机制预告（开发中）" },
     { label: "钓鱼佬大逃亡关卡攻略大全", href: "/zh/levels/", note: "公园池塘、水库夜钓、城市河道（开发中）" },
+    { label: "城市河道关卡攻略", href: "/zh/levels/03-city-canal/", note: "第三关路线与机制预告（开发中）" },
     { label: "钓鱼佬阿钓与巡查队长老张", href: "/zh/characters/", note: "角色介绍" },
     { label: "钓鱼佬梗是什么意思？", href: "/zh/meme/fishing-guy-meme/", note: "空军、永不空军一次看懂" },
     { label: "类似偷偷钓个鱼的游戏", href: "/zh/similar-games/", note: "同类钓鱼佬小游戏推荐" },
