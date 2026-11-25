@@ -436,7 +436,7 @@ export const secondEn: SecondEscapeContent = {
     { label: "City Canal walkthrough", href: "/levels/03-city-canal/", note: "planned level, in development" },
     { label: "Meet Captain Zhang, the Inspector", href: "/characters/", note: "know who you're running from" },
     { label: "Free fishing game online hub", href: "/play/", note: "all playable modes" },
-    { label: "Back to the stealth fishing game homepage", href: "/" },
+    { label: "Back to the Angler Escape homepage", href: "/" },
   ],
   navHome: "Home",
   navSecond: "Second Escape",

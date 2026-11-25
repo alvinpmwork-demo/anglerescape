@@ -1,5 +1,6 @@
 import type { FaqItem, Locale } from "@/lib/content";
 import { SITE_URL } from "@/lib/content";
+import { OPERATOR_NAME } from "@/lib/pages/trust";
 import { absUrl, CONTENT_PUBLISHED, CONTENT_UPDATED, OG_IMAGE, SITE_NAME } from "@/lib/seo";
 
 type Crumb = { label: string; href: string };
@@ -24,6 +25,24 @@ export function organization() {
 /** Compact reference to the site-wide Organization node (full node is emitted once per page). */
 function orgRef() {
   return { "@type": "Organization", "@id": `${SITE_URL}/#org`, name: "Angler Escape", url: `${SITE_URL}/` };
+}
+
+const operatorId = `${SITE_URL}/#arlo`;
+
+export function operatorNode(locale: Locale) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": operatorId,
+    name: OPERATOR_NAME[locale],
+    url: absUrl(locale, "/about/"),
+    sameAs: [
+      "https://liko-dev.itch.io",
+      "https://anglerescape.com/about/",
+      "https://haystackhunt.com/about/",
+      "https://stealthfishinggame.com/about/",
+    ],
+  };
 }
 
 /** Site-wide Organization node, emitted on every page via the locale layouts. */
@@ -92,7 +111,7 @@ export function videoGame(opts: {
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
     },
-    author: orgRef(),
+    author: { "@id": operatorId },
     publisher: orgRef(),
     isPartOf: { "@id": `${absUrl(locale, "/")}#website` },
   };
@@ -107,7 +126,7 @@ export function website(locale: Locale) {
     alternateName: locale === "zh" ? "Angler Escape" : "钓鱼佬大逃亡",
     url: absUrl(locale, "/"),
     inLanguage: LANG[locale],
-    publisher: orgRef(),
+    publisher: { "@id": operatorId },
   };
 }
 
@@ -139,7 +158,7 @@ export function article(opts: {
     isPartOf: { "@id": `${absUrl(locale, "/")}#website` },
   };
   if (type === "Article") {
-    return { ...base, author: orgRef(), publisher: orgRef() };
+    return { ...base, author: { "@id": operatorId }, publisher: orgRef() };
   }
   return base;
 }

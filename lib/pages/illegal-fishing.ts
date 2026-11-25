@@ -1,4 +1,5 @@
 import type { ArticleContent } from "./types";
+import { CAMPA_STEALTH_FISHING_URL, stealthFishingGame } from "./stealth-fishing";
 
 /** EN-only list page for "illegal fishing game" queries (no ZH twin yet, so no hreflang). */
 export const illegalFishingEn: ArticleContent = {
@@ -44,6 +45,13 @@ export const illegalFishingEn: ArticleContent = {
             "A few minutes",
           ],
           [
+            "Stealth Fishing Game",
+            "Fish in a private pond",
+            "Two wardens",
+            "stealthfishinggame.com (free browser)",
+            "120 seconds",
+          ],
+          [
             "Steal a Fish",
             "Short HTML5 “steal the fish” browser games hosted on many free portals",
             "Often chase / grab loops",
@@ -77,6 +85,15 @@ export const illegalFishingEn: ArticleContent = {
       paragraphs: [
         "Older arcade-style browser game: you sneak past searchlights to rescue fish from a marine park tank. It is stealth-fishing themed, but the fantasy is “animal rescue,” not breaking fishing laws. Still useful if someone typed “stealth fishing game.” Official page: campa.itch.io/stealth-fishing.",
       ],
+      links: [{ label: "Campa T. Dog’s Stealth Fishing (2016) on itch.io", href: CAMPA_STEALTH_FISHING_URL }],
+    },
+    {
+      h2: "Stealth Fishing Game (2026)",
+      paragraphs: [
+        stealthFishingGame.en.body,
+        "Play free in your browser with no download.",
+      ],
+      links: [{ label: "Stealth Fishing Game official site", href: stealthFishingGame.en.href }],
     },
     {
       h2: "Steal a Fish",
@@ -108,7 +125,7 @@ export const illegalFishingEn: ArticleContent = {
     },
     {
       q: "Are these free?",
-      a: "Angler Escape is free in the browser. unBAITable is pay-what-you-want on itch. Others vary—check each store.",
+      a: "Angler Escape and Stealth Fishing Game are both free in the browser. unBAITable is pay-what-you-want on itch. Others vary—check each store.",
     },
     {
       q: "Do you teach real illegal fishing?",
@@ -116,7 +133,7 @@ export const illegalFishingEn: ArticleContent = {
     },
     {
       q: "Are you affiliated with these games?",
-      a: "No, except Angler Escape, which is ours. All other rights belong to their creators.",
+      a: "Arlo, independent developer, made Angler Escape and Stealth Fishing Game. The other games belong to their creators.",
     },
   ],
   bottomNote:
@@ -130,7 +147,7 @@ export const illegalFishingEn: ArticleContent = {
     { label: "Fishing rules disclaimer", href: "/about/fishing-rules-disclaimer/", note: "real life: rules apply" },
     { label: "Angler Escape vs unBAITable", href: "/vs/unbaitable/" },
     { label: "How to escape the Inspector (in-game guide)", href: "/guides/how-to-escape-inspector/" },
-    { label: "Stealth fishing game homepage", href: "/" },
+    { label: "Angler Escape homepage", href: "/" },
   ],
   schemaType: "CollectionPage",
 };

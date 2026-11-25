@@ -165,7 +165,7 @@ export const guideEn: ArticleContent = {
     { label: "Escape Guide", href: "/guides/how-to-escape-inspector/" },
   ],
   related: [
-    { label: "Play the free stealth fishing game", href: "/play/", note: "try the tips right away" },
+    { label: "Play Angler Escape", href: "/play/", note: "try the tips right away" },
     { label: "Practice Second Escape", href: "/play/second-escape/", note: "the comeback mini-game" },
     { label: "All Angler Escape levels", href: "/levels/", note: "difficulty and walkthroughs" },
     { label: "Meet Captain Zhang, the Inspector", href: "/characters/", note: "abilities and catchphrases" },

@@ -1,4 +1,5 @@
 import type { ArticleContent } from "./types";
+import { campaStealthFishing, stealthFishingGame } from "./stealth-fishing";
 
 export const similarEn: ArticleContent = {
   locale: "en",
@@ -38,6 +39,7 @@ export const similarEn: ArticleContent = {
           body: "You may also see names like Stealth Fishing or Steal A Fish floating around. Platforms and status change often—check each store page before you buy or download.",
         },
       ],
+      cards: [stealthFishingGame.en, campaStealthFishing.en],
     },
     {
       h2: "Chase Pick: Angler Escape",
@@ -83,13 +85,21 @@ export const similarEn: ArticleContent = {
             "~30 s (Second Escape)",
             "Quick laughs",
           ],
+          [
+            "Stealth Fishing Game",
+            "Private-pond stealth",
+            "Two wardens",
+            "Yes",
+            "120 seconds",
+            "Timed stealth rounds",
+          ],
         ],
       },
     },
     {
       h2: "How to Choose",
       paragraphs: [
-        "Want to relax? Start with Casual Fishing (偷偷钓个鱼). Want story and decisions? Play unBAITable. Want a chaotic few minutes of getting spotted and running? Play Angler Escape. They pair well—no need to pick only one.",
+        "Want to relax? Start with Casual Fishing (偷偷钓个鱼). Want story and decisions? Play unBAITable. Want a chaotic few minutes of getting spotted and running? Play Angler Escape. For timed stealth rounds, try Stealth Fishing Game.",
       ],
     },
   ],
@@ -117,7 +127,7 @@ export const similarEn: ArticleContent = {
     },
     {
       q: "Are you affiliated with these games?",
-      a: "No. These are player recommendations, and all rights belong to their creators.",
+      a: "Arlo, independent developer, made Angler Escape and Stealth Fishing Game. The other games belong to their creators.",
     },
   ],
   breadcrumbs: [
@@ -128,7 +138,7 @@ export const similarEn: ArticleContent = {
     { label: "Angler Escape vs unBAITable", href: "/vs/unbaitable/", note: "the head-to-head comparison" },
     { label: "Illegal fishing games (all fiction)", href: "/similar-games/illegal-fishing-games/", note: "run-from-the-warden picks" },
     { label: "All fishing games (free online + best picks)", href: "/fishing-games/" },
-    { label: "Play the free stealth fishing game", href: "/play/" },
+    { label: "Play Angler Escape", href: "/play/" },
     { label: "Fishing guy meme explained", href: "/meme/fishing-guy-meme/", note: "where the theme comes from" },
     { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/" },
   ],
@@ -173,6 +183,7 @@ export const similarZh: ArticleContent = {
           body: "你可能还会看到 Stealth Fishing、Steal A Fish 等名字。平台和上架状态经常变，购买或下载前请以各官方页面为准。",
         },
       ],
+      cards: [stealthFishingGame.zh, campaStealthFishing.zh],
     },
     {
       h2: "躲巡查逃跑型：钓鱼佬大逃亡",
@@ -194,13 +205,14 @@ export const similarZh: ArticleContent = {
           ["偷偷钓个鱼", "休闲像素", "无", "能", "几分钟", "放松收集"],
           ["unBAITable", "剧情潜行", "巡逻压力", "能（itch.io）", "约半小时", "抉择与多结局"],
           ["钓鱼佬大逃亡", "搞笑追逐", "有 + 二次逃脱", "能", "约 30 秒（二次逃脱）", "短局笑点"],
+          ["Stealth Fishing Game", "私人池塘潜行", "两名管理员", "能", "120 秒", "限时潜行"],
         ],
       },
     },
     {
       h2: "怎么选",
       paragraphs: [
-        "想放松就选偷偷钓个鱼；想要剧情和抉择就选 unBAITable；想要刺激和笑点就选钓鱼佬大逃亡。三个并不冲突，完全可以都玩。",
+        "想放松就选偷偷钓个鱼；想要剧情和抉择就选 unBAITable；想要刺激和笑点就选钓鱼佬大逃亡。想试限时潜行，可以玩 Stealth Fishing Game。",
       ],
     },
   ],
@@ -228,7 +240,7 @@ export const similarZh: ArticleContent = {
     },
     {
       q: "本站和这些游戏有合作吗？",
-      a: "没有，只是玩家向推荐，版权归原作者。",
+      a: "《钓鱼佬大逃亡》和《Stealth Fishing Game》都由 Arlo 独立开发者制作。其他游戏的版权归各自的创作者。",
     },
   ],
   breadcrumbs: [

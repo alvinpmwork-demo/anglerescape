@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Clarity } from "@/components/Clarity";
 import "../globals.css";
 import { JsonLd } from "@/components/JsonLd";
-import { organizationNode, website } from "@/lib/schema";
+import { operatorNode, organizationNode, website } from "@/lib/schema";
 import { homeZh } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default function ZhLayout({
     <html lang="zh-Hans">
       <body>
         <Clarity />
-        <JsonLd data={[organizationNode("zh"), website("zh")]} />
+        <JsonLd data={[organizationNode("zh"), operatorNode("zh"), website("zh")]} />
         {children}
       </body>
     </html>
