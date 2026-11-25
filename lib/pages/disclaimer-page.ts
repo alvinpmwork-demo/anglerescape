@@ -82,7 +82,7 @@ export const disclaimerEn: ArticleContent = {
   ],
   schemaType: "WebPage",
   related: [
-    { label: "Back to the stealth fishing game", href: "/" },
+    { label: "Back to the Angler Escape homepage", href: "/" },
     { label: "Play free online", href: "/play/" },
     { label: "In-game escape guide", href: "/guides/how-to-escape-inspector/" },
     { label: "Meet the fictional characters", href: "/characters/" },

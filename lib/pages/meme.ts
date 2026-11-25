@@ -116,7 +116,7 @@ export const memeEn: ArticleContent = {
   related: [
     { label: "Play the fishing guy game", href: "/play/", note: "Angler Escape, free in your browser" },
     { label: "Meet Ah Diao, the never-say-Air-Force angler", href: "/characters/" },
-    { label: "Stealth fishing game homepage", href: "/" },
+    { label: "Angler Escape homepage", href: "/" },
     { label: "Sneaky fishing games like unBAITable", href: "/similar-games/" },
     { label: "Illegal fishing games (all fiction)", href: "/similar-games/illegal-fishing-games/" },
     { label: "Fishing games online free", href: "/fishing-games/" },

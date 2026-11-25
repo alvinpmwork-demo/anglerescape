@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { OPERATOR_NAME } from "@/lib/pages/trust";
 import type { NavLink } from "@/lib/site";
 import { SteamWishlist } from "@/components/SteamWishlist";
 
@@ -54,6 +55,7 @@ export function Footer({ siteName, disclaimer, homeHref, links = [], navLabel }:
             </Link>
           ))}
         </nav>
+        <p className="disclaimer">{isZh ? `由 ${OPERATOR_NAME.zh}运营` : `Operated by ${OPERATOR_NAME.en}`}</p>
       </div>
     </footer>
   );

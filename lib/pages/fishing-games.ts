@@ -1,4 +1,5 @@
 import type { ArticleContent } from "./types";
+import { campaStealthFishing, stealthFishingGame } from "./stealth-fishing";
 
 const L = {
   webfishing: "https://store.steampowered.com/app/3146520/WEBFISHING/",
@@ -16,6 +17,8 @@ const L = {
 
 const items = (play: string) => [
   { name: "Angler Escape", url: `https://anglerescape.com${play}` },
+  { name: stealthFishingGame.en.title, url: stealthFishingGame.en.href },
+  { name: campaStealthFishing.en.title, url: campaStealthFishing.en.href },
   { name: "WEBFISHING", url: L.webfishing },
   { name: "DREDGE", url: L.dredge },
   { name: "Cast n Chill", url: L.castnchill },
@@ -56,6 +59,8 @@ export const fishingGamesEn: ArticleContent = {
       h2: "Free Fishing Games You Can Play in a Browser",
       cards: [
         { title: "Angler Escape", meta: "Browser · Free", body: "Stealth comedy fishing game; sneak past the Inspector in ~30-second rounds.", href: "/play/second-escape/" },
+        stealthFishingGame.en,
+        campaStealthFishing.en,
         { title: "Tiny Fishing", meta: "Browser (Poki) · Free", body: "Idle arcade fishing: drop your line, hook as many fish as you can, buy upgrades.", href: L.tinyfishing },
         { title: "unBAITable", meta: "itch.io · Pay what you want", body: "Story game in a world where fishing is banned; dodge patrols across story nights.", href: L.unbaitable },
         { title: "Risk of Reel", meta: "itch.io", body: "Small night-fishing game where the spot is illegal in-game and you hide from guards.", href: L.riskofreel },
@@ -101,7 +106,7 @@ export const fishingGamesEn: ArticleContent = {
     { q: "Is WEBFISHING free?", a: "No, WEBFISHING is a paid game on Steam. Check the store page for the current price." },
     { q: "What are games like DREDGE?", a: "Try unBAITable, Risk of Reel, DAVE THE DIVER and Cat Goes Fishing for fishing with story, tension or deep-water progression." },
     { q: "Is there a free fishing simulator?", a: "Fishing Planet is free-to-play on PC and consoles." },
-    { q: "Are you affiliated with these games?", a: "No, except Angler Escape, which is ours. All other games belong to their creators." },
+    { q: "Are you affiliated with these games?", a: "Arlo, independent developer, made Angler Escape and Stealth Fishing Game. The other games belong to their creators." },
   ],
   breadcrumbs: [
     { label: "Home", href: "/" },
@@ -144,6 +149,8 @@ export const fishingGamesZh: ArticleContent = {
       h2: "免费在线钓鱼游戏（网页直接玩）",
       cards: [
         { title: "钓鱼佬大逃亡", meta: "网页 · 免费", body: "潜行搞笑钓鱼小游戏，30 秒一局躲开巡查员。", href: "/zh/play/second-escape/" },
+        stealthFishingGame.zh,
+        campaStealthFishing.zh,
         { title: "Tiny Fishing", meta: "网页（Poki，英文）· 免费", body: "放置类街机钓鱼：下钩、尽量多钓鱼、买升级。", href: L.tinyfishing },
         { title: "unBAITable", meta: "itch.io · 自愿付费", body: "设定里钓鱼被禁止的剧情游戏，要一夜夜躲过巡逻。", href: L.unbaitable },
         { title: "Risk of Reel", meta: "itch.io", body: "小品级夜钓游戏，游戏里这片湖禁止钓鱼，要躲保安。", href: L.riskofreel },
@@ -186,7 +193,7 @@ export const fishingGamesZh: ArticleContent = {
     { q: "WEBFISHING 免费吗？", a: "不免费，WEBFISHING 是 Steam 上的付费游戏，价格以商店页为准。" },
     { q: "有类似 DREDGE 的钓鱼游戏吗？", a: "可以试试 unBAITable、Risk of Reel、潜水员戴夫和 Cat Goes Fishing。" },
     { q: "有免费的钓鱼模拟游戏吗？", a: "Fishing Planet 在 PC 和主机上免费游玩。" },
-    { q: "本站和这些游戏有合作吗？", a: "没有，除了《钓鱼佬大逃亡》是我们自己的，其余版权归原作者。" },
+    { q: "本站和这些游戏有合作吗？", a: "《钓鱼佬大逃亡》和《Stealth Fishing Game》都由 Arlo 独立开发者制作。其他游戏的版权归各自的创作者。" },
   ],
   breadcrumbs: [
     { label: "首页", href: "/zh/" },

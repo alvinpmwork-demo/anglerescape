@@ -1,5 +1,7 @@
 # Angler Escape / 钓鱼佬大逃亡
 
+This is the official site for Angler Escape, operated by Arlo, independent developer. [Stealth Fishing Game](https://stealthfishinggame.com/) is a separate free browser game by the same developer. [Stealth Fishing by Campa T. Dog](https://campa.itch.io/stealth-fishing) is the 2016 itch.io game about a fox rescuing fish from a theme park aquarium.
+
 > Angler Escape is a free bilingual browser game about a fictional angler, a watchful Inspector, and a second chance to escape. The English pages are at the site root; Chinese versions are under /zh/. The story is cartoon fiction, not real-world fishing or evasion advice.
 
 This index covers the public English and Chinese pages. The complete URL list is also available in the [XML sitemap](https://anglerescape.com/sitemap.xml), and the full text of every page (English and Chinese) is in [llms-full.txt](https://anglerescape.com/llms-full.txt).

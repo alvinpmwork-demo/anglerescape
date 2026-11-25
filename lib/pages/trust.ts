@@ -1,5 +1,10 @@
 import type { ArticleContent } from "./types";
 
+export const OPERATOR_NAME = {
+  en: "Arlo, independent developer",
+  zh: "Arlo 独立开发者",
+} as const;
+
 /**
  * Contact inbox shown on /contact/, /privacy/ and the disclaimer page.
  * TODO(owner): anglerescape.com has no MX record yet, so this address does not receive mail.
@@ -33,7 +38,7 @@ export const aboutEn: ArticleContent = {
     {
       h2: "Who makes it",
       paragraphs: [
-        "Angler Escape is made by a solo indie developer, who writes the code and designs the game. The character art is made with AI assistance.",
+        `Angler Escape is made by ${OPERATOR_NAME.en}. Arlo runs this site, writes the code, and designs the game. The character art is made with AI assistance.`,
       ],
     },
     {
@@ -87,7 +92,7 @@ export const aboutEn: ArticleContent = {
   faq: [
     { q: "Is Angler Escape free?", a: "Yes. Second Escape is free to play in the browser, with no ads, no account and nothing to buy." },
     { q: "What does \"Air Force\" (空军) mean for a fishing guy?", a: "It is slang for coming home with zero fish. The fishing guy meme is built on anglers who go Air Force and keep casting anyway." },
-    { q: "Who is behind Angler Escape?", a: "A solo indie developer. Character art is made with AI assistance; code and game design are hand-made." },
+    { q: "Who is behind Angler Escape?", a: `${OPERATOR_NAME.en}. Arlo writes the code, designs the game, and runs the official site. The character art is made with AI assistance.` },
   ],
   related: [
     { label: "Play Second Escape free", href: "/play/second-escape/" },
@@ -116,7 +121,7 @@ export const aboutZh: ArticleContent = {
     {
       h2: "谁在做",
       paragraphs: [
-        "《钓鱼佬大逃亡》由一位独立开发者制作：代码和玩法设计都是自己做的，角色美术使用了 AI 辅助。",
+        `《钓鱼佬大逃亡》由 ${OPERATOR_NAME.zh} 制作和运营。代码和玩法由 Arlo 完成，角色美术使用了人工智能辅助。`,
       ],
     },
     {
@@ -170,7 +175,7 @@ export const aboutZh: ArticleContent = {
   faq: [
     { q: "钓鱼佬大逃亡免费吗？", a: "免费。二次逃脱直接在浏览器里玩，没有广告、不用注册、没有付费内容。" },
     { q: "钓鱼佬说的「空军」是什么意思？", a: "空军指钓了一天一条鱼都没有，繁体也写作「釣魚 空軍」。钓鱼佬梗的核心就是空军了还要接着甩竿。" },
-    { q: "游戏是谁做的？", a: "一位独立开发者。角色美术用了 AI 辅助，代码和玩法设计是自己做的。" },
+    { q: "游戏是谁做的？", a: `《钓鱼佬大逃亡》由 ${OPERATOR_NAME.zh} 制作，官网也由 Arlo 运营。代码和玩法由 Arlo 完成，角色美术使用了人工智能辅助。` },
   ],
   related: [
     { label: "二次逃脱在线玩", href: "/zh/play/second-escape/" },
@@ -193,7 +198,7 @@ export const contactEn: ArticleContent = {
     "How to contact the developer of Angler Escape: bug reports, feedback, content corrections, and copyright questions.",
   h1: "Contact",
   intro: [
-    `Angler Escape is made by one person, so the quickest way to reach me is email: ${CONTACT_EMAIL}`,
+    `Angler Escape is made and operated by ${OPERATOR_NAME.en}. The quickest way to reach me is by email at ${CONTACT_EMAIL}.`,
   ],
   sections: [
     {
@@ -227,7 +232,7 @@ export const contactZh: ArticleContent = {
   title: "联系钓鱼佬大逃亡",
   description: "联系《钓鱼佬大逃亡》开发者：反馈 bug、提建议、内容纠错和版权问题。",
   h1: "联系我们",
-  intro: [`《钓鱼佬大逃亡》是一个人做的，最快的联系方式是发邮件：${CONTACT_EMAIL}`],
+  intro: [`《钓鱼佬大逃亡》由 ${OPERATOR_NAME.zh} 制作和运营。联系我的最快方式是发邮件到 ${CONTACT_EMAIL}。`],
   sections: [
     {
       h2: "邮箱",

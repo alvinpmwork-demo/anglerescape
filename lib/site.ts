@@ -91,7 +91,7 @@ export function getChrome(locale: Locale): SiteChrome {
       { label: "Meme", href: "/meme/fishing-guy-meme/" },
     ],
     footerLinks: [
-      { label: "Stealth fishing game", href: "/" },
+      { label: "Angler Escape homepage", href: "/" },
       { label: "Free fishing game online", href: "/play/" },
       { label: "Second Escape stealth escape game", href: "/play/second-escape/" },
       { label: "How to escape the Inspector", href: "/guides/how-to-escape-inspector/" },
