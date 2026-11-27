@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "check:clarity": "node scripts/check-clarity.mjs",
-    "test:check-clarity": "node --test scripts/check-clarity.test.mjs"
+    "test:check-clarity": "node --test scripts/check-clarity.test.mjs",
+    "check:ga4": "node scripts/check-ga4.mjs",
+    "test:check-ga4": "node --test scripts/check-ga4.test.mjs"
   },
   "dependencies": {
     "react": "19.1.0",

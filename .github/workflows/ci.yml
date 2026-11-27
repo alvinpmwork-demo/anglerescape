@@ -21,3 +21,5 @@ jobs:
       - run: npm run build
       - run: npm run check:clarity
       - run: npm run test:check-clarity
+      - run: npm run check:ga4
+      - run: npm run test:check-ga4
