@@ -55,3 +55,30 @@ for (const signal of ['window.clarity("consent", true);', 'window.clarity("conse
     assert.throws(() => checkClarity(files), /consent signals are forbidden/);
   });
 }
+
+test('reject Clarity consent in lib/analytics.ts even with GA4', () => {
+  const files = fixture();
+  const analytics = readFileSync(new URL('../lib/analytics.ts', import.meta.url), 'utf8');
+  files.set('lib/analytics.ts', analytics + '\nwindow.clarity("consent", true);');
+  assert.throws(() => checkClarity(files), /consent signals are forbidden/);
+});
+
+test('reject Clarity consent in bundle even with googletagmanager', () => {
+  const files = fixture();
+  // Create a bundle that contains both GA4 (googletagmanager) and Clarity with consent call
+  const claritySource = files.get('lib/clarity.ts');
+  const bundleWithConsent = `
+    self.webpackChunk_N_E.push([[1],{
+      1:function(module,exports){
+        ${transpile(claritySource)}
+        window.clarity("consent", true);
+      },
+      2:function(module,exports){
+        // Simulate GA4 presence
+        var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST";
+      }
+    }]);
+  `;
+  files.set('out/_next/static/chunks/clarity.js', bundleWithConsent);
+  assert.throws(() => checkClarity(files), /consent signals are forbidden/);
+});

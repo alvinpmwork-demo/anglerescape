@@ -27,13 +27,25 @@ function moduleContext(extra = {}) {
   return vm.createContext({ exports, module: { exports }, ...extra });
 }
 
-function assertNoConsent(source, name) {
+function assertNoConsent(source, name, options = {}) {
+  const { allowGtagConsent = false } = options;
   const ast = ts.createSourceFile(name, source, ts.ScriptTarget.Latest, true);
   function visit(node) {
     if (ts.isCallExpression(node) && node.arguments.length) {
       const first = node.arguments[0];
-      assert(!ts.isStringLiteralLike(first) || !/^consent(v2)?$/i.test(first.text),
-        `${name}: consent signals are forbidden (no CMP)`);
+      if (ts.isStringLiteralLike(first) && /^consent(v2)?$/i.test(first.text)) {
+        // Check if this is a gtag consent call: gtag("consent", ...) or window.gtag("consent", ...)
+        const isGtagCall = (
+          (ts.isIdentifier(node.expression) && node.expression.text === 'gtag') ||
+          (ts.isPropertyAccessExpression(node.expression) &&
+           ts.isIdentifier(node.expression.name) && node.expression.name.text === 'gtag' &&
+           ts.isIdentifier(node.expression.expression) && node.expression.expression.text === 'window')
+        );
+
+        if (!isGtagCall || !allowGtagConsent) {
+          assert.fail(`${name}: consent signals are forbidden (no CMP)${isGtagCall ? ' - gtag consent not allowed in this context' : ''}`);
+        }
+      }
     }
     ts.forEachChild(node, visit);
   }
@@ -85,9 +97,11 @@ export function checkClarity(files) {
   }, 'source');
 
   for (const [name, source] of files) {
-    // Skip GA4 analytics file (it uses Consent Mode v2, which is correct for GA4)
-    if (name === 'lib/analytics.ts') continue;
-    if (/^(app|components|lib)\/.*\.(tsx?|jsx?)$/.test(name)) assertNoConsent(source, name);
+    if (/^(app|components|lib)\/.*\.(tsx?|jsx?)$/.test(name)) {
+      // Allow gtag consent calls only in lib/analytics.ts (GA4 Consent Mode v2)
+      const allowGtagConsent = name === 'lib/analytics.ts';
+      assertNoConsent(source, name, { allowGtagConsent });
+    }
   }
   const component = get('components/Clarity.tsx');
   assert.match(component, /["']use client["']/);
@@ -117,10 +131,9 @@ export function checkClarity(files) {
   for (const [name, source] of bundles) {
     assert(source.includes(EXPECTED_ID), `${name}: wrong/missing exported project ID`);
     assert(source.includes('anglerescape.com') && source.includes('www.anglerescape.com'), `${name}: missing production hosts`);
-    // Skip consent check if the bundle also contains GA4 (which uses Consent Mode)
-    if (!source.includes('googletagmanager')) {
-      assertNoConsent(source, name);
-    }
+    // Allow gtag consent calls if bundle contains GA4 (which uses Consent Mode v2)
+    const allowGtagConsent = source.includes('googletagmanager');
+    assertNoConsent(source, name, { allowGtagConsent });
     assertRuntime(globals => {
       const context = moduleContext({ ...globals, self: { webpackChunk_N_E: [] } });
       vm.runInContext(source, context, { timeout: 1000 });
