@@ -1,4 +1,5 @@
 import type { ArticleContent } from "./types";
+import { CONTACT_EMAIL } from "./trust";
 
 export const disclaimerEn: ArticleContent = {
   locale: "en",
@@ -49,7 +50,7 @@ export const disclaimerEn: ArticleContent = {
     {
       h2: "Contact",
       paragraphs: [
-        "For content corrections or copyright questions, email hello@anglerescape.com (placeholder inbox while the site scales).",
+        `For content corrections or copyright questions, email ${CONTACT_EMAIL} (placeholder inbox while the site scales).`,
       ],
     },
   ],
@@ -138,7 +139,7 @@ export const disclaimerZh: ArticleContent = {
     {
       h2: "联系我们",
       paragraphs: [
-        "内容纠错或版权问题可发邮件至 hello@anglerescape.com（站点扩容期间的占位邮箱）。",
+        `内容纠错或版权问题可发邮件至 ${CONTACT_EMAIL}（站点扩容期间的占位邮箱）。`,
       ],
     },
   ],

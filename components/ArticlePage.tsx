@@ -8,6 +8,7 @@ import { Disclaimer } from "@/components/Disclaimer";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ProtectedEmail, isMailtoHref, withProtectedEmail } from "@/components/ProtectedEmail";
 import { article, faqPage, videoGame } from "@/lib/schema";
 
 type Props = { content: ArticleContent };
@@ -75,7 +76,7 @@ export function ArticlePage({ content: c }: Props) {
             ) : null}
             {c.topNote ? <Disclaimer text={`※ ${c.topNote.replace(/^※\s*/, "")}`} /> : null}
             {c.intro?.map((p) => (
-              <p key={p.slice(0, 32)}>{p}</p>
+              <p key={p.slice(0, 32)}>{withProtectedEmail(p)}</p>
             ))}
             <CtaRow
               primaryLabel={c.primaryCta}
@@ -109,19 +110,19 @@ export function ArticlePage({ content: c }: Props) {
                 </div>
               ) : null}
               {section.paragraphs?.map((p) => (
-                <p key={p.slice(0, 32)}>{p}</p>
+                <p key={p.slice(0, 32)}>{withProtectedEmail(p)}</p>
               ))}
               {section.subsections?.map((sub) => (
                 <div key={sub.title} className="act-card">
                   <h3>{sub.title}</h3>
-                  <p>{sub.body}</p>
+                  <p>{withProtectedEmail(sub.body)}</p>
                 </div>
               ))}
               {section.list ? (
                 <ul className="why-list">
                   {section.list.map((item) => (
                     <li key={item.title}>
-                      <strong>{item.title}</strong> {item.body}
+                      <strong>{item.title}</strong> {withProtectedEmail(item.body)}
                     </li>
                   ))}
                 </ul>
@@ -133,7 +134,7 @@ export function ArticlePage({ content: c }: Props) {
                       <>
                         <h3>{card.title}</h3>
                         {card.meta ? <p className="card-meta">{card.meta}</p> : null}
-                        <p>{card.body}</p>
+                        <p>{withProtectedEmail(card.body)}</p>
                       </>
                     );
                     return card.href ? (
@@ -174,7 +175,7 @@ export function ArticlePage({ content: c }: Props) {
                 <ul className="inline-links">
                   {section.links.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href}>{link.label}</Link>
+                      {isMailtoHref(link.href) ? <ProtectedEmail /> : <Link href={link.href}>{link.label}</Link>}
                     </li>
                   ))}
                 </ul>
