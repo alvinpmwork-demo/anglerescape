@@ -16,6 +16,7 @@ import {
   type Keys,
   type Sim,
 } from "@/components/secondEscapeLogic";
+import { trackEvent } from "@/lib/analytics";
 
 type Locale = "en" | "zh";
 type GameState = "ready" | "playing" | "win" | "lose";
@@ -159,9 +160,25 @@ export function SecondEscapeGame({ locale, keyCapture = "page" }: Props) {
   }, []);
 
   const setGameState = useCallback((s: GameState) => {
+    const prevState = stateRef.current;
     stateRef.current = s;
     setState(s);
-  }, []);
+
+    // Track game outcomes
+    if (s === "win" && prevState === "playing") {
+      trackEvent("level_complete", {
+        game: "second_escape",
+        locale,
+      });
+    } else if (s === "lose" && prevState === "playing") {
+      const sim = simRef.current;
+      trackEvent("game_over", {
+        game: "second_escape",
+        locale,
+        lose_reason: sim.loseReason || "unknown",
+      });
+    }
+  }, [locale]);
 
   const reset = useCallback(() => {
     simRef.current = initialSim();
@@ -177,7 +194,13 @@ export function SecondEscapeGame({ locale, keyCapture = "page" }: Props) {
       setSpotPct(0);
       }
     setGameState("playing");
-  }, [setGameState]);
+
+    // Track game start
+    trackEvent("game_start", {
+      game: "second_escape",
+      locale,
+    });
+  }, [setGameState, locale]);
 
   const draw = useCallback(
     (ctx: CanvasRenderingContext2D, sim: Sim, gs: GameState) => {

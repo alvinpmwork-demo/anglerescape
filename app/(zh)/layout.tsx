@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Clarity } from "@/components/Clarity";
+import { Analytics } from "@/components/Analytics";
 import "../globals.css";
 import { JsonLd } from "@/components/JsonLd";
 import { operatorNode, organizationNode, website } from "@/lib/schema";
@@ -34,6 +35,7 @@ export default function ZhLayout({
     <html lang="zh-Hans">
       <body>
         <Clarity />
+        <Analytics locale="zh" />
         <JsonLd data={[organizationNode("zh"), operatorNode("zh"), website("zh")]} />
         {children}
       </body>

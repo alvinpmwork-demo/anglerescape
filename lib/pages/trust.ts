@@ -13,7 +13,7 @@ export const OPERATOR_NAME = {
 export const CONTACT_EMAIL = "hello@anglerescape.com";
 
 const TRUST_UPDATED = "2026-10-09";
-const PRIVACY_UPDATED = "2026-11-11";
+const PRIVACY_UPDATED = "2026-11-27";
 
 const base = {
   datePublished: TRUST_UPDATED,
@@ -281,11 +281,17 @@ export const privacyEn: ArticleContent = {
       h2: "Hosting and analytics",
       paragraphs: [
         "The site is hosted on Cloudflare. Like any web host, Cloudflare processes technical request data (such as IP address, browser type, and the page requested) to deliver the site and protect it from abuse.",
-        "We use Microsoft Clarity on anglerescape.com and www.anglerescape.com to understand how visitors use the site through session recordings and heatmaps, and to improve usability. The game itself does not set cookies; third-party analytics may do so.",
-        "There is no cookie consent banner or consent management platform (CMP). We integrate Clarity in its default no-cookie mode by loading the script without sending consent grants. This alone does not guarantee no cookies: if Consent Mode is not enabled in the Clarity project, visitors outside the European Economic Area (EEA), United Kingdom (UK), and Switzerland (CH) may still receive cookies such as _clck and _clsk. Actual behavior is subject to Microsoft's policies and the project's settings.",
+        "We use analytics to understand how visitors use the site and improve usability. When you first visit, you'll see a consent banner asking you to allow or decline analytics tracking. Your choice is remembered.",
+        "We use Microsoft Clarity on anglerescape.com and www.anglerescape.com for session recordings and heatmaps. We integrate Clarity in its default no-cookie mode by loading the script without sending consent grants. This alone does not guarantee no cookies: if Consent Mode is not enabled in the Clarity project, visitors outside the European Economic Area (EEA), United Kingdom (UK), and Switzerland (CH) may still receive cookies such as _clck and _clsk. Actual behavior is subject to Microsoft's policies and the project's settings.",
+        "We use Google Analytics 4 (measurement ID G-LSSVCD4DEC) only if you click \"Allow\" in the consent banner. When allowed, Google Analytics may set cookies such as _ga and _ga_* to track site usage. If you decline or don't make a choice, Google Analytics will not load and no analytics cookies will be set by us. The game itself does not set cookies.",
+        "To revoke your consent: use the \"Analytics choices\" button (visible in the page footer) to open the consent banner again and click \"Decline\". When you revoke consent, we will stop loading analytics, delete the analytics cookies, and reload the page.",
+        `Questions about analytics or privacy: ${CONTACT_EMAIL}`,
         "We may use Cloudflare Web Analytics to count visits. It doesn't use cookies and only gives us aggregated numbers, such as page views, countries, and referring websites.",
       ],
-      links: [{ label: "Microsoft Privacy Statement", href: "https://privacy.microsoft.com/privacystatement" }],
+      links: [
+        { label: "Microsoft Privacy Statement", href: "https://privacy.microsoft.com/privacystatement" },
+        { label: "Google Privacy Policy", href: "https://policies.google.com/privacy" },
+      ],
     },
     {
       h2: "Ads and third parties",
@@ -337,11 +343,17 @@ export const privacyZh: ArticleContent = {
       h2: "托管和统计",
       paragraphs: [
         "本站托管在 Cloudflare。和所有网站托管一样，Cloudflare 会处理访问时的技术数据（例如 IP 地址、浏览器类型、访问的页面），用于提供网站服务和防止滥用。",
-        "本站在 anglerescape.com 和 www.anglerescape.com 使用 Microsoft Clarity，通过会话录制和热图了解访客如何使用网站，帮助改进使用体验。游戏本身不写入 Cookie，但第三方统计工具可能设置 Cookie。",
-        "本站没有 Cookie 同意横幅或同意管理平台（CMP）。我们按 Clarity 默认无 Cookie 模式接入：加载脚本，但不调用同意授予。这本身不保证完全无 Cookie：如果 Clarity 项目未开启 Consent Mode，欧洲经济区（EEA）、英国（UK）和瑞士（CH）以外的访客仍可能被设置 _clck、_clsk 等 Cookie。具体行为以微软政策和项目设置为准。",
+        "我们使用统计工具了解访客如何使用网站，帮助改进使用体验。首次访问时，你会看到同意横幅，可以选择允许或拒绝分析跟踪。你的选择会被记住。",
+        "本站在 anglerescape.com 和 www.anglerescape.com 使用 Microsoft Clarity，用于会话录制和热图。我们按 Clarity 默认无 Cookie 模式接入：加载脚本，但不调用同意授予。这本身不保证完全无 Cookie：如果 Clarity 项目未开启 Consent Mode，欧洲经济区（EEA）、英国（UK）和瑞士（CH）以外的访客仍可能被设置 _clck、_clsk 等 Cookie。具体行为以微软政策和项目设置为准。",
+        "本站使用 Google Analytics 4（测量 ID G-LSSVCD4DEC），仅在你点击同意横幅上的「允许」后加载。允许后，Google Analytics 可能会设置 _ga、_ga_* 等 Cookie 来跟踪网站使用情况。如果你拒绝或未做选择，Google Analytics 不会加载，我们也不会设置分析 Cookie。游戏本身不写入 Cookie。",
+        "撤回同意：使用页面底部的「分析选项」按钮再次打开同意横幅，点击「拒绝」。撤回同意后，我们将停止加载分析工具、删除分析 Cookie 并刷新页面。",
+        `统计或隐私问题请发邮件至：${CONTACT_EMAIL}`,
         "我们可能使用 Cloudflare Web Analytics 统计访问量。它不使用 Cookie，我们只能看到汇总数据，例如页面访问量、国家和来源网站。",
       ],
-      links: [{ label: "微软隐私声明", href: "https://privacy.microsoft.com/privacystatement" }],
+      links: [
+        { label: "微软隐私声明", href: "https://privacy.microsoft.com/privacystatement" },
+        { label: "Google 隐私权政策", href: "https://policies.google.com/privacy" },
+      ],
     },
     {
       h2: "广告和第三方",
