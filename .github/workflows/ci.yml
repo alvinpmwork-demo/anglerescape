@@ -23,3 +23,5 @@ jobs:
       - run: npm run test:check-clarity
       - run: npm run check:ga4
       - run: npm run test:check-ga4
+      - run: npm run check:email-protection
+      - run: npm run test:check-email-protection
