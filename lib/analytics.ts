@@ -32,9 +32,23 @@ export function loadGtag(): void {
 
   // Initialize dataLayer and gtag queue
   window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function (...args: unknown[]) {
-    window.dataLayer!.push(args);
+  // CRITICAL: must push `arguments` (not a rest parameter array) for gtag.js to process commands
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer!.push(arguments);
   };
+
+  // Set consent defaults before loading script (Consent Mode v2)
+  window.gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied",
+  });
+
+  // Update consent for analytics (we only load after user granted consent)
+  window.gtag("consent", "update", {
+    analytics_storage: "granted",
+  });
 
   // Load the gtag script
   const script = document.createElement("script");
@@ -44,14 +58,7 @@ export function loadGtag(): void {
 
   // Configure GA4
   window.gtag("js", new Date());
-  window.gtag("config", GA4_MEASUREMENT_ID, {
-    // Ad-related storage must remain denied
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-    // Analytics storage is granted (we only load after consent)
-    analytics_storage: "granted",
-  });
+  window.gtag("config", GA4_MEASUREMENT_ID);
 }
 
 /**
@@ -95,6 +102,9 @@ export function deleteGaCookies(): void {
     // Also try with domain
     const hostname = window.location.hostname;
     document.cookie = `${name}=; Max-Age=0; Path=/; Domain=${hostname}`;
+    // Delete domain cookies for anglerescape.com and .anglerescape.com
+    document.cookie = `${name}=; Max-Age=0; Path=/; Domain=anglerescape.com`;
+    document.cookie = `${name}=; Max-Age=0; Path=/; Domain=.anglerescape.com`;
   }
 }
 

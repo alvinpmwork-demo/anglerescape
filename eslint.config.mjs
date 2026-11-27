@@ -20,6 +20,12 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    files: ["lib/analytics.ts"],
+    rules: {
+      "prefer-rest-params": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

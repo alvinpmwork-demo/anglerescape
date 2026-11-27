@@ -127,6 +127,43 @@ The check script also verifies runtime behavior using vm contexts:
 4. **Denied Consent**: Verifies no gtag script is loaded when consent is explicitly denied
 5. **Duplicate Calls**: Verifies loadGtag() doesn't add duplicate scripts
 
+### 14. gtag Stub Using Rest Parameters Instead of Arguments (2026-11-27)
+
+**What**: Modified `lib/analytics.ts` to use rest parameters:
+```typescript
+window.gtag = window.gtag || function (...args: unknown[]) {
+  window.dataLayer!.push(args);  // WRONG: pushes Array, not Arguments
+};
+```
+
+**Why This is a Critical Bug**: gtag.js only processes commands when they are Arguments objects. When rest parameters are used, `args` becomes a plain Array, and gtag.js silently ignores all commands (`js`, `config`, `event`, `consent`). This breaks all GA4 tracking.
+
+**Expected**: Check fails with runtime error about Arguments object
+
+**Result**: ✓ Runtime check correctly detects the issue:
+```
+AssertionError: source: anglerescape.com: dataLayer[0] must be Arguments object, got [object Array]. 
+This happens when gtag uses rest parameters (...args) instead of the official pattern: 
+function gtag() { dataLayer.push(arguments); }
+```
+
+**Build Artifact Check**: Also added check for `out/_next/static/chunks/*.js` to verify compiled code contains `dataLayer.push(arguments)`, preventing minifiers from breaking the pattern.
+
+**Command**:
+```bash
+# Inject fault
+sed -i.bak 's/function gtag()/function (...args: unknown[])/; s/push(arguments)/push(args)/' lib/analytics.ts
+npm run build
+npm run check:ga4  # Fails with Arguments object error
+
+# Restore
+mv lib/analytics.ts.bak lib/analytics.ts
+npm run build
+npm run check:ga4  # Passes
+```
+
+**ESLint Configuration**: Added exception to `eslint.config.mjs` to allow `arguments` in `lib/analytics.ts` despite `prefer-rest-params` rule, with inline comment explaining why the official gtag pattern requires it.
+
 ## Conclusion
 
 All fault injection tests pass, confirming that the GA4 checks correctly detect:
@@ -135,5 +172,6 @@ All fault injection tests pass, confirming that the GA4 checks correctly detect:
 - Disclosure errors (privacy policy content)
 - Event tracking errors (missing or incorrectly named events)
 - Runtime errors (loading on wrong hosts, loading without consent)
+- **Critical gtag queue implementation errors (rest parameters vs Arguments object)**
 
-The checks provide comprehensive coverage of the GA4 consent-based integration requirements.
+The checks provide comprehensive coverage of the GA4 consent-based integration requirements, including the subtle but critical requirement that gtag must use `arguments` (not rest parameters) to create a proper command queue.

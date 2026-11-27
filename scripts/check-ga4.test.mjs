@@ -31,6 +31,10 @@ function fixture() {
     files.set(`out/${locale}index.html`, '<html><body>No analytics script here</body></html>');
   }
 
+  // Mock JS chunk with correct gtag stub pattern
+  files.set('out/_next/static/chunks/app-layout-mock.js',
+    'window.dataLayer=window.dataLayer||[],window.gtag=window.gtag||function(){window.dataLayer.push(arguments)},window.gtag("consent","default",{ad_storage:"denied"}),src="https://www.googletagmanager.com/gtag/js?id=G-LSSVCD4DEC"');
+
   return files;
 }
 

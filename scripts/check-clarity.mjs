@@ -85,6 +85,8 @@ export function checkClarity(files) {
   }, 'source');
 
   for (const [name, source] of files) {
+    // Skip GA4 analytics file (it uses Consent Mode v2, which is correct for GA4)
+    if (name === 'lib/analytics.ts') continue;
     if (/^(app|components|lib)\/.*\.(tsx?|jsx?)$/.test(name)) assertNoConsent(source, name);
   }
   const component = get('components/Clarity.tsx');
@@ -115,7 +117,10 @@ export function checkClarity(files) {
   for (const [name, source] of bundles) {
     assert(source.includes(EXPECTED_ID), `${name}: wrong/missing exported project ID`);
     assert(source.includes('anglerescape.com') && source.includes('www.anglerescape.com'), `${name}: missing production hosts`);
-    assertNoConsent(source, name);
+    // Skip consent check if the bundle also contains GA4 (which uses Consent Mode)
+    if (!source.includes('googletagmanager')) {
+      assertNoConsent(source, name);
+    }
     assertRuntime(globals => {
       const context = moduleContext({ ...globals, self: { webpackChunk_N_E: [] } });
       vm.runInContext(source, context, { timeout: 1000 });

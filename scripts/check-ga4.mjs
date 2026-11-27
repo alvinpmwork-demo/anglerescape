@@ -109,6 +109,23 @@ function assertRuntime(makeLoader, makeConsent, label) {
         assert.equal(scripts[0].src, EXPECTED_URL, `${label}: ${hostname}: script URL / measurement ID`);
         assert.equal(scripts[0].async, true, `${label}: ${hostname}: async`);
         assert.equal(typeof window.gtag, 'function', `${label}: ${hostname}: gtag function`);
+
+        // CRITICAL: dataLayer entries must be Arguments objects, not plain arrays
+        assert(window.dataLayer.length > 0, `${label}: ${hostname}: dataLayer should have entries`);
+        for (let i = 0; i < window.dataLayer.length; i++) {
+          const entry = window.dataLayer[i];
+          const isArguments = Object.prototype.toString.call(entry) === '[object Arguments]';
+          assert(isArguments,
+            `${label}: ${hostname}: dataLayer[${i}] must be Arguments object, got ${Object.prototype.toString.call(entry)}. ` +
+            `This happens when gtag uses rest parameters (...args) instead of the official pattern: function gtag() { dataLayer.push(arguments); }`);
+        }
+
+        // Verify at least 'consent' and 'js' and 'config' commands are present
+        const commands = window.dataLayer.map(entry => entry[0]);
+        assert(commands.includes('consent'), `${label}: ${hostname}: dataLayer missing 'consent' command`);
+        assert(commands.includes('js'), `${label}: ${hostname}: dataLayer missing 'js' command`);
+        assert(commands.includes('config'), `${label}: ${hostname}: dataLayer missing 'config' command`);
+
         load(); // Duplicate call should not add another script
         assert.equal(scripts.length, 1, `${label}: ${hostname}: duplicate script`);
       } else {
@@ -262,6 +279,47 @@ export function checkGA4(files) {
 
   // Check event tracking
   assertEventTracking(files);
+
+  // Check build artifacts: scan out/_next/static/chunks for gtag queue implementation
+  const chunks = [...files].filter(([name]) =>
+    name.startsWith('out/_next/static/chunks/') &&
+    name.endsWith('.js') &&
+    files.get(name).includes('googletagmanager')
+  );
+
+  if (chunks.length === 0) {
+    throw new Error('Build artifact check: no JS chunks contain googletagmanager. Run `npm run build` first.');
+  }
+
+  for (const [name, source] of chunks) {
+    // CRITICAL: gtag stub must push `arguments`, not a plain array
+    // Look for the dataLayer.push pattern
+    if (!source.includes('dataLayer')) continue;
+
+    // Required: must contain 'arguments' in the same chunk that has dataLayer.push
+    // This is the primary check that the official pattern is present
+    if (source.includes('dataLayer.push') && !source.includes('arguments')) {
+      throw new Error(
+        `${name}: chunk contains dataLayer.push but not 'arguments'. ` +
+        `The gtag queue stub must use: function gtag() { dataLayer.push(arguments); }. ` +
+        `Without 'arguments', gtag commands (js/config/event) will not work.`
+      );
+    }
+
+    // Positive check: verify the correct pattern exists
+    // Look for: dataLayer.push(arguments)
+    if (!source.includes('dataLayer.push(arguments)')) {
+      // Extract snippet for error message
+      const match = source.match(/(.{0,100}dataLayer\.push.{0,100})/);
+      const snippet = match ? match[0] : '';
+      throw new Error(
+        `${name}: gtag stub does not use the official pattern 'dataLayer.push(arguments)'. ` +
+        `Snippet: ${snippet.substring(0, 200)}... ` +
+        `The official pattern is: window.gtag = function gtag() { window.dataLayer.push(arguments); }. ` +
+        `Rest parameters (...args) and arrow functions break gtag.js command processing.`
+      );
+    }
+  }
 }
 
 // CLI mode: check the actual build
@@ -292,20 +350,23 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
     files.set(`out/${locale}privacy/index.html`, await readFile(p, 'utf8'));
   }
 
-  // Read all HTML files to check for gtag
-  async function walkHTML(dir, base = '') {
+  // Read all HTML files to check for gtag, and JS chunks for build artifact checks
+  async function walkOutput(dir, base = '') {
     const entries = await readdir(dir, { withFileTypes: true });
     for (const ent of entries) {
       const rel = path.join(base, ent.name);
       const full = path.join(dir, ent.name);
       if (ent.isDirectory()) {
-        await walkHTML(full, rel);
+        await walkOutput(full, rel);
       } else if (ent.name.endsWith('.html')) {
+        files.set(`out/${rel}`, await readFile(full, 'utf8'));
+      } else if (ent.name.endsWith('.js') && rel.includes('_next/static/chunks')) {
+        // Collect JS chunks for build artifact analysis
         files.set(`out/${rel}`, await readFile(full, 'utf8'));
       }
     }
   }
-  await walkHTML(outDir);
+  await walkOutput(outDir);
 
   checkGA4(files);
   console.log('✓ GA4 checks passed');
